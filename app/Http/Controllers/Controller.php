@@ -24,12 +24,16 @@ class Controller extends BaseController
         $videos = DB::table('videos')->orderBy('id','desc')->take(2)->get();
         $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')->orderBy('news.updated_at','desc')->take(10)->get();
         $systems = DB::table('ppc_system_config')->get();
+        $databanner=DB::table('introduce')->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
+                                            ->where('introduce.parrent_id',1)->where('introduce_lang.lang','vi')
+                                            ->where('status',1)->get();
         return view('Home/home',[
             'dataduan' => $dataduan,
             'sliders'=>$sliders,
             'videos'=>$videos,
             'news'=>$news,
-            'systems'=>$systems
+            'systems'=>$systems,
+            'databanner'=>$databanner
         ]);
     }
     public function SetLanguage($locale)
