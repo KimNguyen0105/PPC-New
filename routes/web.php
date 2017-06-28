@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Controller@Home');
+Route::get('language/{locale}', 'Controller@SetLanguage');
 
 
 
