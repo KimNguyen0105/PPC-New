@@ -12,7 +12,7 @@
             <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                 <div class="col-md-4" style="padding: 0px">
                     <a href="">
-                        <img src="" class="img-responsive img_body"  style="width:100%;">
+                        <img src="{{$data->image}}" class="img-responsive img_body"  style="width:100%;">
                     </a>
                 </div>
                
@@ -20,7 +20,7 @@
                     <a href=""><h4 style="text-align:left;font-size: 17px;font-family: verdana;"><b>{{$data->title}}</b></h4></a>
                     <h5 style="text-align:left; font-size: 16px;font-family: verdana;"> {{$data->address}}</h5>
                     <div style="padding-top: 10px; font-family: Verdana">
-                        {{$data->info}}
+                        {!!str_limit($data->info,200)!!}
                     </div>
                 </div>
                 <div class="" style="padding: 0px 30px; position: absolute; right: 0;bottom: 0; text-align: right">
@@ -30,6 +30,7 @@
             </div>
 
             @endforeach
+           <div class="text-center"> {!! $dataduan->render() !!} </div>
         </div>
        
     </div>
@@ -70,7 +71,7 @@
                         
                         
                        
-                        <a href="" class="texttintuc" style="color: #3f3024;font-size: 16px" title="{{$row->title}}">{{$row->title}}</a>
+                        <a href="{{asset('/news')}}" class="texttintuc" style="color: #3f3024;font-size: 16px" title="{{$row->title}}">{{$row->title}}</a>
                     </div>
                     @endforeach
                     @endif
