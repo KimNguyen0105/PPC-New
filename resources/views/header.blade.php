@@ -2,11 +2,11 @@
 <div class="header backgroundheader">
     <div class="container" style="text-align: center; position: relative; padding-top: 10px;">
         <div class="col-lg-4 col-md-4 col-xs-4" style="position: absolute; left: 0;bottom: 0; text-align: left;font-family: verdana;">
-            <span class="photro" style="display:inline;"><img src=" imgweb/30.png" style="width: 6%; margin-top: 6px;margin-bottom: 6px" id="img_icon"> (+84) 838 221 122</span><br>
-            <a style="display:inline; text-decoration: none; color: black; cursor: pointer" href="javascript:void(Tawk_API.toggle())"><img src=" imgweb/29.png" style="width: 6%" id="img_icon"><span class="photro"> <b>{{trans('home.onlinesupport')}}</b></span> </a>
+            <span class="photro" style="display:inline;"><img src=" images/30.png" style="width: 6%; margin-top: 6px;margin-bottom: 6px" id="img_icon"> (+84) 838 221 122</span><br>
+            <a style="display:inline; text-decoration: none; color: black; cursor: pointer" href="javascript:void(Tawk_API.toggle())"><img src=" images/29.png" style="width: 6%" id="img_icon"><span class="photro"> <b>{{trans('home.onlinesupport')}}</b></span> </a>
         </div>
         <div class="col-lg-4 col-md-4 col-xs-4 center-block" style="float: none">
-            <img src=" imgweb/logo.png" id="logo_header">
+            <img src=" images/logo.png" id="logo_header">
         </div>
 
         <div class="col-lg-4 col-md-4 col-xs-4" style="position: absolute; right: 15px;bottom: 0; text-align: right">
@@ -40,9 +40,9 @@
                 </li>
                 @endif
 
-                <li><a style="padding: 0px;margin-left: 5px " href="{{URL::asset('')}}language/en"><img src=" img/FlagUS.jpg"></a>
+                <li><a style="padding: 0px;margin-left: 5px " href="{{URL::asset('')}}language/en"><img src=" images/FlagUS.jpg"></a>
                 </li>
-                <li><a style="padding: 0px;margin-left: 5px" href="{{URL::asset('')}}language/vi" ><img src=" img/vi.gif"></a>
+                <li><a style="padding: 0px;margin-left: 5px" href="{{URL::asset('')}}language/vi" ><img src=" images/vi.gif"></a>
                 </li>
             </ul>
 
@@ -61,19 +61,19 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="myNavbar" style="width:100%;padding-right:0px;margin-left: -15px">
                     <ul class="nav navbar-nav width_menu menucell">
-                        <li class="limenu menu1" style="display: table-cell;float: none"><a class="menua" href="">{{trans('home.home')}}</a></li>
-                        <li class="limenu menu2" style="display: table-cell;float: none"><a class="menua" href="">{{trans('home.project')}}</a>
+                        <li class="limenu menu1" style="display: table-cell;float: none"><a class="menua" href="{{asset('/')}}">{{trans('home.home')}}</a></li>
+                        <li class="limenu menu2" style="display: table-cell;float: none"><a class="menua" href="{{asset('/project')}}">{{trans('home.project')}}</a>
                             <ul>
-                                <li class="limenu"><a href="">{{trans('home.rent')}}</a></li>
-                                <li class="limenu"><a href="">{{trans('home.sale')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/project-rent')}}">{{trans('home.rent')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/project-sale')}}">{{trans('home.sale')}}</a></li>
                             </ul>
                         </li>
-                        <li class="limenu menu3" style="display: table-cell;float: none"><a class="menua" href="">{{trans('home.about')}}</a></li>
-                        <li class="limenu menu4" style="display: table-cell;float: none"><a class="menua" href="">{{trans('home.news')}}</a></li>
+                        <li class="limenu menu3" style="display: table-cell;float: none"><a class="menua" href="{{asset('/about')}}">{{trans('home.about')}}</a></li>
+                        <li class="limenu menu4" style="display: table-cell;float: none"><a class="menua" href="{{asset('/news')}}">{{trans('home.news')}}</a></li>
                         <li class="limenu menu5" style="display: table-cell;float: none"><a class="menua">{{trans('home.humandev')}}</a>
                             <ul>
-                                <li class="limenu"><a href="">{{trans('home.recruitment')}}</a></li>
-                                <li class="limenu"><a href="">{{trans('home.hrpolicies')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/ppc-recruitment')}}">{{trans('home.recruitment')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/ppc-hrpolicies')}}">{{trans('home.hrpolicies')}}</a></li>
                             </ul>
                         </li>
                         <?php
@@ -92,7 +92,7 @@
                         <li class="limenu menu6" style="display: table-cell;float: none"><a class="menua" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a></li>
                         <?php }
                         ?>
-                        <li class="limenu menu7" style="display: table-cell;float: none"><a class="menua" href="">{{trans('home.contact')}}</a>
+                        <li class="limenu menu7" style="display: table-cell;float: none"><a class="menua" href="{{asset('/contact')}}">{{trans('home.contact')}}</a>
                         </li>
                         <li class="limenu" style="display: table-cell;float: none"><a href="https://play.google.com/store/apps/details?id=com.perfectproperties.app.ppc_app&hl=vi">{{trans('home.dowloadapp')}}</a>
                         </li>
@@ -121,42 +121,42 @@
                 <div id="menuMobile">
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 paddinglr0 menu1 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">Home</a>
+                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.post')}}</a>
                         </div>
                         <div class="col-xs-4 paddinglr0 menu2 divmenu">
                             <li class="dropdown" style="display: inline">
                                 <a class="dropdown-toggle menua" data-toggle="dropdown" href=""  style="padding: 0px 5px;color: #5b4f44;font-size: 15px;">
-                                    Project
+                                    {{trans('home.project')}}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li >
-                                        <a style="color: #5b4e45" href="">Rent</a>
+                                        <a style="color: #5b4e45" href="">{{trans('home.rent')}}</a>
                                     </li>
                                     <li style="border-top: 1px solid #eeeeee !important;">
-                                        <a style="color: #5b4e45" href="">Sale</a>
+                                        <a style="color: #5b4e45" href="">{{trans('home.sale')}}</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
                         <div class="col-xs-4 menu3 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">About Us</a>
+                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.about')}}</a>
                         </div>
                     </div>
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 menu4 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">News</a>
+                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.news')}}</a>
                         </div>
                         <div class="col-xs-4 menu5 divmenu" style="height: 50px;">
                             <li class="dropdown" style="display: inline">
                                 <a class="dropdown-toggle menua" data-toggle="dropdown" href="#"  style="padding: 0px 5px;color: #5b4f44;font-size: 15px;">
-                                    Human Development
+                                    {{trans('home.humandev')}}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li >
-                                        <a style="color: #5b4e45" href="">Recruitment</a>
+                                        <a style="color: #5b4e45" href="">{{trans('home.recruitment')}}</a>
                                     </li>
                                     <li style="border-top: 1px solid #eeeeee !important;">
-                                        <a style="color: #5b4e45" href="">HR Policies</a>
+                                        <a style="color: #5b4e45" href="">{{trans('home.hrpolicies')}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -167,23 +167,23 @@
                             {
                             if($_SESSION['name'] !=null){
                             ?>
-                            <a class="menua" style="color: #5b4e45" href="" >Post</a>
+                            <a class="menua" style="color: #5b4e45" href="" >{{trans('home.post')}}</a>
 
                             <?php } else {
 
                             ?>
-                            <a class="menua" style="color: #5b4e45" data-toggle="modal" href="#myLogin">Post</a>
+                            <a class="menua" style="color: #5b4e45" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
                             <?php  }
                             }
                             else{ ?>
-                            <a class="menua" style="color: #5b4e45" data-toggle="modal" href="#myLogin">Post</a>
+                            <a class="menua" style="color: #5b4e45" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
                             <?php }
                             ?>
                         </div>
                     </div>
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 menu7 divmenu">
-                            <a class="menua" style="color: #5b4f44" href="">Contact</a>
+                            <a class="menua" style="color: #5b4f44" href="">{{trans('home.contact')}}</a>
                         </div>
                         <div class="col-xs-4 menu8 divmenu" style="height: 50px;">
                             <a class="menua" style="color: #5b4f44" href="https://play.google.com/store/apps/details?id=com.perfectproperties.app.ppc_app&hl=vi" target="_blank">{taiapp}</a>
@@ -226,7 +226,7 @@
                 
                
                 <div class="item">
-                    <img src=" img/{{$slide->image}}" class="img-responsive slider" alt="">
+                    <img src=" images/sliders/{{$slide->image}}" class="img-responsive slider" alt="">
                 </div>
                 
                
@@ -270,53 +270,36 @@
             <form action="" method="POST">
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{DANGNHAP}</h4>
+                    <h4 class="modal-title">{{trans('home.login')}}</h4>
                 </div>
 
                 <div class="modal-body admin-form">
 
                     <div class="section">
-                        <label class="field prepend-icon">
-                            <?php
-                            if (isset($_COOKIE["tendangnhap"]) && isset($_COOKIE["rememberme"]))
-                                echo '<input type="text" name="username" id="username" class="gui-input form-control" placeholder="User name" value="' . $_COOKIE["tendangnhap"] . '">';
 
-                            else
-                                echo '<input type="text" name="username" id="username" class="gui-input form-control" placeholder="User name">';
-                            ?>
-                            <label for="firstname" class="field-icon"><i class="fa fa-user"></i>
+                            <input type="text" name="username" id="username" class="gui-input form-control" placeholder="{{trans('home.username')}}">
+                            <label for="firstname" class="field-icon">
+
                             </label>
-                        </label>
+
                     </div>
                     <div class="section">
-                        <label class="field prepend-icon">
-                        <?php
-                        if (isset($_COOKIE["matkhau"]) && isset($_COOKIE["rememberme"]))
-                            echo '<input type="password" name="password" id="password" class="gui-input form-control" value="' . $_COOKIE["matkhau"] . '">';
 
-                        else
-                            echo '<input type="password" name="password" id="password" class="gui-input form-control" placeholder="Password">';
-                        ?>
-                        <!--                            <input type="password" name="password" id="password" class="gui-input form-control" placeholder="Password">-->
-                            <label for="firstname" class="field-icon"><i class="fa fa-key"></i>
+                            <input type="password" name="password" id="password" class="gui-input form-control" placeholder="{{trans('home.password')}}">
+
+                            <label for="firstname" class="field-icon">
                             </label>
-                        </label>
+
                     </div>
                     <div class="form-group">
-                        <?php
-                        if (isset($_COOKIE["matkhau"]) && isset($_COOKIE["rememberme"]))
-                            echo '<input type="checkbox" name="rememberme" checked><label style="font-size: 15px; font-weight: 100">&nbsp;{nhopassword}</label><br>';
-
-                        else
-                            echo '<input type="checkbox" name="rememberme"><label style="font-size: 15px; font-weight: 100">&nbsp;{nhopassword}</label><br>';
-                        ?>
-                        <a href="">{chuacotaikhoan}</a><br>
-                        <a data-toggle="modal" href="#forgetpass" onclick="ftResgiter()">{laypass}</a>
+                        <input type="checkbox" name="rememberme"><label style="font-size: 15px; font-weight: 100">&nbsp;{{trans('home.remember')}}</label><br>
+                        <a href="">{{trans('home.account')}}</a><br>
+                        <a data-toggle="modal" href="#forgetpass" onclick="ftResgiter()">{{trans('home.forgetpass')}}</a>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">{Dangnhap}</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{Dong}</button>
+                    <button type="submit" class="btn btn-info">{{trans('home.login')}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('home.close')}}</button>
                 </div>
             </form>
         </div>
