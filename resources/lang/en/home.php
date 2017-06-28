@@ -17,5 +17,11 @@ return [
     'latestnews' => 'LATEST NEWS',
     'login' => 'Login',
     'onlinesupport' => "Online Support",
+    'username' => 'Username',
+    'password' => 'Password',
+    'close' => 'Close',
+    'forgetpass' => 'Forget password?',
+    'account' => "Don't have account?",
+    'remember' => 'Remember Password',
 
 ];

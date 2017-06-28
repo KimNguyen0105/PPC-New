@@ -17,5 +17,11 @@ return [
     'latestnews' => 'TIN MỚI NHẤT',
     'login' => 'Đăng Nhập',
     'onlinesupport' => "Hỗ Trợ Trực Tuyến",
+    'username' => 'Tên đăng nhập',
+    'password' => 'Mật khẩu',
+    'close' => 'Đóng',
+    'forgetpass' => 'Quên mật khẩu?',
+    'account' => 'Bạn chưa có tài khoản?',
+    'remember' => 'Nhớ mật khẩu',
 
 ];
