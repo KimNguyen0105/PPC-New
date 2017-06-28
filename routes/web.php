@@ -13,11 +13,22 @@
 
 Route::get('/', 'Controller@Home');
 Route::get('language/{locale}', 'Controller@SetLanguage');
+Route::get('/project','Controller@getProject');
+Route::get('/project-sale','Controller@getSale');
+Route::get('/project-rent','Controller@getRent');
+Route::get('/ppc-recruitment','Controller@getRecruitment');
+Route::get('/ppc-hrpolicies','Controller@getPolicies');
 
 
+Route::get('/about','Controller@getAbout');
+Route::get('/news','Controller@getNews');
+Route::get('/contact','Controller@getContact');
 
 
-//admin
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------*/
 Route::get('admin/log-in','UserController@GetLogIn');
 Route::post('admin/log-in','UserController@PostLogIn');
 Route::get('admin/log-out','UserController@LogOut');
