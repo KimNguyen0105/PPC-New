@@ -1,0 +1,89 @@
+body{
+	background-size: cover ;
+	background-repeat: no-repeat;
+}
+
+.space{
+	margin-top: 10%;
+}
+
+#khung_ngoai{
+	width: 100%;
+	height: 400px;
+	margin-left: 0px;
+}
+
+/*chữ login*/
+#h3_1{
+	font-weight: bold;
+	font-size: 35pt;
+	font-family: fantasy;
+	color: white;
+}
+
+#khung_trong{
+	background-color: white;
+	height: 80%;
+	box-shadow: 3px 3px grey;
+	border-radius: 10px;
+}
+
+#nhap_in{
+	width: 100%;
+}
+
+#btn{
+	border-radius: 0px;
+	font-weight: bold;
+	font-family: verdana;
+	font-size: 10pt;
+}
+/*chỉnh reponsive background cho body*/
+@media only screen and (max-width: 767px) {
+	body{
+		background-size: cover;
+
+	}
+
+	html{
+		height: 100%;
+	}
+
+	#h3_1{
+	font-weight: bold;
+	font-size: 29pt;
+	font-family: fantasy;
+	color: white;
+}
+
+
+	#khung_trong{
+	background-color: white;
+	height: 70%;
+	margin-top: 50px;
+	width: 80%;
+	box-shadow: 5px 5px grey;
+	border-radius: 0px;
+	margin-left: 30px;
+	}
+}
+/*chỉnh reponsive background cho body*/
+
+#image_banner{
+	width: 100%;
+}
+
+#input_style{
+	width: 100%;
+}
+.divSearch{
+	border: solid 1px #eee;
+	border-radius: 3px;
+	padding: 15px;
+}
+.content-wrapper{
+	margin-left: 110px;
+}
+.modal-content{
+	padding: 30px;
+}
