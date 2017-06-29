@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Introduce;
+use App\Introduce_lang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
@@ -18,6 +19,7 @@ class IntroduceController extends Controller
                 ->where('introduce.status',1)
                 ->where('introduce_lang.lang','vi')
                 ->where('introduce.parrent_id',0)
+                ->select('introduce.id','introduce.image','introduce_lang.title')
                 ->orderBy('introduce.updated_at','desc')->get();
 
             return view('admin.introduce.home',['introduce'=>$introduce]);
@@ -49,48 +51,42 @@ class IntroduceController extends Controller
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
                 $title_en=$request->title_en;
-                $introduce_vi=$request->introduce_vi;
-                $introduce_en=$request->introduce_en;
-                if($id==0)
-                {
-                    $introduce=new Introduce;
-                    $introduce->status=1;
-                    $introduce->show_home=0;
-                    $image = $request->file('file');
-                    $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+                $content_vi=$request->introduce_vi;
+                $content_en=$request->introduce_en;
+                    $introduce=Introduce::find($id);
+                    $introduce->slug=str_slug($title_vi);
+                    if($request->hasFile('file')){
+                        unlink("images/introduce/".$introduce->image);
+                        $image = $request->file('file');
+                        $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
+                        $path = public_path('images/introduce/' . $filename);
+                        Image::make($image->getRealPath())->resize(300, 200)->save($path);
+                        $introduce->image=$filename;
+                    }
+                    if($introduce->save())
+                    {
+                        $introduce_vi=Introduce_lang::where('lang','vi')->where('introduce_id',$id)->first();
+                        $introduce_vi->title=$title_vi;
+                        $introduce_vi->content=$content_vi;
 
+                        $introduce_en=Introduce_lang::where('lang','en')->where('introduce_id',$id)->first();
+                        $introduce_en->title=$title_en;
+                        $introduce_en->content=$content_en;
 
-
-                    $destinationPath = public_path('/images');
-                    $img = Image::make($image->getRealPath());
-                    $img->resize(200, 500, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($destinationPath.'/'.$input['imagename']);
-
-                    $destinationPath = public_path('/images');
-                    $image->move($destinationPath, $input['imagename']);
-                    
-//                    if($request->hasFile('file'))
-//                    {
-//                        $file=$request->file('file');
-//                        $filename=time().'_'.$file->getClientOriginalName('file');
-//                        $file->move('images/introduce',$filename);
-//                        $image = Image::make(sprintf('images/introduce/%', $filename))->resize(200, 200)->save();
-//
-//                        $introduce->image=$filename;
-//                    }
-                }
-                else{
-
-                }
+                        $introduce_vi->save();
+                        $introduce_en->save();
+                        return redirect('admin/introduce-home')->with('thongbao','Cập nhật thành công!');
+                    }
             }
             catch (\Exception $e)
             {
-
+                dd($e);
+                return redirect('admin/introduce-home')->with('thatbai','Cập nhật thất bại!');
             }
         }
         else{
             return redirect('admin/log-in');
         }
     }
+
 }

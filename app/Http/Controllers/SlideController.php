@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Slide;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class SlideController extends Controller
 {
@@ -41,8 +42,9 @@ class SlideController extends Controller
                     if($request->hasFile('file'))
                     {
                         $file=$request->file('file');
-                        $filename=time().'_'.$file->getClientOriginalName('file');
-                        $file->move('images/sliders',$filename);
+                        $filename  = time() . '.' . $file->getClientOriginalExtension();
+                        $path = public_path('images/sliders/' . $filename);
+                        Image::make($file->getRealPath())->resize(1100, 400)->save($path);
                         $slide->image=$filename;
                     }
                     if($slide->save())
@@ -61,8 +63,9 @@ class SlideController extends Controller
                     {
                         unlink('images/sliders/'.$slide->image);
                         $file=$request->file('file');
-                        $filename=time().'_'.$file->getClientOriginalName('file');
-                        $file->move('images/sliders',$filename);
+                        $filename  = time() . '.' . $file->getClientOriginalExtension();
+                        $path = public_path('images/sliders/' . $filename);
+                        Image::make($file->getRealPath())->resize(1100, 400)->save($path);
                         $slide->image=$filename;
                     }
                     if($slide->save())
@@ -88,6 +91,7 @@ class SlideController extends Controller
         if(Auth::check()){
             $slide=Slide::find($id);
             $slide->status=0;
+            unlink('images/sliders/'.$slide->image);
             if($slide->save())
             {
                 return redirect('admin/slide')->with('thongbao','Xóa thành công!');
