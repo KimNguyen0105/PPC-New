@@ -29,10 +29,10 @@
 
     <div class="iconlink text-center">
         <ul style="list-style-type:none;">
-            <li style="display:inline;"><a href="#"><img src=" images/social1.png"></a></li>
-            <li style="display:inline;"><a href="#"><img src=" images/social2.png"></a></li>
-            <li style="display:inline;"><a href="#"><img src=" images/social3.png"></a></li>
-            <li style="display:inline;"><a href="#"><img src=" images/social4.png"></a></li>
+            <li style="display:inline;"><a href="#"><img src=" images/icon/social1.png"></a></li>
+            <li style="display:inline;"><a href="#"><img src=" images/icon/social2.png"></a></li>
+            <li style="display:inline;"><a href="#"><img src=" images/icon/social3.png"></a></li>
+            <li style="display:inline;"><a href="#"><img src=" images/icon/social4.png"></a></li>
         </ul>
     </div>
     <div class="text-center" style="padding: 0 15px;">
