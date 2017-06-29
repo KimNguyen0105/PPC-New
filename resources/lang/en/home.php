@@ -23,5 +23,19 @@ return [
     'forgetpass' => 'Forget password?',
     'account' => "Don't have account?",
     'remember' => 'Remember Password',
-    'search'=>'Search'
+    //CONTACT
+    'contact_trans' => 'CONTACT',
+    'see_project' => 'See project location on Google Maps',
+    'contact_title' => 'Send email. Information being marked with * is compulsory',
+    'address' => 'Address',
+    'phone' => 'Phone',
+    'work_time' => 'Working time',
+    'work_hour' => 'Everday, including Saturday and Sunday',
+    'name' => 'Name',
+    'title' => 'Title',
+    'content' => 'Content',
+    'send_copy' => 'Send the copy for you',
+    'send_mail' => 'Send Mail',
+
+
 ];

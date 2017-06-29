@@ -23,5 +23,18 @@ return [
     'forgetpass' => 'Quên mật khẩu?',
     'account' => 'Bạn chưa có tài khoản?',
     'remember' => 'Nhớ mật khẩu',
-    'search'=>'Tìm'
+    //CONTACT
+    'contact_trans' => 'LIÊN HỆ',
+    'see_project' => 'Xem vị trí dự án trên Google Maps',
+    'contact_title' => 'Gửi email. Tất cả thông tin được đánh dấu * là bắt buộc',
+    'address' => 'Địa chỉ',
+    'phone' => 'Điện thoại',
+    'work_time' => 'Giờ làm việc',
+    'work_hour' => 'Hàng ngày , cả thứ 7 và chủ nhật',
+    'name' => 'Tên',
+    'title' => 'Tiêu đề',
+    'content' => 'Nội dung',
+    'send_copy' => 'Gửi bản sao cho bạn',
+    'send_mail' => 'Gửi Mail',
+
 ];
