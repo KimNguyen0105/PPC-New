@@ -5,11 +5,11 @@
 
             <div class="col-lg-4 col-md-4 col-xs-4"
                  style="position: absolute; left: 0;bottom: 0; text-align: left;font-family: verdana;">
-            <span class="photro" style="display:inline;"><img src=" images/30.png"
+            <span class="photro" style="display:inline;"><img src=" images/icon/30.png"
                                                               style="width: 6%; margin-top: 6px;margin-bottom: 6px"
                                                               id="img_icon"> (+84) 838 221 122</span><br>
                 <a style="display:inline; text-decoration: none; color: black; cursor: pointer"
-                   href="javascript:void(Tawk_API.toggle())"><img src=" images/29.png" style="width: 6%"
+                   href="javascript:void(Tawk_API.toggle())"><img src=" images/icon/29.png" style="width: 6%"
                                                                   id="img_icon"><span
                             class="photro"> <b>{{trans('home.onlinesupport')}}</b></span> </a>
             </div>
@@ -55,10 +55,10 @@
                     @endif
 
                     <li><a style="padding: 0px;margin-left: 5px " href="{{URL::asset('')}}language/en"><img
-                                    src=" images/FlagUS.jpg"></a>
+                                    src=" images/icon/FlagUS.jpg"></a>
                     </li>
                     <li><a style="padding: 0px;margin-left: 5px" href="{{URL::asset('')}}language/vi"><img
-                                    src=" images/vi.gif"></a>
+                                    src=" images/icon/vi.gif"></a>
                     </li>
                 </ul>
 
@@ -84,17 +84,17 @@
                                                                                             href="{{asset('/')}}">{{trans('home.home')}}</a>
                         </li>
                         <li class="limenu menu2" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/project')}}">{{trans('home.project')}}</a>
+                                                                                            href="{{asset('/ppc-project')}}">{{trans('home.project')}}</a>
                             <ul>
                                 <li class="limenu"><a href="{{asset('/project-rent')}}">{{trans('home.rent')}}</a></li>
                                 <li class="limenu"><a href="{{asset('/project-sale')}}">{{trans('home.sale')}}</a></li>
                             </ul>
                         </li>
                         <li class="limenu menu3" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/about')}}">{{trans('home.about')}}</a>
+                                                                                            href="{{asset('/about-ppc')}}">{{trans('home.about')}}</a>
                         </li>
                         <li class="limenu menu4" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/news')}}">{{trans('home.news')}}</a>
+                                                                                            href="{{asset('/ppc-news')}}">{{trans('home.news')}}</a>
                         </li>
                         <li class="limenu menu5" style="display: table-cell;float: none"><a
                                     class="menua">{{trans('home.humandev')}}</a>
@@ -130,7 +130,7 @@
                         <?php }
                         ?>
                         <li class="limenu menu7" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/contact')}}">{{trans('home.contact')}}</a>
+                                                                                            href="{{asset('/ppc-contact')}}">{{trans('home.contact')}}</a>
                         </li>
 
                         </li>
