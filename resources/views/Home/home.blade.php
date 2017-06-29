@@ -77,17 +77,22 @@
                         @if($news!=null)
                             @foreach ($news as $item)
                                 <div class="col-md-4">
-                                    <img src="{{asset('images/news')}}/{{$item->image}}" alt="{{$item->title}}">
-                                    <div class="content-tintuc">
-                                        <h3><a href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
-                                           title="{{$item->title}}">{{str_limit($item->title,20)}}</a></h3>
+                                    <a style="border-bottom: 1px solid"
+                                       href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
+                                       title="{{$item->title}}">
+                                        <img src="{{asset('images/news')}}/{{$item->image}}" alt="{{$item->title}}"></a>
+                                    <div class="content-tintuc" style="background-color: #ffffff;padding: 10px;">
+                                        <h3 style="font-size:20px;"><a style="border-bottom: 1px solid"
+                                                                       href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
+                                                                       title="{{$item->title}}">{{str_limit($item->title,20)}}</a>
+                                        </h3>
                                         <?php
                                         $newDateTime = date('h:i A', strtotime($item->updated_at));
                                         $date = date_create($item->updated_at);
                                         $date = date_format($date, "d/m/Y")
                                         ?>
-                                        <p>{{$date}} {{$newDateTime}}</p>
-                                        <span>{!! str_limit(strip_tags($item->content),300) !!}</span>
+                                        <i style="font-size:10px;">{{$date}} {{$newDateTime}}</i><br>
+                                        <span>{!! str_limit(strip_tags($item->content),290) !!}</span>
                                     </div>
                                 </div>
                             @endforeach
@@ -105,28 +110,26 @@
 
 
         <div class="row">
+            <h3 style="color:#3f3024;margin-left:-10px"><b>{{trans('home.documentfilm')}}</b></h3>
+            <hr style="border:2.5px solid #3f3024;margin-left:-10px;width:20%;">
+            @foreach($videos as $video)
+                @if($loop->iteration ==1)
+                    <div class="col-md-8 text-left" id="cot_so">
 
-            <div class="col-md-8 text-left" id="cot_so">
-                <h3 style="color:#3f3024;margin-left:-10px"><b>{{trans('home.documentfilm')}}</b></h3>
-                <hr style="border:2.5px solid #3f3024;margin-left:-10px;width:20%;">
-                <div class="row text-center space divvideo">
-                    <div class="col-md-12 col-sm-12 text-center" style="padding:0px 5px;">
-                        @foreach($videos as $video)
 
-                            <iframe id="main_video" width="100%" style="border:0px" src="{{$video->url}}"></iframe>
-                        @endforeach
+                        <iframe id="main_video" width="100%" style="border:0px;" src="{{$video->url}}"></iframe>
+
 
                     </div>
-                    <div id="pagingbody">
-                        <div id="rowbody" style="padding-left: 0px"></div>
-                        <div class="clr"></div>
+                @else
+                    <div class="col-md-2 text-left" id="cot_so">
+
+                        <img src="https://img.youtube.com/vi/{{$video->thumb}}/0.jpg" class="img-responsive" style="padding-bottom: 25px;"/>
+
                     </div>
-                    <div class="col-md-12 text-right">
-                        <div class="goPrevious glyphicon glyphicon-triangle-left"></div>
-                        <div class="goNext glyphicon glyphicon-triangle-right"></div>
-                    </div>
-                </div>
-            </div>
+                @endif
+            @endforeach
+
         </div>
     </div>
 @endsection

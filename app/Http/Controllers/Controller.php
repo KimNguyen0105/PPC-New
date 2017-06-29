@@ -20,8 +20,8 @@ class Controller extends BaseController
         }
         $dataduan=DB::table('property')->join('property_lang','property.id','=','property_lang.property_id')
                                         ->where('status',1)->orderBy('property.id','desc')->paginate(3);
-        $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();   
-        $videos = DB::table('videos')->orderBy('id','desc')->take(2)->get();
+        $sliders=DB::table('sliders')->where('is_show',1)->where('status',1)->orderBy('sort_order','asc')->get();
+        $videos = DB::table('videos')->orderBy('id','desc')->take(7)->get();
         $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')->where('news_lang.lang',Session::get('locale'))->orderBy('news.updated_at','desc')->get();
         $systems = DB::table('ppc_system_config')->get();
         if(Session::get('locale')=='vi'){
@@ -145,9 +145,5 @@ class Controller extends BaseController
     }
 
 
-    // public function getSlider()
-    // {
-    //     $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();
-    //     return response()->json(['slider'=>$sliders]);
-    // }
+    
 }
