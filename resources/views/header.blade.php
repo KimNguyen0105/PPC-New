@@ -244,24 +244,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-<script type="text/javascript">
-                           (function ($) {
-                               $(document).ready(function () {
-                                   $('.carousel-inner .item:first').addClass('active');
-                                   $('.carousel .item img').addClass("img-responsive");
-
-                               });
-                           })(jQuery);
-
-                           var $ = jQuery.noConflict();
-
-                           $(document).ready(function () {
-                               $('#myCarousel').carousel({
-                                   interval: 5000,
-                                   cycle: true
-                               });
-                           });
-                       </script>
+						
 </div>
 
 <div id="myLogin" class="modal fade" role="dialog">
@@ -333,31 +316,3 @@
     <input id="txtmenu" value="">
 </div>
 <a href="#" id="go_top" style="text-align: center"><i style="color: #fff;margin-top: 12px" class="fa fa-arrow-up"></i></a>
-<script>
-    
-    function ftResgiter() {
-        $('#myLogin').modal('hide');
-    }
-    function readURL(input) {
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#imgF').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function ftShowMenu() {
-        $("#menuMobile").toggle();
-    }
-</script>
-
-
-
-
-
-
-

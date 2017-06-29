@@ -14,6 +14,52 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+    
+    function ftResgiter() {
+        $('#myLogin').modal('hide');
+    };
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imgF').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    function ftShowMenu() {
+        $("#menuMobile").toggle();
+    };
+</script>
+<script type="text/javascript">
+	(function ($) {
+	$(document).ready(function () {
+	   $('.carousel-inner .item:first').addClass('active');
+	   $('.carousel .item img').addClass("img-responsive");
+
+	});
+	})(jQuery);
+
+	var $ = jQuery.noConflict();
+
+	$(document).ready(function () {
+	$('#myCarousel').carousel({
+	   interval: 5000,
+	   cycle: true
+	});
+	});
+</script>
+
+
+
+
+
+
+
 
 
 
@@ -32,8 +78,8 @@
 </style>
 </head>
 <body>
-@include('header');
-@yield('main');
-@include('footer');
+@include('header')
+@yield('main')
+@include('footer')
 </body>
 </html>

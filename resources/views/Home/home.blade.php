@@ -54,7 +54,7 @@
                         <div class=""
                              style="padding: 0px 30px; position: absolute; right: 0;bottom: 0; text-align: right">
                             <h5 style="font-size: 17px;margin-top: 8px; float: right; font-family: Verdana">{{$data->acreage}}
-                                m2</h5><span style="float:right;"><img src="" class="img-responsive"
+                                </h5><span style="float:right;"><img src="" class="img-responsive"
                                                                        style="width:100%;"></span>
                         </div>
 
