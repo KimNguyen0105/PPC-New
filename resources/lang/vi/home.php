@@ -23,5 +23,5 @@ return [
     'forgetpass' => 'Quên mật khẩu?',
     'account' => 'Bạn chưa có tài khoản?',
     'remember' => 'Nhớ mật khẩu',
-
+    'search'=>'Tìm'
 ];

@@ -22,11 +22,18 @@ class Controller extends BaseController
                                         ->where('status',1)->orderBy('property.id','desc')->paginate(3);
         $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();   
         $videos = DB::table('videos')->orderBy('id','desc')->take(2)->get();
-        $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')->orderBy('news.updated_at','desc')->take(10)->get();
+        $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')->where('news_lang.lang',Session::get('locale'))->orderBy('news.updated_at','desc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        $databanner=DB::table('introduce')->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
+        if(Session::get('locale')=='vi'){
+            $databanner=DB::table('introduce')->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
                                             ->where('introduce.parrent_id',1)->where('introduce_lang.lang','vi')
                                             ->where('status',1)->get();
+        }
+        else{
+            $databanner=DB::table('introduce')->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
+                ->where('introduce.parrent_id',1)->where('introduce_lang.lang','en')
+                ->where('status',1)->get();
+        }
         return view('Home/home',[
             'dataduan' => $dataduan,
             'sliders'=>$sliders,

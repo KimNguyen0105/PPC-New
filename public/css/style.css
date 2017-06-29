@@ -17,7 +17,13 @@ body{
     top: 0px;
     left: 0px;
 }
-
+.slick-prev:before, .slick-next:before {
+    color: black !important;
+}
+.slick-slide img {
+    width: 100%;
+    height: auto;
+}
 #jumbotron{
     /*background-color: black;*/
     /* opacity: 0.8;*/
@@ -259,7 +265,7 @@ body{
     background: #f2f1f1;
 }
 .backgroundphimtulieu{
-    background: url("../images/bg2_body.jpg");
+    background: url("../images/bg/bg2_body.jpg");
 }
 .paddingvideo_2{
     padding-left: 5px;

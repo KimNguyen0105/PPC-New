@@ -25,7 +25,7 @@
 </div>
 
 <div class="container">
-    <hr style="border:2.5px solid #342315;margin-left:0px;">d
+    <hr style="border:2.5px solid #342315;margin-left:0px;">
 
     <div class="iconlink text-center">
         <ul style="list-style-type:none;">
@@ -53,6 +53,30 @@
         s0.parentNode.insertBefore(s1,s0);
 
     })();
+</script>
+<script>
+
+    var w = screen.width;
+    if(w<=768)
+    {
+        //$('.content-menu').removeClass('container');
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+    }
+    else
+    {
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+    }
+
 </script>
 <!--End of Tawk.to Script-->
 <!--Slider Script-->

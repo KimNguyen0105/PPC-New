@@ -23,5 +23,5 @@ return [
     'forgetpass' => 'Forget password?',
     'account' => "Don't have account?",
     'remember' => 'Remember Password',
-
+    'search'=>'Search'
 ];
