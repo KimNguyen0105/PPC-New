@@ -3,11 +3,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Danh mục</h1>
+            <h1>Chính Sách Nhân Sự</h1>
             {{--<a href="{{url('admin/introduce/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></a>--}}
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Slide</li>
+                <li class="active">Chính sách nhân sự</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
@@ -31,21 +31,23 @@
                         <thead>
                         <td>#</td>
                         <td>Hình ảnh</td>
-                        <td>Tiêu đề</td>
+                        <td>Tiêu đề Vi</td>
+                        <td>Tiêu đề En</td>
                         <td>Thao tác</td>
                         </thead>
                         <tbody>
-                        @if($introduce!=null)
+                        @if($term!=null)
                             <?php
                                 $i=1;
                             ?>
-                            @foreach($introduce as $item)
+                            @foreach($term as $item)
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td  style="width: 250px"><img src="{{asset('images/introduce')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
+                                    <td  style="width: 250px"><img src="{{asset('images/terms_web')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
                                     <td>{{$item->title}}</td>
+                                    <td>{{$item->title_en}}</td>
                                     <td  style="width: 110px">
-                                        <a href="{{url('admin/introduce')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/term')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -77,27 +79,6 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        function ftGetModal() {
 
-            $('#txtid').val('0');
-            $('#file').val('');
-            document.getElementById("txtshow").checked = false;
-            document.getElementById("imgF").src='';
-            $('#txtthutu').val('');
-            $('#myModal').modal('show');
-        }
-        function ftGetValue(id, image, show, sort) {
-            $('#txtid').val(id);
-            if(show==1)
-            {
-                document.getElementById("txtshow").checked = true;
-            }
-            else{
-                document.getElementById("txtshow").checked = false;
-            }
-            document.getElementById("imgF").src='{{asset('images/sliders')}}/'+image;
-            $('#txtthutu').val(sort);
-            $('#myModal').modal('show');
-        }
     </script>
 @endsection

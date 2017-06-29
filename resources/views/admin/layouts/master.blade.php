@@ -39,6 +39,7 @@
 
 <script type="text/javascript" src="{{asset('js/app.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap-datepicker.js')}}"></script>
 
 </body>
 

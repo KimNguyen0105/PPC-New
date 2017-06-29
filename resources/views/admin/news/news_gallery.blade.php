@@ -3,11 +3,10 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Danh mục</h1>
-            {{--<a href="{{url('admin/introduce/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></a>--}}
+            <a href="{{url('admin/news-gallery/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspThư viện hình ảnh</i></a>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Slide</li>
+                <li class="active">Thư viện hình ảnh</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
@@ -27,25 +26,31 @@
                     </div>
                 @endif
                 <div class="row" >
-                    <table class="table table-striped table-bordered" style="text-align: center">
+                    <table class="table table-striped table-bordered">
                         <thead>
                         <td>#</td>
                         <td>Hình ảnh</td>
                         <td>Tiêu đề</td>
+                        <td>Category</td>
                         <td>Thao tác</td>
                         </thead>
                         <tbody>
-                        @if($introduce!=null)
+                        @if($news!=null)
                             <?php
                                 $i=1;
                             ?>
-                            @foreach($introduce as $item)
+                            @foreach($news as $item)
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td  style="width: 250px"><img src="{{asset('images/introduce')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
+                                    <td  style="width: 150px;"><img src="{{asset('images/news')}}/{{$item->image}}" style="width:100%; height: 100px" class="img-responsive"></td>
                                     <td>{{$item->title}}</td>
-                                    <td  style="width: 110px">
-                                        <a href="{{url('admin/introduce')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                    <td>{{$item->category}}</td>
+                                    <td  style="width: 250px">
+                                        <a href="{{url('admin/news-gallery-image')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm hình ảnh</a>
+                                        <a href="{{url('admin/news-gallery')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/news-delete')}}/{{$item->id}}" class="btn btn-danger">
+                                            <span class="fa fa-trash" onclick="return confirm('bạn có chắc xóa?')"></span></a>
+
                                     </td>
                                 </tr>
                                 <?php
@@ -76,28 +81,6 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
-        }
-        function ftGetModal() {
-
-            $('#txtid').val('0');
-            $('#file').val('');
-            document.getElementById("txtshow").checked = false;
-            document.getElementById("imgF").src='';
-            $('#txtthutu').val('');
-            $('#myModal').modal('show');
-        }
-        function ftGetValue(id, image, show, sort) {
-            $('#txtid').val(id);
-            if(show==1)
-            {
-                document.getElementById("txtshow").checked = true;
-            }
-            else{
-                document.getElementById("txtshow").checked = false;
-            }
-            document.getElementById("imgF").src='{{asset('images/sliders')}}/'+image;
-            $('#txtthutu').val(sort);
-            $('#myModal').modal('show');
         }
     </script>
 @endsection

@@ -3,11 +3,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Danh mục</h1>
+            <h1>Danh mục tin tức</h1>
             {{--<a href="{{url('admin/introduce/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></a>--}}
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Slide</li>
+                <li class="active">Tin tức</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
@@ -26,35 +26,21 @@
                         <i style="color: green" class="fa fa-close"></i>  {{session('thatbai')}}
                     </div>
                 @endif
-                <div class="row" >
-                    <table class="table table-striped table-bordered" style="text-align: center">
-                        <thead>
-                        <td>#</td>
-                        <td>Hình ảnh</td>
-                        <td>Tiêu đề</td>
-                        <td>Thao tác</td>
-                        </thead>
-                        <tbody>
-                        @if($introduce!=null)
-                            <?php
-                                $i=1;
-                            ?>
-                            @foreach($introduce as $item)
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td  style="width: 250px"><img src="{{asset('images/introduce')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
-                                    <td>{{$item->title}}</td>
-                                    <td  style="width: 110px">
-                                        <a href="{{url('admin/introduce')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
-                                    </td>
-                                </tr>
-                                <?php
-                                $i++;
-                                ?>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+                <div class="row">
+                    @foreach($category as $item)
+                        <div class="col-md-6">
+                            <form action="{{url('admin/category-save')}}" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
+                                <input hidden value="{{$item->id}}" name="txtid">
+                                <img src="{{asset('images/category')}}/{{$item->image}}" id="imFile{{$item->id}}" class="img-responsive">
+                                <input style="margin-top: 10px" type="file" name="file{{$item->id}}" onchange="readURL(this, '{{$item->id}}')">
+                                <input style="margin-top: 10px"  type="text" required value="{{$item->title}}" name="txtname" class="form-control">
+                                <input style="margin-top: 10px"  type="text" required value="{{$item->title_en}}" name="txtname_en" class="form-control">
+                                <button style="margin-top: 10px"  type="submit" class="btn btn-info">Cập nhật</button>
+                            </form>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
         </section>
@@ -65,13 +51,13 @@
         $(function() {
             $('.alert').delay(5000).show().fadeOut('slow');
         });
-        function readURL(input) {
+        function readURL(input, $id) {
 
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#imgF').attr('src', e.target.result);
+                    $('#imFile'+$id).attr('src', e.target.result);
                 };
 
                 reader.readAsDataURL(input.files[0]);
