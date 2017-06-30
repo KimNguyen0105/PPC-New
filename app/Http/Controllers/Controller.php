@@ -172,11 +172,49 @@ class Controller extends BaseController
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
-        $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();
+        $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        return view('Page/hrpolicies',[
-            'sliders'=>$sliders,
-            'systems'=>$systems
+        if(Session::get('locale')=='vi') {
+            $data = DB::table('terms_web')
+                ->where('status', 1)
+                ->select('title','id','content','slug','image')
+                ->get();
+        } else {
+            $data = DB::table('terms_web')
+                ->where('status', 1)
+                ->select('title_en as title','id','content_en as content','slug','image')
+                ->get();
+        }
+        return view('Page/hrpolicies', [
+            'sliders' => $sliders,
+            'systems' => $systems,
+            'data' => $data,
+        ]);
+    }
+    public function getPoliciesDetail($id)
+    {
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
+        }
+        $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
+        $systems = DB::table('ppc_system_config')->get();
+        if(Session::get('locale')=='vi') {
+            $data = DB::table('terms_web')
+                ->where('id',$id)
+                ->where('status', 1)
+                ->select('title','id','content','slug','image')
+                ->first();
+        } else {
+            $data = DB::table('terms_web')
+                ->where('id',$id)
+                ->where('status', 1)
+                ->select('title_en as title','id','content_en as content','slug','image')
+                ->first();
+        }
+        return view('Page/hrpolicies-detail', [
+            'sliders' => $sliders,
+            'systems' => $systems,
+            'data' => $data,
         ]);
     }
 
