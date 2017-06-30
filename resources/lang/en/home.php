@@ -43,4 +43,6 @@ return [
     'career_opp' => 'Career opportunities',
     'read_more' => 'Read More',
     'dead_line' => 'Deadline',
+//HR POLICIES
+    'hr_policies' => 'HR POLICIES',
 ];

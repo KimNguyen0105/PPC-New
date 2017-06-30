@@ -43,5 +43,7 @@ return [
     'career_opp' => 'Cơ Hội Nghề Nghiệp',
     'read_more' => 'Xem Thêm',
     'dead_line' => 'Thời gian nộp hồ sơ',
+//HR POLICIES
+    'hr_policies' => 'CHÍNH SÁCH NHÂN SỰ',
 
 ];
