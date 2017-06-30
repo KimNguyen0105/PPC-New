@@ -125,13 +125,49 @@ class Controller extends BaseController
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
-        $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();
+        $sliders = DB::table('sliders')->where('is_show', 1)->orderBy('updated_at', 'desc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        return view('Page/recruitment',[
-            'sliders'=>$sliders,
-            'systems'=>$systems
+        if (Session::get('locale') == 'vi') {
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
+                ->where('recruitment_lang.lang', 'vi')
+                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
+                ->get();
+        } else {
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
+                ->where('recruitment_lang.lang', 'en')
+                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
+                ->get();
+        }
+
+        return view('Page/recruitment', [
+            'sliders' => $sliders,
+            'systems' => $systems,
+            'data' => $data
         ]);
-    } public function getPolicies()
+    }
+
+    public function getRecruitmentDetail($id)
+    {
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
+        }
+        $sliders = DB::table('sliders')->where('is_show', 1)->orderBy('updated_at', 'desc')->get();
+        $systems = DB::table('ppc_system_config')->get();
+        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+            ->where('recruitment_lang.recruitment_id', $id)->where('recruitment.status', 1)
+            ->where('recruitment_lang.lang', Session::get('locale'))
+            ->select('recruitment.id', 'recruitment.status', 'recruitment.image', 'recruitment.updated_at', 'recruitment_lang.title', 'recruitment_lang.content')
+            ->first();
+
+        return view('Page/recruitment-detail', [
+            'sliders' => $sliders,
+            'systems' => $systems,
+            'data' => $data,
+        ]);
+    }
+	public function getPolicies()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
