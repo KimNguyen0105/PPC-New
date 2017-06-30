@@ -19,6 +19,7 @@ Route::get('/project-rent.html','Controller@getRent');
 Route::get('/ppc-recruitment.html','Controller@getRecruitment');
 Route::get('/ppc-hrpolicies.html','Controller@getPolicies');
 Route::get('/ppc-recruitment-detail/{id}-{slug}.html','Controller@getRecruitmentDetail');
+Route::get('/hr-policies-detail/{id}-{slug}.html','Controller@getPoliciesDetail');
 
 
 Route::get('/about-ppc.html','Controller@getAbout');
