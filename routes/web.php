@@ -18,12 +18,13 @@ Route::get('/project-sale.html','Controller@getSale');
 Route::get('/project-rent.html','Controller@getRent');
 Route::get('/ppc-recruitment.html','Controller@getRecruitment');
 Route::get('/ppc-hrpolicies.html','Controller@getPolicies');
+Route::get('/ppc-recruitment-detail/{id}-{slug}.html','Controller@getRecruitmentDetail');
 
 
 Route::get('/about-ppc.html','Controller@getAbout');
-Route::get('/news.html','Controller@getNews');
+Route::get('/ppc-news.html','Controller@getNews');
 Route::get('/ppc-contact.html','Controller@getContact');
-Route::get('/news/{id}-{slug}.html','Controller@newsdetail');
+Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
