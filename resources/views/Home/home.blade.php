@@ -75,7 +75,8 @@
                     <hr style="border:2.5px solid #3f3024;margin-left:0px;width:40%;">
                     <section class="regular slider">
                         @if($news!=null)
-                            @foreach ($news as $item)
+
+                        @foreach ($news as $item)
                                 <div class="col-md-4">
                                     <a style="border-bottom: 1px solid"
                                        href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
