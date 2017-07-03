@@ -91,4 +91,42 @@ Route::group(['prefix'=>'admin'],function (){
     //system config
     Route::get('/system-config', 'ConfigController@Home');
     Route::post('/config-save', 'ConfigController@SaveConfig');
+	
+	//country
+    Route::get('/country', 'FilterController@Country');
+    Route::get('/country-delete/{id}', 'FilterController@DeleteCountry');
+    Route::post('/country-save', 'FilterController@SaveCountry');
+    Route::get('/search-country', 'FilterController@SearchCountry');
+
+    //Province
+    Route::get('/province', 'FilterController@Province');
+    Route::get('/province-delete/{id}', 'FilterController@DeleteProvince');
+    Route::post('/province-save', 'FilterController@SaveProvince');
+    Route::get('/search-province', 'FilterController@SearchProvince');
+
+    //District
+    Route::get('/district', 'FilterController@District');
+    Route::get('/district-delete/{id}', 'FilterController@DeleteDistrict');
+    Route::get('/search-district', 'FilterController@SearchDistrict');
+    Route::post('/district-save', 'FilterController@SaveDistrict');
+    Route::post('/get-province', 'FilterController@GetProvince');
+    Route::post('/get-district', 'FilterController@GetDistrict');
+
+    //contact
+    Route::get('/contact', 'ContactController@Home');
+    Route::get('/contact/{id}', 'ContactController@GetContact');
+    Route::get('/contact-delete/{id}', 'ContactController@DeleteContact');
+    Route::post('/contact-save', 'ContactController@SaveContact');
+
+    //project
+    Route::get('/project', 'PropertyController@Project');
+    Route::get('/project-delete/{id}', 'PropertyController@DeleteProject');
+    Route::post('/project-save', 'PropertyController@SaveProject');
+
+    //property
+    Route::get('/property', 'PropertyController@Property');
+    Route::get('/property-delete/{id}', 'PropertyController@DeleteProperty');
+    Route::get('/property/{id}', 'PropertyController@GetProperty');
+    Route::post('/property-save', 'PropertyController@SaveProperty');
+    Route::get('/property-image-delete/{id}-{id_image}', 'PropertyController@DeletePropertyImage');
 });
