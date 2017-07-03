@@ -25,6 +25,9 @@ return [
     'account' => "Don't have account?",
     'remember' => 'Remember Password',
     'search' => 'Search',
+    'info'=>'Profile',
+    'project_manager'=>'Project Management',
+    'logout'=>'Logout',
 //CONTACT
     'contact_trans' => 'CONTACT',
     'see_project' => 'See project location on Google Maps',
@@ -45,4 +48,8 @@ return [
     'dead_line' => 'Deadline',
 //HR POLICIES
     'hr_policies' => 'HR POLICIES',
+//NEWS
+    'news_event' => 'NEWS - EVENTS',
+    'news_event_trans' => 'News - Events',
+
 ];
