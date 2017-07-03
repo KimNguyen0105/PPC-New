@@ -24,7 +24,7 @@
             <!-- hàng số 1 -->
             <div class="space" id="content_duan" style="padding: 0px 15px">
                 @if($projectsale !=null)
-                    @foreach ($dataduan as $row)
+                    @foreach ($projectsale as $row)
                         <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                             <div class="col-md-4" style="padding: 0px">
                                 <a href="{{URL::asset('project-for-sale')}}/{{$row->id}}/{{$row->slug}}">
