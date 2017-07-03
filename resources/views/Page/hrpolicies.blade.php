@@ -15,8 +15,8 @@
                 @foreach ($data as $row)
 
                 <div class="col-md-4 col-sm-12 text-center divgioithieu">
-                    <a href="{{URL::asset('')}}hr-policies-detail/{{$row->id}}-{{$row->slug}}.html">
-                        <img src="{{URL::asset('')}}images/{{$row->image}}" class="img-responsive img_body" style=" width: 100%"></a>
+                    <a href="{{URL::asset('')}}ppc-hrpolicies/{{$row->id}}-{{$row->slug}}.html">
+                        <img src="{{URL::asset('')}}images/terms_web/{{$row->image}}" class="img-responsive img_body" style=" width: 100%"></a>
                     <a href="">
                         <h4 class="titlewweb" style="color:#443427;"><b>{!! $row->title !!}</b></h4></a>
                 </div>
