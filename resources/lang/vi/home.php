@@ -1,5 +1,6 @@
 <?php
 return [
+//HOME
     'home' => 'Trang Chủ',
     'project' => 'Dự Án',
     'about' => 'Giới Thiệu',
@@ -13,7 +14,7 @@ return [
     'rent' => 'Thuê',
     'sale' => 'Bán',
     'dealing' => 'CÁC DỰ ÁN ĐANG GIAO DỊCH & PHÁT TRIỂN',
-    'documentfilm' => 'PHIM TƯ LIỆU',
+    'documentfilm' => 'VIDEO NỔI BẬT',
     'latestnews' => 'TIN MỚI NHẤT',
     'login' => 'Đăng Nhập',
     'onlinesupport' => "Hỗ Trợ Trực Tuyến",
@@ -23,7 +24,8 @@ return [
     'forgetpass' => 'Quên mật khẩu?',
     'account' => 'Bạn chưa có tài khoản?',
     'remember' => 'Nhớ mật khẩu',
-    //CONTACT
+    'search' => 'Tìm kiếm',
+//CONTACT
     'contact_trans' => 'LIÊN HỆ',
     'see_project' => 'Xem vị trí dự án trên Google Maps',
     'contact_title' => 'Gửi email. Tất cả thông tin được đánh dấu * là bắt buộc',
@@ -36,5 +38,12 @@ return [
     'content' => 'Nội dung',
     'send_copy' => 'Gửi bản sao cho bạn',
     'send_mail' => 'Gửi Mail',
+//RECRUITMENT
+    'humandev_trans'=> 'PHÁT TRIỂN NHÂN LỰC',
+    'career_opp' => 'Cơ Hội Nghề Nghiệp',
+    'read_more' => 'Xem Thêm',
+    'dead_line' => 'Thời gian nộp hồ sơ',
+//HR POLICIES
+    'hr_policies' => 'CHÍNH SÁCH NHÂN SỰ',
 
 ];

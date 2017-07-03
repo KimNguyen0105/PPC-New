@@ -11,8 +11,13 @@ class VideoHomeController extends Controller
     //
     public function Home()
     {
-        $video=VideoHome::where('status',1)->orderBy('updated_at','desc')->get();
-        return view('admin.videohome',['video'=>$video]);
+        if(Auth::check()){
+            $video=VideoHome::where('status',1)->orderBy('updated_at','desc')->get();
+            return view('admin.videohome',['video'=>$video]);
+        }
+        else{
+            return redirect('admin/log-in');
+        }
     }
     public function SaveVideo(Request $request)
     {
@@ -62,7 +67,7 @@ class VideoHomeController extends Controller
             }
             catch (\Exception $e)
             {
-                return redirect('admin/slide')->with('thatbai','Thêm thất bại!');
+                return redirect('admin/video-home')->with('thatbai','Thêm thất bại!');
             }
         }
         else{

@@ -1,5 +1,6 @@
 <?php
 return [
+//HOME
     'home' => 'Home',
     'project' => 'Project',
     'about' => 'About Us',
@@ -13,7 +14,7 @@ return [
     'rent' => 'Rent',
     'sale' => 'Sale',
     'dealing' => 'DEALING AND DEVELOPING PROJECTS',
-    'documentfilm' => 'DOCUMENT FILM',
+    'documentfilm' => 'FEATURE VIDEOS',
     'latestnews' => 'LATEST NEWS',
     'login' => 'Login',
     'onlinesupport' => "Online Support",
@@ -23,7 +24,8 @@ return [
     'forgetpass' => 'Forget password?',
     'account' => "Don't have account?",
     'remember' => 'Remember Password',
-    //CONTACT
+    'search' => 'Search',
+//CONTACT
     'contact_trans' => 'CONTACT',
     'see_project' => 'See project location on Google Maps',
     'contact_title' => 'Send email. Information being marked with * is compulsory',
@@ -36,6 +38,11 @@ return [
     'content' => 'Content',
     'send_copy' => 'Send the copy for you',
     'send_mail' => 'Send Mail',
-
-
+//RECRUITMENT
+    'humandev_trans'=> 'HUMAN DEVELOPMENT',
+    'career_opp' => 'Career opportunities',
+    'read_more' => 'Read More',
+    'dead_line' => 'Deadline',
+//HR POLICIES
+    'hr_policies' => 'HR POLICIES',
 ];
