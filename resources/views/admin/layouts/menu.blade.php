@@ -20,9 +20,16 @@
             </li>
 
             <li class="treeview">
-                <a href="{{url('admin/introduce-home')}}">
+                <a href="">
                     <i class="fa fa-cubes"></i> <span>GIỚI THIỆU</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-caret-down"></i>
+                        </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li class="li1"><a href="{{url('admin/introduce-home')}}"><i class="fa fa-cubes"></i>GIỚI THIỆU</a></li>
+                    <li class="li2"><a href="{{url('admin/banner')}}"><i class="fa fa-bars"></i>BANNER</a></li>
+                </ul>
             </li>
             <li class="treeview">
                 <a href="">
@@ -64,19 +71,9 @@
                         </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="li1"><a href=""><i class="fa fa-folder-o"></i> DỰ ÁN</a></li>
-                    <li class="li2"><a href=""><i class="fa fa-bars"></i> DANH MỤC DỰ ÁN</a></li>
+                    <li class="li1"><a href="{{url('admin/property')}}"><i class="fa fa-folder-o"></i> DỰ ÁN</a></li>
+                    <li class="li2"><a href="{{url('admin/project')}}"><i class="fa fa-bars"></i> DANH MỤC DỰ ÁN</a></li>
                 </ul>
-            </li>
-            <li class="treeview menuadmin6">
-                <a href="">
-                    <i class="fa fa-envelope"></i> <span>QUẢN LÝ LIÊN HỆ</span>
-                </a>
-            </li>
-            <li class="treeview menuadmin6">
-                <a href="{{url('admin/system-config')}}">
-                    <i class="fa fa-envelope"></i> <span>SYSTEM CONFIG</span>
-                </a>
             </li>
 
             <li class="treeview">
@@ -87,12 +84,21 @@
                         </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class=""><a href=""><i class="fa fa-bolt"></i> QUỐC GIA</a></li>
-                    <li class="li2"><a href=""><i class="fa fa-futbol-o"></i> TỈNH</a></li>
-                    <li class="li3"><a href=""><i class="fa fa-cog"></i> HUYỆN</a></li>
+                    <li class=""><a href="{{url('admin/country')}}"><i class="fa fa-bolt"></i> QUỐC GIA</a></li>
+                    <li class="li2"><a href="{{url('admin/province')}}"><i class="fa fa-futbol-o"></i> TỈNH</a></li>
+                    <li class="li3"><a href="{{url('admin/district')}}"><i class="fa fa-cog"></i> HUYỆN</a></li>
                 </ul>
             </li>
-
+            <li class="treeview menuadmin6">
+                <a href="{{url('admin/contact')}}">
+                    <i class="fa fa-envelope"></i> <span>QUẢN LÝ LIÊN HỆ</span>
+                </a>
+            </li>
+            <li class="treeview menuadmin6">
+                <a href="{{url('admin/system-config')}}">
+                    <i class="fa fa-envelope"></i> <span>SYSTEM CONFIG</span>
+                </a>
+            </li>
         </ul>
 
     </section>

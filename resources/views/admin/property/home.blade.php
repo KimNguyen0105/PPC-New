@@ -3,11 +3,10 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Danh mục</h1>
-            {{--<a href="{{url('admin/introduce/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></a>--}}
+            <a href="{{url('admin/property/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspDự án</i></a>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Slide</li>
+                <li class="active">Dự án</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
@@ -27,25 +26,38 @@
                     </div>
                 @endif
                 <div class="row" >
-                    <table class="table table-striped table-bordered" style="text-align: center">
+                    <table class="table table-striped table-bordered">
                         <thead>
                         <td>#</td>
                         <td>Hình ảnh</td>
                         <td>Tiêu đề</td>
+                        <td>Loại dự án</td>
+                        <td>Trạng thái</td>
                         <td>Thao tác</td>
                         </thead>
                         <tbody>
-                        @if($introduce!=null)
+                        @if($property!=null)
                             <?php
                                 $i=1;
                             ?>
-                            @foreach($introduce as $item)
+                            @foreach($property as $item)
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td  style="width: 250px"><img src="{{asset('images/introduce')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
+                                    <td  style="width: 150px;"><img src="{{asset('images/property')}}/{{$item->image}}" style="width:100%; height: 100px" class="img-responsive"></td>
                                     <td>{{$item->title}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        @if($item->status==1)
+                                            <span class="label label-success">Đã duyệt</span>
+                                        @else
+                                            <span class="label label-danger">Chưa duyệt</span>
+                                        @endif
+                                    </td>
                                     <td  style="width: 110px">
-                                        <a href="{{url('admin/introduce')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/property')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/property-delete')}}/{{$item->id}}" class="btn btn-danger">
+                                            <span class="fa fa-trash" onclick="return confirm('bạn có chắc xóa?')"></span></a>
+
                                     </td>
                                 </tr>
                                 <?php
@@ -65,6 +77,17 @@
         $(function() {
             $('.alert').delay(5000).show().fadeOut('slow');
         });
+        function readURL(input) {
 
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgF').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
 @endsection

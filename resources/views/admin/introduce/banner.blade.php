@@ -3,11 +3,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Danh mục</h1>
+            <h1>Banner</h1>
             {{--<a href="{{url('admin/introduce/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></a>--}}
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Slide</li>
+                <li class="active">Banner</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
@@ -45,7 +45,7 @@
                                     <td  style="width: 250px"><img src="{{asset('images/introduce')}}/{{$item->image}}" style="width:100%; height: 150px" class="img-responsive"></td>
                                     <td>{{$item->title}}</td>
                                     <td  style="width: 110px">
-                                        <a href="{{url('admin/introduce')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/banner')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -65,6 +65,5 @@
         $(function() {
             $('.alert').delay(5000).show().fadeOut('slow');
         });
-
     </script>
 @endsection

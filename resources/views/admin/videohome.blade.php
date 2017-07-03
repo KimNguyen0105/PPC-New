@@ -18,23 +18,28 @@
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="form-group">
-                                <input type="text" required class="form-control" id="txtlink" name="txtlink" placeholder="Link">
-                                <input id="txtid" name="txtid" value="0" hidden>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thông tin video trang chủ</h4>
                             </div>
-                            <div class="form-group">
-                                <img src="" class="img-responsive" id="imgF">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Hiển thị</label>
-                                <input style="margin-left: 10px;" type="checkbox" id="txtshow" name="txtshow">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Thứ tự hiển thị</label>
-                                <input style="margin-left: 10px; width: 50px" type="text" id="txtthutu" name="txtthutu">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" required class="form-control" id="txtlink" name="txtlink" placeholder="Link">
+                                    <input id="txtid" name="txtid" value="0" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <img src="" class="img-responsive" id="imgF">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Hiển thị</label>
+                                    <input style="margin-left: 10px;" type="checkbox" id="txtshow" name="txtshow">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Thứ tự hiển thị</label>
+                                    <input style="margin-left: 10px; width: 50px" type="text" id="txtthutu" name="txtthutu">
+                                </div>
                             </div>
                             <div class="modal-footer">
-
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <a onclick="ftgetVideo();" class="btn btn-success">Lấy hình ảnh</a>
                                 <button type="submit" disabled id="SaveVideo" class="btn btn-info" style="margin-right: 15px"><i class="fa fa-save"></i><b> Save</b></button>

@@ -18,28 +18,34 @@
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="form-group">
-                                <input type="text" required class="form-control" id="txtlink" name="txtlink" placeholder="Link">
-                                <input id="txtid" name="txtid" value="0" hidden>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thông tin Video Gallery</h4>
                             </div>
-                            <div class="form-group">
-                                <img src="" class="img-responsive" id="imgF">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Tiêu đề Vi</label>
-                                <input style="margin-left: 10px;" required type="text" id="title_vi" name="title_vi" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Tiêu đề En</label>
-                                <input style="margin-left: 10px;" required type="text" id="title_en" name="title_en" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Hiển thị</label>
-                                <input style="margin-left: 10px;" type="checkbox" id="txtshow" name="txtshow">
-                            </div>
-                            <div class="form-group">
-                                <label for="introduce">Thứ tự hiển thị</label>
-                                <input style="margin-left: 10px; width: 50px" required type="text" id="txtthutu" name="txtthutu">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="text" required class="form-control" id="txtlink" name="txtlink" placeholder="Link">
+                                    <input id="txtid" name="txtid" value="0" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <img src="" class="img-responsive" id="imgF">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Tiêu đề Vi</label>
+                                    <input style="margin-left: 10px;" required type="text" id="title_vi" name="title_vi" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Tiêu đề En</label>
+                                    <input style="margin-left: 10px;" required type="text" id="title_en" name="title_en" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Hiển thị</label>
+                                    <input style="margin-left: 10px;" type="checkbox" id="txtshow" name="txtshow">
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">Thứ tự hiển thị</label>
+                                    <input style="margin-left: 10px; width: 50px" required type="text" id="txtthutu" name="txtthutu">
+                                </div>
                             </div>
                             <div class="modal-footer">
 
