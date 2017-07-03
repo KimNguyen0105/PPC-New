@@ -25,7 +25,6 @@ class Controller extends BaseController
         $videos = DB::table('videos')->orderBy('id', 'desc')->take(7)->get();
         $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('status',1)->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
             ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
-        dd($news);
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
             $databanner = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
