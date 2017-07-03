@@ -174,7 +174,7 @@ class Controller extends BaseController
     }
 
     public function getPolicies()
-
+	{
         $sliders = DB::table('sliders')->where('is_show', 1)->orderBy('updated_at', 'desc')->get();
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
