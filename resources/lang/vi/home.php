@@ -25,6 +25,9 @@ return [
     'account' => 'Bạn chưa có tài khoản?',
     'remember' => 'Nhớ mật khẩu',
     'search' => 'Tìm kiếm',
+    'info'=>'Thông tin',
+    'project_manager'=>'Quản lý dự án',
+    'logout'=>'Đăng xuất',
 //CONTACT
     'contact_trans' => 'LIÊN HỆ',
     'see_project' => 'Xem vị trí dự án trên Google Maps',
@@ -45,5 +48,7 @@ return [
     'dead_line' => 'Thời gian nộp hồ sơ',
 //HR POLICIES
     'hr_policies' => 'CHÍNH SÁCH NHÂN SỰ',
-
+//NEWS
+    'news_event' => 'TIN TỨC - SỰ KIỆN',
+    'news_event_trans' => 'Tin tức - Sự kiện',
 ];
