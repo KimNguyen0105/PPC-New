@@ -15,7 +15,7 @@
                                     <b>{{mb_strtoupper($row->title)}}</b></h3>
                             </div>
                             <div style="width:100%;">
-                                <a href=""><img src="images/{{$row->image}}" class="img-responsive"
+                                <a href=""><img src="images/introduce/{{$row->image}}" class="img-responsive"
                                                 style="width:100%;height: 200px"></a>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                         <div class="col-md-4" style="padding: 0px">
                             <a href="{{URL::asset('project')}}/{{$data->id}}-{{$data->slug}}.html">
-                                <img src="images/{{$data->image}}" class="img-responsive img_body" alt="{{$data->title}}" style="width:100%;">
+                                <img src="images/property/{{$data->image}}" class="img-responsive img_body" alt="{{$data->title}}" style="width:100%;">
                             </a>
                         </div>
 

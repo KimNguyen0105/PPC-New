@@ -23,9 +23,9 @@ class Controller extends BaseController
             ->where('status', 1)->orderBy('property.id', 'desc')->paginate(3);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $videos = DB::table('videos')->orderBy('id', 'desc')->take(7)->get();
-        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
-            ->select('news.id', 'news.image', 'news.slug', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
-
+        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('status',1)->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
+            ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
+        dd($news);
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
             $databanner = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
@@ -142,7 +142,7 @@ class Controller extends BaseController
         $systems = DB::table('ppc_system_config')->get();
         $projectsale = DB::table('property')->join('property_image','property.id','=','property_image.id_property')
             ->join('property_lang','property.id','=','property_lang.property_id')->where('property_lang.lang',Session::get('locale'))
-            ->where('property.type',0)->orderBy('property.update_at','desc')->get();
+            ->where('property.type',0)->orderBy('property.updated_at','desc')->get();
         return view('Page/sale', [
             'sliders' => $sliders,
             'systems' => $systems,
@@ -159,7 +159,7 @@ class Controller extends BaseController
         $systems = DB::table('ppc_system_config')->get();
         $projectrent = DB::table('property')->join('property_image','property.id','=','property_image.id_property')
             ->join('property_lang','property.id','=','property_lang.property_id')->where('property_lang.lang',Session::get('locale'))
-            ->where('property.type',1)->orderBy('property.update_at','desc')->get();
+            ->where('property.type',1)->orderBy('property.updated_at','desc')->get();
         return view('Page/rent', [
             'sliders' => $sliders,
             'systems' => $systems,
