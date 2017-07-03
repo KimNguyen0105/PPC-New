@@ -28,6 +28,23 @@ class IntroduceController extends Controller
             return redirect('admin/log-in');
         }
     }
+    public function Banner()
+    {
+        if(Auth::check()){
+            $introduce=DB::table('introduce')
+                ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
+                ->where('introduce.status',1)
+                ->where('introduce_lang.lang','vi')
+                ->where('introduce.parrent_id',1)
+                ->select('introduce.id','introduce.image','introduce_lang.title')
+                ->orderBy('introduce.updated_at','desc')->get();
+
+            return view('admin.introduce.banner',['introduce'=>$introduce]);
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
     public function GetIntroduce($id)
     {
         if(Auth::check()){
@@ -39,6 +56,22 @@ class IntroduceController extends Controller
                 ->select('introduce_lang.*')
                 ->get();
             return view('admin.introduce.insert',['introduce'=>$introduce,'introduce_lang'=>$introduce_lang]);
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
+    public function GetBanner($id)
+    {
+        if(Auth::check()){
+            $introduce=Introduce::find($id);
+            $introduce_lang=DB::table('introduce')
+                ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
+                ->where('introduce.id',$id)
+                ->orderBy('introduce.updated_at','desc')
+                ->select('introduce_lang.*')
+                ->get();
+            return view('admin.introduce.insert_banner',['introduce'=>$introduce,'introduce_lang'=>$introduce_lang]);
         }
         else{
             return redirect('admin/log-in');
@@ -88,5 +121,48 @@ class IntroduceController extends Controller
             return redirect('admin/log-in');
         }
     }
+    public function SaveBanner(Request $request)
+    {
+        if(Auth::check()){
+            try{
+                $id=$request->txtid;
+                $title_vi=$request->title_vi;
+                $title_en=$request->title_en;
+                $content_vi=$request->introduce_vi;
+                $content_en=$request->introduce_en;
+                $introduce=Introduce::find($id);
+                $introduce->slug=str_slug($title_vi);
+                if($request->hasFile('file')){
+                    unlink("images/introduce/".$introduce->image);
+                    $image = $request->file('file');
+                    $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
+                    $path = public_path('images/introduce/' . $filename);
+                    Image::make($image->getRealPath())->resize(300, 200)->save($path);
+                    $introduce->image=$filename;
+                }
+                if($introduce->save())
+                {
+                    $introduce_vi=Introduce_lang::where('lang','vi')->where('introduce_id',$id)->first();
+                    $introduce_vi->title=$title_vi;
+                    $introduce_vi->content=$content_vi;
 
+                    $introduce_en=Introduce_lang::where('lang','en')->where('introduce_id',$id)->first();
+                    $introduce_en->title=$title_en;
+                    $introduce_en->content=$content_en;
+
+                    $introduce_vi->save();
+                    $introduce_en->save();
+                    return redirect('admin/banner')->with('thongbao','Cập nhật thành công!');
+                }
+            }
+            catch (\Exception $e)
+            {
+                dd($e);
+                return redirect('admin/banner')->with('thatbai','Cập nhật thất bại!');
+            }
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
 }
