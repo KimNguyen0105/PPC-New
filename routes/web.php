@@ -26,6 +26,8 @@ Route::get('/about-ppc.html','Controller@getAbout');
 Route::get('/ppc-news.html','Controller@getNews');
 Route::get('/ppc-contact.html','Controller@getContact');
 Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
+
+
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');

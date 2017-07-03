@@ -266,7 +266,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            {!! Form::open() !!}
+            {{--{!! Form::open() !!}--}}
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{trans('home.login')}}</h4>
@@ -297,7 +297,7 @@
                     <button type="submit" class="btn btn-info">{{trans('home.login')}}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('home.close')}}</button>
                 </div>
-            {!! Form::close() !!}
+            {{--{!! Form::close() !!}--}}
         </div>
     </div>
 </div>

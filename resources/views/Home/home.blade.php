@@ -38,17 +38,17 @@
                 @foreach($dataduan as $data)
                     <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                         <div class="col-md-4" style="padding: 0px">
-                            <a href="">
-                                <img src="images/{{$data->image}}" class="img-responsive img_body" style="width:100%;">
+                            <a href="{{URL::asset('project')}}/{{$data->id}}-{{$data->slug}}.html">
+                                <img src="images/{{$data->image}}" class="img-responsive img_body" alt="{{$data->title}}" style="width:100%;">
                             </a>
                         </div>
 
                         <div class="col-md-8" style="padding-top: 10px">
-                            <a href=""><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
+                            <a href="{{URL::asset('project')}}/{{$data->id}}-{{$data->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
                                     <b>{{$data->title}}</b></h4></a>
                             <h5 style="text-align:left; font-size: 16px;font-family: verdana;"> {{$data->address}}</h5>
                             <div style="padding-top: 10px; font-family: Verdana">
-                                {!!str_limit($data->info,200)!!}
+                                {!!str_limit($data->info,250)!!}
                             </div>
                         </div>
                         <div class=""
@@ -71,12 +71,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 style="color:#3f3024;"><b>{{trans('home.latestnews')}}</b></h3>
-                    <hr style="border:2.5px solid #3f3024;margin-left:0px;width:40%;">
+                    <div class="text-center">
+                        <h3 class="titlewweb"><b>{{trans('home.latestnews')}}</b></h3>
+                        <hr style="border:2.5px solid #443427;width:80px;">
+                    </div>
                     <section class="regular slider">
                         @if($news!=null)
 
-                        @foreach ($news as $item)
+                            @foreach ($news as $item)
                                 <div class="col-md-4">
                                     <a style="border-bottom: 1px solid"
                                        href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
@@ -111,8 +113,10 @@
 
 
         <div class="row">
-            <h3 style="color:#3f3024;margin-left:-10px"><b>{{trans('home.documentfilm')}}</b></h3>
-            <hr style="border:2.5px solid #3f3024;margin-left:-10px;width:20%;">
+            <div class="text-center">
+                <h3 class="titlewweb"><b>{{trans('home.documentfilm')}}</b></h3>
+                <hr style="border:2.5px solid #443427;width:80px;">
+            </div>
             @foreach($videos as $video)
                 @if($loop->iteration ==1)
                     <div class="col-md-8 text-left" id="cot_so">
@@ -124,13 +128,22 @@
                     </div>
                 @else
                     <div class="col-md-2 text-left" id="cot_so">
-
-                        <img src="https://img.youtube.com/vi/{{$video->thumb}}/0.jpg" class="img-responsive" style="padding-bottom: 25px;"/>
-
+                        <a href="" class="changevideo" data-link="{{$video->url}}">
+                            <img src="https://img.youtube.com/vi/{{$video->thumb}}/0.jpg" class="img-responsive"
+                                 style="padding-bottom: 25px;"/>
+                        </a>
                     </div>
                 @endif
             @endforeach
 
         </div>
     </div>
+    <script>
+        $('.changevideo').click(function (e) {
+            var link = $(this).attr('data-link')+'?autoplay=1';
+            e.preventDefault();
+
+            $('#main_video').attr('src',link);
+        });
+    </script>
 @endsection

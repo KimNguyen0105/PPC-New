@@ -140,9 +140,13 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
+        $projectsale = DB::table('property')->join('property_image','property.id','=','property_image.id_property')
+            ->join('property_lang','property.id','=','property_lang.property_id')->where('property_lang.lang',Session::get('locale'))
+            ->where('property.type',0)->orderBy('property.update_at','desc')->get();
         return view('Page/sale', [
             'sliders' => $sliders,
-            'systems' => $systems
+            'systems' => $systems,
+            'projectsale'=>$projectsale
         ]);
     }
 
@@ -153,9 +157,13 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
+        $projectrent = DB::table('property')->join('property_image','property.id','=','property_image.id_property')
+            ->join('property_lang','property.id','=','property_lang.property_id')->where('property_lang.lang',Session::get('locale'))
+            ->where('property.type',1)->orderBy('property.update_at','desc')->get();
         return view('Page/rent', [
             'sliders' => $sliders,
-            'systems' => $systems
+            'systems' => $systems,
+            'projectrent'=>$projectrent
         ]);
     }
 
