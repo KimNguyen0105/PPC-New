@@ -23,8 +23,9 @@ class Controller extends BaseController
             ->where('status', 1)->orderBy('property.id', 'desc')->paginate(3);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $videos = DB::table('videos')->orderBy('id', 'desc')->take(7)->get();
-        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
-            ->select('news.id', 'news.image', 'news.slug', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
+       $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
+            ->where('news.status',1)
+            ->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')->get();
 
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
