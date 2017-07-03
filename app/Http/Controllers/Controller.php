@@ -219,30 +219,7 @@ class Controller extends BaseController
             'data' => $data,
         ]);
     }
-	public function getPolicies()
-    {
-        if (Session::has('locale')) {
-            App::setLocale(Session::get('locale'));
-        }
-        $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
-        $systems = DB::table('ppc_system_config')->get();
-        if(Session::get('locale')=='vi') {
-            $data = DB::table('terms_web')
-                ->where('status', 1)
-                ->select('title','id','content','slug','image')
-                ->get();
-        } else {
-            $data = DB::table('terms_web')
-                ->where('status', 1)
-                ->select('title_en as title','id','content_en as content','slug','image')
-                ->get();
-        }
-        return view('Page/hrpolicies', [
-            'sliders' => $sliders,
-            'systems' => $systems,
-            'data' => $data,
-        ]);
-    }
+	
     public function getPoliciesDetail($id)
     {
         if (Session::has('locale')) {
