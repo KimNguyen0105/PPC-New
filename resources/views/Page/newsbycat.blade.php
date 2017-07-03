@@ -1,12 +1,14 @@
 @extends('master')
 @section('main')
+    @extends('master')
+@section('main')
 
     {{--BANNER TIN TUC--}}
     <div class="text-center banner_header">
 
         <div class="text-center ">
             <div class="container">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-12">
 
                     @foreach ($banner_tin as $row)
 
@@ -22,7 +24,7 @@
                             </div>
                             <div style="width:100%;">
                                 <a href="{{URL::asset('')}}ppc-news-{{$row->id}}.html">
-                                    <img src="{{URL::asset('')}}images/category/{{$row->image}}" style="width: 100%; margin: -10px 1px"></a>
+                                    <img src="{{URL::asset('')}}images/category/{{$row->image}}"></a>
                             </div>
                         </div>
                     @endforeach
@@ -36,10 +38,18 @@
         <div class="container paddingchitiet">
             <!-- hàng số 1 -->
             <div class="text-center">
-                <h3 class="titlewweb" style="color:#443427;"><b>{{trans('home.news_event')}}</b></h3>
+                @if(Session::get('locale') == 'vi')
+                    <h3 class="titlewweb" style="color:#443427;"><b>{{$banner_detail->title}}</b></h3>
+                @else
+                    <h3 class="titlewweb" style="color:#443427;"><b>{{$banner_detail->title_en}}</b></h3>
+                @endif
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <div class="col-md-12 text-left">
-                    <h4 style="font-family: Verdana">{{trans('home.home')}} / <b>{{trans('home.news_event_trans')}} </b>
+                    <h4 style="font-family: Verdana">{{trans('home.home')}} / @if(Session::get('locale') == 'vi')
+                            <b>{{$banner_detail->title}}</b>
+                        @else
+                            <b>{{$banner_detail->title_en}}</b>
+                        @endif
                     </h4>
                 </div>
             </div>
@@ -78,4 +88,5 @@
         </div>
 
     </div>
+@endsection
 @endsection

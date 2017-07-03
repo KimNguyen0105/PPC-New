@@ -12,7 +12,7 @@
         <div class="space">
 
             <div class="col-md-4">
-                <img src="{{URL::asset('')}}images/{{$data->image}}" class="img-responsive" style="width:100%;">
+                <img src="{{URL::asset('')}}images/recruitment/{{$data->image}}" class="img-responsive" style="width:100%;">
             </div>
             <div class="col-md-8">
                 <div class="col-md-12">
@@ -21,7 +21,7 @@
                 <div class="col-md-12" style="padding-top: 10px">
 
                     <p style="color:#443427; font-family:Verdana;font-size:13pt;text-align:justify;"><b>{{trans('home.dead_line')}}: </b>{{$data->updated_at}}</p>
-                    <p style="color:#443427; font-family:Verdana;font-size:13pt;text-align:justify;">{{$data->content}}</p>
+                    <p style="color:#443427; font-family:Verdana;font-size:13pt;text-align:justify;">{!! $data->content !!}</p>
                 </div>
             </div>
 

@@ -12,7 +12,7 @@
         <div class="space">
 
             <div class="col-md-4">
-                <img src="{{URL::asset('')}}images/{{$data->image}}" class="img-responsive" style="width:100%;">
+                <img src="{{URL::asset('')}}images/terms_web/{{$data->image}}" class="img-responsive" style="width:100%;">
             </div>
             <div class="col-md-8">
                 <div class="col-md-12">
