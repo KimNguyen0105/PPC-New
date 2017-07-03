@@ -5,26 +5,20 @@
 
             <div class="col-lg-4 col-md-4 col-xs-4"
                  style="position: absolute; left: 0;bottom: 0; text-align: left;font-family: verdana;">
-            <span class="photro" style="display:inline;"><img src="{{URL::asset('')}}images/icon/30.png"
-                                                              style="width: 6%; margin-top: 6px;margin-bottom: 6px"
-                                                              id="img_icon"> (+84) 838 221 122</span><br>
-                <a style="display:inline; text-decoration: none; color: black; cursor: pointer"
-                   href="javascript:void(Tawk_API.toggle())"><img src="{{URL::asset('')}}images/icon/29.png"
-                                                                  style="width: 6%"
-                                                                  id="img_icon"><span
-                            class="photro"> <b>{{trans('home.onlinesupport')}}</b></span> </a>
+            <span class="photro" style="display:inline;">
+                <img src="{{URL::asset('')}}images/icon/30.png" style="width: 6%; margin-top: 6px;margin-bottom: 6px" id="img_icon"> (+84) 838 221 122</span><br>
+                <a style="display:inline; text-decoration: none; color: black; cursor: pointer" href="javascript:void(Tawk_API.toggle())">
+                    <img src="{{URL::asset('')}}images/icon/29.png" style="width: 6%" id="img_icon">
+                    <span class="photro"> <b>{{trans('home.onlinesupport')}}</b></span>
+                </a>
             </div>
             <div class="col-lg-4 col-md-4 col-xs-4 center-block" style="float: none">
                 <img src="{{URL::asset('')}}images/logo.png" id="logo_header">
             </div>
 
-            <div class="col-lg-4 col-md-4 col-xs-4 pull-right">
-
-
+            <div class="col-lg-4 col-md-4 col-xs-4 pull-right" style="position: absolute; right: 15px;bottom: 0; text-align: right">
                 <ul class="nav navbar-nav navbar-right">
-
-
-                    @if(isset($_SESSION['name']))
+                    @if(Session::has('username'))
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"
                                style="padding: 0px 5px;color: #5b4f44;font-size: 15px;font-weight: bold">
@@ -49,21 +43,15 @@
                         </li>
                     @else
                         <li>
-                            <a style="padding: 0px;text-decoration: none;color: #5b4f44;font-size: 15px;font-weight: bold"
-                               data-toggle="modal" href="#myLogin"><i
-                                        class="fa fa-user"></i>&nbsp;{{trans('home.login')}}</a>
+                            <a style="padding: 0px;text-decoration: none;color: #5b4f44;font-size: 15px;font-weight: bold" data-toggle="modal" href="#myLogin"><i class="fa fa-user"></i>&nbsp;{{trans('home.login')}}</a>
                         </li>
                     @endif
 
-                    <li><a style="padding: 0px;margin-left: 5px " href="{{URL::asset('')}}language/en"><img
-                                    src="{{URL::asset('')}}images/icon/FlagUS.jpg"></a>
+                    <li><a style="padding: 0px;margin-left: 5px " href="{{URL::asset('')}}language/en"><img src="{{URL::asset('')}}images/icon/FlagUS.jpg"></a>
                     </li>
-                    <li><a style="padding: 0px;margin-left: 5px" href="{{URL::asset('')}}language/vi"><img
-                                    src="{{URL::asset('')}}images/icon/vi.gif"></a>
+                    <li><a style="padding: 0px;margin-left: 5px" href="{{URL::asset('')}}language/vi"><img src="{{URL::asset('')}}images/icon/vi.gif"></a>
                     </li>
                 </ul>
-
-
             </div>
         </div>
     </div>
@@ -81,29 +69,31 @@
                 <div class="collapse navbar-collapse"
                      style="width:100%;padding-right:0px;margin-left: -15px">
                     <ul class="nav navbar-nav width_menu menucell">
-                        <li class="limenu menu1" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/')}}">{{trans('home.home')}}</a>
+                        <li class="limenu menu1" style="display: table-cell;float: none">
+                            <a class="menua" href="{{asset('/')}}">{{trans('home.home')}}</a>
                         </li>
-                        <li class="limenu menu2" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/ppc-project.html')}}">{{trans('home.project')}}</a>
+                        <li class="limenu menu2" style="display: table-cell;float: none">
+                            <a class="menua" href="{{asset('/ppc-project.html')}}">{{trans('home.project')}}</a>
                             <ul>
-                                <li class="limenu"><a href="{{asset('/project-rent')}}">{{trans('home.rent')}}</a></li>
-                                <li class="limenu"><a href="{{asset('/project-sale')}}">{{trans('home.sale')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/project-rent.html')}}">{{trans('home.rent')}}</a></li>
+                                <li class="limenu"><a href="{{asset('/project-sale.html')}}">{{trans('home.sale')}}</a></li>
                             </ul>
                         </li>
-                        <li class="limenu menu3" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/about-ppc.html')}}">{{trans('home.about')}}</a>
+                        <li class="limenu menu3" style="display: table-cell;float: none">
+                            <a class="menua" href="{{asset('/about-ppc.html')}}">{{trans('home.about')}}</a>
                         </li>
-                        <li class="limenu menu4" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/ppc-news.html')}}">{{trans('home.news')}}</a>
+                        <li class="limenu menu4" style="display: table-cell;float: none">
+                            <a class="menua" href="{{asset('/ppc-news.html')}}">{{trans('home.news')}}</a>
                         </li>
-                        <li class="limenu menu5" style="display: table-cell;float: none"><a
-                                    class="menua">{{trans('home.humandev')}}</a>
+                        <li class="limenu menu5" style="display: table-cell;float: none">
+                            <a class="menua">{{trans('home.humandev')}}</a>
                             <ul>
-                                <li class="limenu"><a
-                                            href="{{asset('/ppc-recruitment.html')}}">{{trans('home.recruitment')}}</a></li>
-                                <li class="limenu"><a
-                                            href="{{asset('/ppc-hrpolicies.html')}}">{{trans('home.hrpolicies')}}</a></li>
+                                <li class="limenu">
+                                    <a href="{{asset('/ppc-recruitment.html')}}">{{trans('home.recruitment')}}</a>
+                                </li>
+                                <li class="limenu">
+                                    <a href="{{asset('/ppc-hrpolicies.html')}}">{{trans('home.hrpolicies')}}</a>
+                                </li>
                             </ul>
                         </li>
                         <?php
@@ -111,83 +101,75 @@
                         {
                         if($_SESSION['name'] != null){
                         ?>
-                        <li class="limenu menu6" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="">{{trans('home.post')}}</a>
+                        <li class="limenu menu6" style="display: table-cell;float: none">
+                            <a class="menua" href="">{{trans('home.post')}}</a>
                         </li>
                         <?php } else {
 
                         ?>
-                        <li class="limenu menu6" style="display: table-cell;float: none"><a class="menua"
-                                                                                            data-toggle="modal"
-                                                                                            href="#myLogin">{{trans('home.post')}}</a>
+                        <li class="limenu menu6" style="display: table-cell;float: none">
+                            <a class="menua" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
                         </li>
                         <?php  }
                         }
                         else{ ?>
-                        <li class="limenu menu6" style="display: table-cell;float: none"><a class="menua"
-                                                                                            data-toggle="modal"
-                                                                                            href="#myLogin">{{trans('home.post')}}</a>
+                        <li class="limenu menu6" style="display: table-cell;float: none">
+                            <a class="menua" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
                         </li>
                         <?php }
                         ?>
-                        <li class="limenu menu7" style="display: table-cell;float: none"><a class="menua"
-                                                                                            href="{{asset('/ppc-contact.html')}}">{{trans('home.contact')}}</a>
+                        <li class="limenu menu7" style="display: table-cell;float: none">
+                            <a class="menua" href="{{asset('/ppc-contact.html')}}">{{trans('home.contact')}}</a>
                         </li>
-
                         </li>
-
                         <form class="navbar-form">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="...">
                             </div>
                             <button type="submit" class="btn btn-default">{{trans('home.search')}}</button>
                         </form>
-
-
                     </ul>
-
                 </div>
                 <div id="menuMobile">
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 paddinglr0 menu1 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.post')}}</a>
+                            <a class="menua" style="color: #5b4e45" href="{{asset('/')}}">{{trans('home.home')}}</a>
                         </div>
                         <div class="col-xs-4 paddinglr0 menu2 divmenu">
                             <li class="dropdown" style="display: inline">
-                                <a class="dropdown-toggle menua" data-toggle="dropdown" href=""
+                                <a class="dropdown-toggle menua" data-toggle="dropdown" href="{{asset('/ppc-project.html')}}"
                                    style="padding: 0px 5px;color: #5b4f44;font-size: 15px;">
                                     {{trans('home.project')}}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a style="color: #5b4e45" href="">{{trans('home.rent')}}</a>
+                                        <a style="color: #5b4e45" href="{{asset('/project-rent.html')}}">{{trans('home.rent')}}</a>
                                     </li>
                                     <li style="border-top: 1px solid #eeeeee !important;">
-                                        <a style="color: #5b4e45" href="">{{trans('home.sale')}}</a>
+                                        <a style="color: #5b4e45" href="{{asset('/project-sale.html')}}">{{trans('home.sale')}}</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
                         <div class="col-xs-4 menu3 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.about')}}</a>
+                            <a class="menua" style="color: #5b4e45" href="{{asset('/about-ppc.html')}}">{{trans('home.about')}}</a>
                         </div>
                     </div>
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 menu4 divmenu">
-                            <a class="menua" style="color: #5b4e45" href="">{{trans('home.news')}}</a>
+                            <a class="menua" style="color: #5b4e45" href="{{asset('/ppc-news.html')}}">{{trans('home.news')}}</a>
                         </div>
                         <div class="col-xs-4 menu5 divmenu" style="height: 50px;">
                             <li class="dropdown" style="display: inline">
-                                <a class="dropdown-toggle menua" data-toggle="dropdown" href="#"
-                                   style="padding: 0px 5px;color: #5b4f44;font-size: 15px;">
+                                <a class="dropdown-toggle menua" data-toggle="dropdown" href="#" style="padding: 0px 5px;color: #5b4f44;font-size: 15px;">
                                     {{trans('home.humandev')}}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a style="color: #5b4e45" href="">{{trans('home.recruitment')}}</a>
+                                        <a style="color: #5b4e45" href="{{asset('/ppc-recruitment.html')}}">{{trans('home.recruitment')}}</a>
                                     </li>
                                     <li style="border-top: 1px solid #eeeeee !important;">
-                                        <a style="color: #5b4e45" href="">{{trans('home.hrpolicies')}}</a>
+                                        <a style="color: #5b4e45" href="{{asset('/ppc-hrpolicies.html')}}">{{trans('home.hrpolicies')}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -216,12 +198,11 @@
                     </div>
                     <div class="col-xs-12 text-center" style="padding: 10px 0px">
                         <div class="col-xs-4 menu7 divmenu">
-                            <a class="menua" style="color: #5b4f44" href="">{{trans('home.contact')}}</a>
+                            <a class="menua" style="color: #5b4f44" href="{{asset('/ppc-contact.html')}}">{{trans('home.contact')}}</a>
                         </div>
                         <div class="col-xs-4 menu8 divmenu" style="height: 50px;">
-                            <a class="menua" style="color: #5b4f44"
-                               href="https://play.google.com/store/apps/details?id=com.perfectproperties.app.ppc_app&hl=vi"
-                               target="_blank">{taiapp}</a>
+                            <a class="menua" style="color: #5b4f44" href="https://play.google.com/store/apps/details?id=com.perfectproperties.app.ppc_app&hl=vi"
+                               target="_blank">{{trans('home.dowloadapp')}}</a>
                         </div>
                         <div class="col-xs-4 paddinglr0">
                             <li class="dropdown" style="display: inline">
@@ -261,13 +242,9 @@
 
 
             @foreach($sliders as $slide)
-
-
                 <div class="item">
                     <img src="{{URL::asset('')}}images/sliders/{{$slide->image}}" class="img-responsive slider" alt="">
                 </div>
-
-
             @endforeach
 
         </div>
@@ -288,31 +265,25 @@
 <div id="myLogin" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="POST">
+
+            {!! Form::open() !!}
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{trans('home.login')}}</h4>
                 </div>
 
                 <div class="modal-body admin-form">
-
                     <div class="section">
-
                         <input type="text" name="username" id="username" class="gui-input form-control"
                                placeholder="{{trans('home.username')}}">
                         <label for="firstname" class="field-icon">
-
                         </label>
-
                     </div>
                     <div class="section">
-
                         <input type="password" name="password" id="password" class="gui-input form-control"
                                placeholder="{{trans('home.password')}}">
-
                         <label for="firstname" class="field-icon">
                         </label>
-
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="rememberme"><label
@@ -326,7 +297,7 @@
                     <button type="submit" class="btn btn-info">{{trans('home.login')}}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('home.close')}}</button>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
@@ -357,5 +328,4 @@
 <div style="display: none">
     <input id="txtmenu" value="">
 </div>
-<a href="#" id="go_top" style="text-align: center"><i style="color: #fff;margin-top: 12px"
-                                                      class="fa fa-arrow-up"></i></a>
+<a href="#" id="go_top" style="text-align: center"><i style="color: #fff;margin-top: 12px" class="fa fa-arrow-up"></i></a>
