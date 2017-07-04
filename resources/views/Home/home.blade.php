@@ -15,8 +15,8 @@
                                     <b>{{mb_strtoupper($row->title)}}</b></h3>
                             </div>
                             <div style="width:100%;">
-                                <a href=""><img src="images/introduce/{{$row->image}}" class="img-responsive"
-                                                style="width:100%;height: 200px"></a>
+                                <a href="{{asset('')}}about-ppc/{{$row->id}}-{{$row->slug}}.html"><img src="{{asset('')}}/images/introduce/{{$row->image}}" class="img-responsive"
+                                                                                                       style="width:100%;height: 200px"></a>
                             </div>
                         </div>
                     @endforeach
@@ -61,7 +61,11 @@
                     </div>
 
                 @endforeach
-                <div class="text-center"> {!! $dataduan->render() !!} </div>
+                    <div class="col-md-12 text-center">
+                        <div class="form-group">
+                            <button type="submit" class="btn" style="background-color:#443427;color:white;border:2px #443427;" onclick="window.location='{{asset('ppc-project.html')}}'">{{trans('home.see_more')}}</button>
+                        </div>
+                    </div>
             </div>
 
         </div>
@@ -95,7 +99,7 @@
                                         $date = date_format($date, "d/m/Y")
                                         ?>
                                         <i style="font-size:10px;">{{$date}} {{$newDateTime}}</i><br>
-                                        <span>{!! str_limit(strip_tags($item->content),290) !!}</span>
+                                        <span>{!! str_limit(strip_tags($item->content),150) !!}</span>
                                     </div>
                                 </div>
                             @endforeach
