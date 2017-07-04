@@ -7,10 +7,10 @@
         <!-- PHẦN BANNER CỦA HEADER -->
         <div class="container paddingchitiet">
             <div class="text-center space">
-                <h3 class="titlewweb" style="color:#443427;" id="h2"><b>{DUAN}</b></h3>
+                <h3 class="titlewweb" style="color:#443427;" id="h2"><b>{{trans('home.duan')}}</b></h3>
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <div class="col-md-12 text-left">
-                    <h4 style="font-family: Verdana">{TrangChu} / <b>{DuAn}</b>
+                    <h4 style="font-family: Verdana">{{trans('home.home')}}/{{trans('home.duan')}} / <b>{{trans('home.rent')}}</b>
 
                     </h4>
                 </div>
@@ -24,14 +24,14 @@
                     @foreach ($rent as $row)
                         <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                             <div class="col-md-4" style="padding: 0px">
-                                <a href="{{URL::asset('')}}/ppc-project/{{$row->id}}-{{$row->slug}}.html">
+                                <a href="{{URL::asset('')}}ppc-project/{{$row->id}}-{{$row->slug}}.html">
                                     <img src="{{URL::asset('')}}images/property/{{$row->image}}" alt="{{$row->title}}"
                                          class="img-responsive img_body" style="width:100%;">
                                 </a>
                             </div>
                             <!--                            -->
                             <div class="col-md-8" style="padding-top: 10px">
-                                <a href="{{URL::asset('')}}/ppc-project/{{$row->id}}-{{$row->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
+                                <a href="{{URL::asset('')}}ppc-project/{{$row->id}}-{{$row->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
                                         <b>{{$row->title}}</b></h4></a>
                                 <i style="text-align:left; font-size: 12px;font-family: verdana;"> {{$row->address}}</i>
                                 <div class="" style="padding-top: 10px; font-family: Verdana">

@@ -24,13 +24,13 @@
                     @foreach ($sale as $row)
                         <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                             <div class="col-md-4" style="padding: 0px">
-                                <a href="{{URL::asset('')}}/ppc-project/{{$row->id}}-{{$row->slug}}.html">
+                                <a href="{{URL::asset('')}}ppc-project/{{$row->id}}-{{$row->slug}}.html">
                                     <img src="{{URL::asset('')}}images/property/{{$row->image}}" alt="{{$row->title}}" class="img-responsive img_body" style="width:100%;">
                                 </a>
                             </div>
                             <!--                            -->
                             <div class="col-md-8" style="padding-top: 10px">
-                                <a href="{{URL::asset('')}}/ppc-project/{{$row->id}}-{{$row->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
+                                <a href="{{URL::asset('')}}ppc-project/{{$row->id}}-{{$row->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
                                         <b>{{$row->title}}</b></h4></a>
                                 <i style="text-align:left; font-size: 12px;font-family: verdana;"> {{$row->address}}</i>
                                 <div class="" style="padding-top: 10px; font-family: Verdana">

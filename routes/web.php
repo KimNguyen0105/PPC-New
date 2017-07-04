@@ -43,6 +43,7 @@ Route::get('/ppc-project/{id}-{slug}.html','Controller@ProjectDetail');
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
+Route::get('/sitemap.xml','Controller@sitemap');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

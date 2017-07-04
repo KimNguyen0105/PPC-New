@@ -463,9 +463,9 @@ class Controller extends BaseController
         return redirect(' / ');
     }
 
-    // public function getSlider()
-    // {
-    //     $sliders=DB::table('sliders')->where('is_show',1)->orderBy('updated_at','desc')->get();
-    //     return response()->json(['slider'=>$sliders]);
-    // }
+    function sitemap(){
+        $tintuc = DB::table('news')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        $project = DB::table('property')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        return response()->view('home.sitemap', compact('tintuc','project'))->header('Content-Type', 'text/xml');
+    }
 }
