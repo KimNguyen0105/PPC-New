@@ -81,12 +81,12 @@
                             @foreach ($news as $item)
                                 <div class="col-md-4">
                                     <a style="border-bottom: 1px solid"
-                                       href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
+                                       href="{{url('ppc-news')}}/{{$item->id}}-{{$item->slug}}.html"
                                        title="{{$item->title}}">
                                         <img src="{{asset('images/news')}}/{{$item->image}}" alt="{{$item->title}}"></a>
                                     <div class="content-tintuc" style="background-color: #ffffff;padding: 10px;">
                                         <h3 style="font-size:20px;"><a style="border-bottom: 1px solid"
-                                                                       href="{{url('news')}}/{{$item->id}}-{{$item->slug}}.html"
+                                                                       href="{{url('ppc-news')}}/{{$item->id}}-{{$item->slug}}.html"
                                                                        title="{{$item->title}}">{{str_limit($item->title,20)}}</a>
                                         </h3>
                                         <?php

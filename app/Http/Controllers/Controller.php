@@ -29,22 +29,22 @@ class Controller extends BaseController
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $videos = DB::table('videos')->orderBy('id', 'desc')->take(7)->get();
 
-        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('status',1)->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
+        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('status', 1)->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
             ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
 
-        
+
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
             $databanner = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
                 ->where('introduce.parrent_id', 1)->where('introduce_lang.lang', 'vi')
                 ->where('status', 1)
-                ->select('introduce.id','introduce.slug','introduce.image','introduce_lang.title')
+                ->select('introduce.id', 'introduce.slug', 'introduce.image', 'introduce_lang.title')
                 ->get();
         } else {
             $databanner = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
                 ->where('introduce.parrent_id', 1)->where('introduce_lang.lang', 'en')
                 ->where('status', 1)
-                ->select('introduce.id','introduce.slug','introduce.image','introduce_lang.title')
+                ->select('introduce.id', 'introduce.slug', 'introduce.image', 'introduce_lang.title')
                 ->get();
         }
 
@@ -71,9 +71,40 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
+        $sale = DB::table('property')->join('property_lang', 'property.id', '=', 'property_lang.property_id')
+            ->where('property.status', 1)
+            ->where('property_lang.lang', Session::get('locale'))
+            ->orderBy('updated_at', 'desc')
+            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
+            ->paginate(15);
         return view('Page/project', [
             'sliders' => $sliders,
-            'systems' => $systems
+            'systems' => $systems,
+            'sale' => $sale
+        ]);
+    }
+
+    public function ProjectDetail($id)
+    {
+        if (Session::has('locale')) {
+            App::setLocale(Session::get('locale'));
+        }
+        $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
+        $systems = DB::table('ppc_system_config')->get();
+        $detail = DB::table('property')->join('property_lang', 'property.id', '=', 'property_lang.property_id')
+            ->where('property.status', 1)
+            ->where('property.id',$id)
+            ->where('property_lang.lang', Session::get('locale'))
+            ->orderBy('updated_at', 'desc')
+            ->select('property.*', 'property_lang.*')
+            ->first();
+        $dataimage = DB::table('property_image')
+            ->where('id_property',$id)->get();
+        return view('Page/projectdetail', [
+            'sliders' => $sliders,
+            'systems' => $systems,
+            'detail' => $detail,
+            'dataimage'=>$dataimage
         ]);
     }
 
@@ -85,10 +116,10 @@ class Controller extends BaseController
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
         $data = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
-            ->where('introduce.parrent_id',0)
-            ->where('introduce_lang.lang',Session::get('locale'))
+            ->where('introduce.parrent_id', 0)
+            ->where('introduce_lang.lang', Session::get('locale'))
             ->where('status', 1)
-            ->select('introduce.*','introduce_lang.title','introduce_lang.content')
+            ->select('introduce.*', 'introduce_lang.title', 'introduce_lang.content')
             ->first();
 
         return view('Page/about', [
@@ -97,6 +128,7 @@ class Controller extends BaseController
             'systems' => $systems
         ]);
     }
+
     public function getAboutDetail($id)
     {
         if (Session::has('locale')) {
@@ -105,11 +137,11 @@ class Controller extends BaseController
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
         $data = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
-            ->where('introduce.parrent_id',1)
-            ->where('introduce.id',$id)
-            ->where('introduce_lang.lang',Session::get('locale'))
+            ->where('introduce.parrent_id', 1)
+            ->where('introduce.id', $id)
+            ->where('introduce_lang.lang', Session::get('locale'))
             ->where('introduce.status', 1)
-            ->select('introduce.*','introduce_lang.title','introduce_lang.content')
+            ->select('introduce.*', 'introduce_lang.title', 'introduce_lang.content')
             ->first();
 
         return view('Page/about-ppc', [
@@ -126,15 +158,15 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        $banner_tin = DB::table('category')->where('status',1)->get();
+        $banner_tin = DB::table('category')->where('status', 1)->get();
 
 
-        $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')
-            ->where('news.status',1)
-            ->where('news.id_category',1)
-            ->where('news_lang.lang',Session::get('locale'))
-            ->select('news.*','news_lang.title','news_lang.content')
-            ->orderBy('news.updated_at','desc')
+        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
+            ->where('news.status', 1)
+            ->where('news.id_category', 1)
+            ->where('news_lang.lang', Session::get('locale'))
+            ->select('news.*', 'news_lang.title', 'news_lang.content')
+            ->orderBy('news.updated_at', 'desc')
             ->paginate(5);
 
         return view('Page/news', [
@@ -144,33 +176,35 @@ class Controller extends BaseController
             'news' => $news
         ]);
     }
-    public  function getNewsByCat($id)
+
+    public function getNewsByCat($id)
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        $banner_tin = DB::table('category')->where('status',1)->get();
-        $banner_detail = DB::table('category')->where('id',$id)->first();
-        $news = DB::table('news')->join('news_lang','news.id','=','news_lang.new_id')
-            ->join('category','news.id_category','=','category.id')
-            ->where('category.id',$id)
-            ->where('news.status',1)
-            ->where('news.id_category',$id)
-            ->where('news_lang.lang',Session::get('locale'))
-            ->select('news.*','news_lang.title','news_lang.content')
-            ->orderBy('news.updated_at','desc')
+        $banner_tin = DB::table('category')->where('status', 1)->get();
+        $banner_detail = DB::table('category')->where('id', $id)->first();
+        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
+            ->join('category', 'news.id_category', '=', 'category.id')
+            ->where('category.id', $id)
+            ->where('news.status', 1)
+            ->where('news.id_category', $id)
+            ->where('news_lang.lang', Session::get('locale'))
+            ->select('news.*', 'news_lang.title', 'news_lang.content')
+            ->orderBy('news.updated_at', 'desc')
             ->paginate(5);
 
         return view('Page/newsbycat', [
-            'banner_detail'=>$banner_detail,
+            'banner_detail' => $banner_detail,
             'sliders' => $sliders,
             'systems' => $systems,
             'banner_tin' => $banner_tin,
             'news' => $news
         ]);
     }
+
     public function newsdetail($id)
     {
         if ($id == null) {
@@ -181,24 +215,36 @@ class Controller extends BaseController
                 ->join('news_lang', 'news.id', '=', 'news_lang.new_id')
                 ->where('news.id', $id)
                 ->where('news_lang.lang', Session::get('locale'))
-                ->select('news.*','news_lang.title','news_lang.content')
+                ->select('news.*', 'news_lang.title', 'news_lang.content')
                 ->first();
             $systems = DB::table('ppc_system_config')->get();
             //$new_related = DB::table('');
+            $relation=DB::table('news')->find($id);
 
+            $arr = explode(',',$relation->news_relation);
+
+            $newrelation = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
+                ->where('status', 1)
+                ->where('news_lang.lang', Session::get('locale'))
+                ->whereIn('news.id',$arr)
+                ->orderBy('news.updated_at', 'desc')
+                ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
             if ($news == null) {
                 return redirect('/404.html');
 
             } else {
                 return view('Page.newdetail', [
-                    'news' => $news,
-                    'sliders' => $sliders,
-                    'systems' => $systems]
+                        'news' => $news,
+                        'sliders' => $sliders,
+                        'systems' => $systems,
+                        'newrelation'=>$newrelation
+                    ]
                 );
             }
         }
 
     }
+
     public function getGallery()
     {
         if (Session::has('locale')) {
@@ -237,19 +283,21 @@ class Controller extends BaseController
             'systems' => $systems
         ]);
     }
+
     public function postContact(Request $request)
     {
         $name = $request->get('name');
         $email = $request->get('email');
-        $is_copy = $request->get('is_copy')?true:false;
+        $is_copy = $request->get('is_copy') ? true : false;
         DB::table('contacts')->insert([
-            'name'=>$name,
-            'email'=>$email,
-            'is_copy'=>$is_copy
+            'name' => $name,
+            'email' => $email,
+            'is_copy' => $is_copy
         ]);
         return redirect('/ppc-contact.html');
 
     }
+
     public function getSale()
     {
         if (Session::has('locale')) {
@@ -257,9 +305,17 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
+        $sale = DB::table('property')->join('property_lang', 'property.id', '=', 'property_lang.property_id')
+            ->where('property.type', 0)
+            ->where('property.status', 1)
+            ->where('property_lang.lang', Session::get('locale'))
+            ->orderBy('updated_at', 'desc')
+            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
+            ->paginate(15);
         return view('Page/sale', [
             'sliders' => $sliders,
-            'systems' => $systems
+            'systems' => $systems,
+            'sale' => $sale
         ]);
     }
 
@@ -270,9 +326,17 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
+        $rent = DB::table('property')->join('property_lang', 'property.id', '=', 'property_lang.property_id')
+            ->where('property.type', 1)
+            ->where('property.status', 1)
+            ->where('property_lang.lang', Session::get('locale'))
+            ->orderBy('updated_at', 'desc')
+            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
+            ->paginate(15);
         return view('Page/rent', [
             'sliders' => $sliders,
-            'systems' => $systems
+            'systems' => $systems,
+            'rent' => $rent
         ]);
     }
 
@@ -284,16 +348,16 @@ class Controller extends BaseController
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
-                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
-                ->where('recruitment_lang.lang', 'vi')
-                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
+                ->where('recruitment . status', 1)->orderBy('recruitment . updated_at', 'desc')
+                ->where('recruitment_lang . lang', 'vi')
+                ->select('recruitment .*', 'recruitment_lang . title', 'recruitment_lang . content')
                 ->get();
         } else {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
-                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
-                ->where('recruitment_lang.lang', 'en')
-                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
+                ->where('recruitment . status', 1)->orderBy('recruitment . updated_at', 'desc')
+                ->where('recruitment_lang . lang', 'en')
+                ->select('recruitment .*', 'recruitment_lang . title', 'recruitment_lang . content')
                 ->get();
         }
 
@@ -311,13 +375,13 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
-            ->where('recruitment_lang.recruitment_id', $id)->where('recruitment.status', 1)
-            ->where('recruitment_lang.lang', Session::get('locale'))
-            ->select('recruitment.id', 'recruitment.status', 'recruitment.image', 'recruitment.updated_at', 'recruitment_lang.title', 'recruitment_lang.content')
+        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
+            ->where('recruitment_lang . recruitment_id', $id)->where('recruitment . status', 1)
+            ->where('recruitment_lang . lang', Session::get('locale'))
+            ->select('recruitment . id', 'recruitment . status', 'recruitment . image', 'recruitment . updated_at', 'recruitment_lang . title', 'recruitment_lang . content')
             ->first();
 
-        return view('Page/recruitment-detail', [
+        return view('Page/recruitment - detail', [
             'sliders' => $sliders,
             'systems' => $systems,
             'data' => $data,
@@ -331,15 +395,15 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        if(Session::get('locale')=='vi') {
+        if (Session::get('locale') == 'vi') {
             $data = DB::table('terms_web')
                 ->where('status', 1)
-                ->select('title','id','content','slug','image')
+                ->select('title', 'id', 'content', 'slug', 'image')
                 ->get();
         } else {
             $data = DB::table('terms_web')
                 ->where('status', 1)
-                ->select('title_en as title','id','content_en as content','slug','image')
+                ->select('title_en as title', 'id', 'content_en as content', 'slug', 'image')
                 ->get();
         }
         return view('Page/hrpolicies', [
@@ -348,6 +412,7 @@ class Controller extends BaseController
             'data' => $data,
         ]);
     }
+
     public function getPoliciesDetail($id)
     {
         if (Session::has('locale')) {
@@ -355,48 +420,47 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        if(Session::get('locale')=='vi') {
+        if (Session::get('locale') == 'vi') {
             $data = DB::table('terms_web')
-                ->where('id',$id)
+                ->where('id', $id)
                 ->where('status', 1)
-                ->select('title','id','content','slug','image')
+                ->select('title', 'id', 'content', 'slug', 'image')
                 ->first();
         } else {
             $data = DB::table('terms_web')
-                ->where('id',$id)
+                ->where('id', $id)
                 ->where('status', 1)
-                ->select('title_en as title','id','content_en as content','slug','image')
+                ->select('title_en as title', 'id', 'content_en as content', 'slug', 'image')
                 ->first();
         }
-        return view('Page/hrpolicies-detail', [
+        return view('Page/hrpolicies - detail', [
             'sliders' => $sliders,
             'systems' => $systems,
             'data' => $data,
         ]);
     }
+
     public function GetLoginPage()
     {
         //
     }
+
     public function PostLoginPage(Request $request)
     {
-        if($request->get('username'))
-        {
-            if($request->get('password'))
-            {
-                Session::put('username',$request->get('username'));
-                return redirect('/');
-            }
-            else
-            {
+        if ($request->get('username')) {
+            if ($request->get('password')) {
+                Session::put('username', $request->get('username'));
+                return redirect(' / ');
+            } else {
                 echo 'Wrong username or password';
             }
         }
     }
+
     public function logout()
     {
         Session::forget('username');
-        return redirect('/');
+        return redirect(' / ');
     }
 
     // public function getSlider()

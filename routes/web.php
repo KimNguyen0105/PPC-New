@@ -13,7 +13,7 @@
 
 Route::get('/', 'Controller@Home');
 Route::get('language/{locale}', 'Controller@SetLanguage');
-Route::get('/projects.html','Controller@getProject');
+Route::get('/ppc-project.html','Controller@getProject');
 Route::get('/project-sale.html','Controller@getSale');
 Route::get('/project-rent.html','Controller@getRent');
 Route::get('/ppc-recruitment.html','Controller@getRecruitment');
@@ -39,6 +39,7 @@ Route::get('/about-ppc.html','Controller@getAbout');
 Route::get('/ppc-news.html','Controller@getNews');
 Route::get('/ppc-contact.html','Controller@getContact');
 Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
+Route::get('/ppc-project/{id}-{slug}.html','Controller@ProjectDetail');
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
