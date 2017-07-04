@@ -35,17 +35,18 @@
             </div>
         </div>
     </div>
-    <div class="backgroundphimtulieu">
-        <!-- <img src="img/bg_img.jpg" id="img_ban"> -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <h3 class="titlewweb"><b>{{trans('home.newsrelation')}}</b></h3>
-                        <hr style="border:2.5px solid #443427;width:80px;">
-                    </div>
-                    <section class="regular slider">
-                        @if($newrelation!=null)
+    @if($newrelation!=null)
+        <div class="backgroundphimtulieu">
+            <!-- <img src="img/bg_img.jpg" id="img_ban"> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <h3 class="titlewweb"><b>{{trans('home.newsrelation')}}</b></h3>
+                            <hr style="border:2.5px solid #443427;width:80px;">
+                        </div>
+                        <section class="regular slider">
+
 
                             @foreach ($newrelation as $item)
                                 <div class="col-md-4">
@@ -68,14 +69,15 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @endif
-                    </section>
+
+                        </section>
+                    </div>
+
+
                 </div>
 
-
             </div>
-
+            <br>
         </div>
-        <br>
-    </div>
+    @endif
 @endsection

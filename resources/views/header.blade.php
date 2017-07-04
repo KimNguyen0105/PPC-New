@@ -90,6 +90,7 @@
                             <ul>
                                 <li class="limenu">
                                     <a href="{{asset('/ppc-recruitment.html')}}">{{trans('home.recruitment')}}</a>
+                                    <img src="{{URL::asset('images/new.gif')}}" width="50px"/>
                                 </li>
                                 <li class="limenu">
                                     <a href="{{asset('/ppc-hrpolicies.html')}}">{{trans('home.hrpolicies')}}</a>
