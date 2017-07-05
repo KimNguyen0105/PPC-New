@@ -13,20 +13,50 @@
 
 Route::get('/', 'Controller@Home');
 Route::get('language/{locale}', 'Controller@SetLanguage');
-Route::get('/projects.html','Controller@getProject');
+Route::get('/ppc-project.html','Controller@getProject');
 Route::get('/project-sale.html','Controller@getSale');
 Route::get('/project-rent.html','Controller@getRent');
 Route::get('/ppc-recruitment.html','Controller@getRecruitment');
 Route::get('/ppc-hrpolicies.html','Controller@getPolicies');
-Route::get('/ppc-recruitment-detail/{id}-{slug}.html','Controller@getRecruitmentDetail');
-Route::get('/hr-policies-detail/{id}-{slug}.html','Controller@getPoliciesDetail');
+
+
+Route::get('/ppc-recruitment/{id}-{slug}.html','Controller@getRecruitmentDetail');
+Route::get('/ppc-hrpolicies/{id}-{slug}.html','Controller@getPoliciesDetail');
+Route::get('/about-ppc/{id}-{slug}.html','Controller@getAboutDetail');
+
+Route::get('/ppc-news-{id}.html','Controller@getNewsByCat');
+Route::get('/login-page','Controller@GetLoginPage');
+Route::post('/login-page',[
+    'as'=>'post-login',
+    'uses'=>'Controller@PostLoginPage'
+]);
+Route::get('/logout','Controller@logout');
+
+Route::post('/ppc-contact.html',[
+    'as'=>'post-contact',
+    'uses'=>'Controller@postContact'
+]);
+
+
 Route::get('/about-ppc.html','Controller@getAbout');
 Route::get('/ppc-news.html','Controller@getNews');
 Route::get('/ppc-contact.html','Controller@getContact');
 Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
+
+Route::get('/ppc-project/{id}-{slug}.html','Controller@ProjectDetail');
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
+Route::get('/sitemap.xml','Controller@sitemap');
+//|---------------------------------
+Route::get('/ppc-post.html','PostController@getFormPost');
+Route::post('/ppc-post.html',[
+    'as'=>'post-form-post',
+    'uses'=>'PostController@postFormPost'
+]);
+Route::get('/ppc-tinh/{id}','PostController@getTinh');
+Route::get('/ppc-quan/{id}','PostController@getQuan');
+
 
 /*
 |--------------------------------------------------------------------------

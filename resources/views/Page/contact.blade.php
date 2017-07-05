@@ -31,13 +31,13 @@
         <div class="col-md-8 col-sm-12 text-left">
             <h4>{{trans('home.contact_title')}} </h4>
             <hr style="border:0.5px solid #443427;margin-top:0px;">
-            <form id="fromContact" method="POST" action="">
+            {!! Form::open(array('route'=>'post-contact')) !!}
                 <div class="row text-left" style="padding: 5px 0px;">
                     <div class="col-md-3 col-sm-3 col-xs-3">
                         <h5>{{trans('home.name')}}*</h5>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-9">
-                        <input type="text" id="txtname" name="txtname" class="form-control" required>
+                        <input type="text" id="txtname" name="name" class="form-control" required>
                     </div>
 
                 </div>
@@ -46,32 +46,18 @@
                         <h5>Email*</h5>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-9">
-                        <input type="email" id="txtemail" name="txtemail" class="form-control" required>
+                        <input type="email" id="txtemail" name="email" class="form-control" required>
                     </div>
                 </div>
-                <div class="row text-left" style="padding: 5px 0px;">
-                    <div class="col-md-3 col-sm-3 col-xs-3">
-                        <h5>{{trans('home.title')}}*</h5>
-                    </div>
-                    <div class="col-md-9 col-sm-9 col-xs-9">
-                        <input  id="txttitle" name="txttitle" class="form-control" type="text" required>
-                    </div>
-                </div>
-                <div class="row text-left" style="padding: 5px 0px;">
-                    <div class="col-md-3 col-sm-3 col-xs-3">
-                        <h5>{{trans('home.content')}}*</h5>
-                    </div>
-                    <div class="col-md-9 col-sm-9 col-xs-9">
-                        <!-- <input type="text" name="1" style="width:100%;"  placeholder="NHẬP NỘI DUNG"> -->
-                        <textarea  id="txtcontent" name="txtcontent" class="form-control" rows="5" required></textarea>
-                    </div>
-                </div>
+
+
+
                 <div class="row text-left" style="padding: 5px 0px;">
                     <div class="col-md-3 col-sm-3 col-xs-3">
                         <h5 style="margin-top: 0px">{{trans('home.send_copy')}}</h5>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-9">
-                        <input  id="checkcopy" type="checkbox" name="checkcopy">
+                        <input  id="checkcopy" type="checkbox" name="is_copy">
                     </div>
                 </div>
                 <div class="row text-right">
@@ -81,7 +67,7 @@
                         <button type="submit" style="background-color:#443427;color:white;border:2px #443427;" class="btn">{{trans('home.send_mail')}}</button>
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 
@@ -101,12 +87,6 @@
                         required: 'Email không được trống.',
                         email: 'Địa chỉ email không hợp lệ.'
                     },
-                    txttitle: {
-                        required: 'Tiêu đề không được trống.'
-                    },
-                    txtcontent: {
-                        required: 'Nội dung không được trống.'
-                    }
                 }
             });
         });

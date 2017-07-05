@@ -25,6 +25,10 @@ return [
     'account' => 'Bạn chưa có tài khoản?',
     'remember' => 'Nhớ mật khẩu',
     'search' => 'Tìm kiếm',
+    'info'=>'Thông tin',
+    'project_manager'=>'Quản lý dự án',
+    'logout'=>'Đăng xuất',
+    'see_more'=>'Xem Thêm',
 //CONTACT
     'contact_trans' => 'LIÊN HỆ',
     'see_project' => 'Xem vị trí dự án trên Google Maps',
@@ -45,5 +49,29 @@ return [
     'dead_line' => 'Thời gian nộp hồ sơ',
 //HR POLICIES
     'hr_policies' => 'CHÍNH SÁCH NHÂN SỰ',
-
+//NEWS
+    'news_event' => 'TIN TỨC - SỰ KIỆN',
+    'news_event_trans' => 'Tin tức - Sự kiện',
+//POST
+    'post_info' => 'THÔNG TIN DỰ ÁN',
+    'transaction' => 'Hình thức giao dịch',
+    'investor' => 'Chủ đầu tư',
+    'project_area' => 'Diện tích dự án',
+    'apartments_area' => 'Diện tích căn hộ',
+    'quatity_apartments' => 'Số căn hộ',
+    'quatity_floors' => 'Số tầng',
+    'bedrooms' => 'Số phòng ngủ',
+    'bathrooms' => 'Số phòng tắm',
+    'services' => 'Các dịch vụ tiện ích',
+    'type_projects' => 'Loại dự án',
+    'country' => 'Quốc Gia',
+    'province' => 'Tỉnh/Thành phố',
+    'district' => 'Quận/Huyện',
+    'price' => 'Giá',
+    'property_ownership' => 'Hình thức sở hữu',
+    'project_info' => 'Thông tin dự án',
+    'project_picture' => 'Ảnh dự án',
+    'plan_picture' => 'Ảnh tổng thể',
+    'detail_picture' => 'Ảnh chi tiết dự án',
+    'submit_post' => 'Đăng Bài',
 ];
