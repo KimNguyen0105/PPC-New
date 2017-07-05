@@ -10,6 +10,7 @@ use App\Property_Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Image;
+use Illuminate\Support\Facades\Input;
 
 class PropertyController extends Controller
 {
@@ -96,9 +97,13 @@ class PropertyController extends Controller
                 ->where('property_lang.lang','vi')
                 ->orderBy('property.updated_at','desc')
                 ->select('property.id','property.image','project.name','property_lang.title','property.status')
-                ->get();
-            ;
-            return view('admin.property.home',['property'=>$property]);
+                ->paginate(6);
+            $project=Project::where('status','<>',-1)->get();
+            $search='';
+            $id_project=0;
+            $id_status=2;
+            return view('admin.property.home',['property'=>$property,'project'=>$project,
+            'search'=>$search,'id_project'=>$id_project,'id_status'=>$id_status]);
         }
         else{
             return redirect('admin/log-in');
@@ -397,7 +402,42 @@ class PropertyController extends Controller
             return redirect('admin/log-in');
         }
     }
+    public function SearchProperty(Request $request)
+    {
+        if(session('user_admin')){
+            $search=$request->txtsearch;
+            $status=$request->status;
+            $id_project=$request->project;
+            $property=DB::table('project')
+                ->join('property','project.id','=','property.project_id')
+                ->join('property_lang','property.id','=','property_lang.property_id')
+                ->where('project.status',1)
+                ->where('property_lang.title','like','%'.$search.'%')
+                ->where('property_lang.lang','vi');
 
+            $project=Project::where('status','<>',-1)->get();
+            if($id_project!="0")
+            {
+                $property=$property->where('project.id',$id_project);
+            }
+            if($status!=2)
+            {
+                $property=$property->where('property.status',$status);
+            }
+            else
+            {
+                $property=$property->where('property.status','<>',-1);
+            }
+            $property=$property->orderBy('property.updated_at','desc')
+                ->select('property.id','property.image','project.name','property_lang.title','property.status')
+                ->paginate(6);
+            return view('admin.property.home',['property'=>$property->appends(Input::except('page')),'project'=>$project,
+                'search'=>$search,'id_project'=>$id_project,'id_status'=>$status]);
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
     public function DeleteProperty($id)
     {
         if(session('user_admin')){
