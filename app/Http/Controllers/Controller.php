@@ -456,9 +456,11 @@ class Controller extends BaseController
 
     public function PostLoginPage(Request $request)
     {
+        $remember=$request->get('remember');
+
         if($request->get('username'))
         {
-            if($request->get('password'))
+            if($request->get('password') && $remember)
             {
                 $user=DB::table('users')->where('role',2)->where('username',$request->get('username'))->select('id','password')->first();
 
@@ -469,15 +471,18 @@ class Controller extends BaseController
                     return redirect()->back();
                 }
                 else{
-                    echo 'Wrong username or password';
+                    $request->session()->flash('status', 'Wrong username or password. Try again');
+                    return redirect()->back();
                 }
 
             }
+
             else
             {
-                echo '2342343';
+                return redirect('/');
             }
         }
+
     }
 
     public function logout()
