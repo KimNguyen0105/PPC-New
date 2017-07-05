@@ -353,16 +353,16 @@ class Controller extends BaseController
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
-                ->where('recruitment . status', 1)->orderBy('recruitment . updated_at', 'desc')
-                ->where('recruitment_lang . lang', 'vi')
-                ->select('recruitment .*', 'recruitment_lang . title', 'recruitment_lang . content')
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
+                ->where('recruitment_lang.lang', 'vi')
+                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
                 ->get();
         } else {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
-                ->where('recruitment . status', 1)->orderBy('recruitment . updated_at', 'desc')
-                ->where('recruitment_lang . lang', 'en')
-                ->select('recruitment .*', 'recruitment_lang . title', 'recruitment_lang . content')
+            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
+                ->where('recruitment_lang.lang', 'en')
+                ->select('recruitment.*','recruitment_lang.title','recruitment_lang.content')
                 ->get();
         }
 
@@ -380,13 +380,13 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment . id', ' = ', 'recruitment_lang . recruitment_id')
-            ->where('recruitment_lang . recruitment_id', $id)->where('recruitment . status', 1)
-            ->where('recruitment_lang . lang', Session::get('locale'))
-            ->select('recruitment . id', 'recruitment . status', 'recruitment . image', 'recruitment . updated_at', 'recruitment_lang . title', 'recruitment_lang . content')
+        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+            ->where('recruitment_lang.recruitment_id', $id)->where('recruitment.status', 1)
+            ->where('recruitment_lang.lang', Session::get('locale'))
+            ->select('recruitment.id', 'recruitment.status', 'recruitment.image', 'recruitment.updated_at', 'recruitment_lang.title', 'recruitment_lang.content')
             ->first();
 
-        return view('Page/recruitment - detail', [
+        return view('Page/recruitment-detail', [
             'sliders' => $sliders,
             'systems' => $systems,
             'data' => $data,
@@ -400,15 +400,15 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        if (Session::get('locale') == 'vi') {
+        if(Session::get('locale')=='vi') {
             $data = DB::table('terms_web')
                 ->where('status', 1)
-                ->select('title', 'id', 'content', 'slug', 'image')
+                ->select('title','id','content','slug','image')
                 ->get();
         } else {
             $data = DB::table('terms_web')
                 ->where('status', 1)
-                ->select('title_en as title', 'id', 'content_en as content', 'slug', 'image')
+                ->select('title_en as title','id','content_en as content','slug','image')
                 ->get();
         }
         return view('Page/hrpolicies', [
@@ -417,7 +417,6 @@ class Controller extends BaseController
             'data' => $data,
         ]);
     }
-
     public function getPoliciesDetail($id)
     {
         if (Session::has('locale')) {
@@ -425,20 +424,20 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        if (Session::get('locale') == 'vi') {
+        if(Session::get('locale')=='vi') {
             $data = DB::table('terms_web')
-                ->where('id', $id)
+                ->where('id',$id)
                 ->where('status', 1)
-                ->select('title', 'id', 'content', 'slug', 'image')
+                ->select('title','id','content','slug','image')
                 ->first();
         } else {
             $data = DB::table('terms_web')
-                ->where('id', $id)
+                ->where('id',$id)
                 ->where('status', 1)
-                ->select('title_en as title', 'id', 'content_en as content', 'slug', 'image')
+                ->select('title_en as title','id','content_en as content','slug','image')
                 ->first();
         }
-        return view('Page/hrpolicies - detail', [
+        return view('Page/hrpolicies-detail', [
             'sliders' => $sliders,
             'systems' => $systems,
             'data' => $data,
