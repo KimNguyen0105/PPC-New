@@ -24,6 +24,7 @@ class Controller extends BaseController
         $dataduan = DB::table('property')
             ->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('status', 1)
+            ->where('property_lang.lang',Session::get('locale'))
             ->orderBy('property.id', 'desc')
             ->paginate(5);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
