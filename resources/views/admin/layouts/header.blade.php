@@ -1,7 +1,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="{{url('admin/')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>P</b>PC</span>
         <!-- logo for regular state and mobile devices -->
@@ -18,14 +18,14 @@
             <ul class="nav navbar-nav">
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <span class="hidden-xs">Admin</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <p>
-                                Admin<small>admin@gmail.com</small>
+                                {{session('user_admin')}}<small>admin@gmail.com</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -45,3 +45,11 @@
 
     </nav>
 </header>
+<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropdown').on('click', function(e) {
+            $(this).toggleClass('open');
+        });
+    });
+</script>

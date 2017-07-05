@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <button onclick="ftGetModal()" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></button>
+           <h1>Liên hệ</h1>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Liên hệ</li>
@@ -139,6 +139,9 @@
                         @endif
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        {{$contact->links()}}
+                    </div>
                 </div>
             </div>
         </section>

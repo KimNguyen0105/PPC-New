@@ -11,7 +11,7 @@ class VideoHomeController extends Controller
     //
     public function Home()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $video=VideoHome::where('status',1)->orderBy('updated_at','desc')->get();
             return view('admin.videohome',['video'=>$video]);
         }
@@ -21,7 +21,7 @@ class VideoHomeController extends Controller
     }
     public function SaveVideo(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $url=$request->txtlink;
@@ -74,7 +74,7 @@ class VideoHomeController extends Controller
             return redirect('admin/log-in');
         }
     }
-    public function XoaVideo($id)
+    public function DeleteVideo($id)
     {
         $slide=VideoHome::find($id);
         $slide->status=0;

@@ -32,11 +32,11 @@
                                         <input id="txtid_news" name="txtid_news" value="{{$id}}" hidden>
                                     </div>
                                     <div class="form-group">
-                                        <label for="introduce">Tiêu đề Vi</label>
+                                        <label for="introduce">Tiêu đề (tiếng việt)</label>
                                         <input style="margin-left: 10px;" type="text" id="name_vi" name="name_vi" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="introduce">Tiêu đề En</label>
+                                        <label for="introduce">Tiêu đề (tiếng anh)</label>
                                         <input style="margin-left: 10px;" type="text" id="name_en" name="name_en" class="form-control">
                                     </div>
                                 </div>
@@ -97,6 +97,9 @@
                         @endif
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        {{$images->links()}}
+                    </div>
                 </div>
             </div>
         </section>

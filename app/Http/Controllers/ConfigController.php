@@ -13,7 +13,7 @@ class ConfigController extends Controller
     //
     public function Home()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $config=DB::table('ppc_system_config')->first();
             return view('admin.config',['config'=>$config]);
         }
@@ -23,7 +23,7 @@ class ConfigController extends Controller
     }
     public function SaveConfig(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=1;
                 $phone=$request->phone;

@@ -3,15 +3,16 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <a href="{{url('admin/news-gallery/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspTin tức thư viện hình ảnh</i></a>
+            <a href="{{url('admin/user')}}/0" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspUser</i></a>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Thư viện hình ảnh</li>
+                <li class="active">Slide</li>
                 <!-- <li class="active">video</li> -->
             </ol>
         </section>
         <section class="content-header">
             <div class="box box-primary" style="padding:20px;">
+
                 @if(session('thongbao'))
                     <div class="alert alert-success alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -24,45 +25,38 @@
                         <i style="color: green" class="fa fa-close"></i>  {{session('thatbai')}}
                     </div>
                 @endif
-                    <div style="clear: both"></div>
-                <div class="col-md-12 divSearch" style="margin-bottom: 30px">
-                    <form action="{{url('admin/search-news-gallery')}}" method="GET" enctype="multipart/form-data">
-                        <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
-                        <div class="col-md-4 col-sm-4">
-                            <input class="form-control" value="{{$search}}" name="txtsearch" id="txtsearch" placeholder="Nhập tiêu đề tin tức...">
-                        </div>
-                        <div class="col-md-1 col-sm-1">
-                            <button class="btn btn-info" type="submit">Tìm</button>
-                        </div>
-                    </form>
-                </div>
-
-
-
                 <div class="row" >
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered" style="text-align: center">
                         <thead>
                         <td>#</td>
                         <td>Hình ảnh</td>
-                        <td>Tiêu đề</td>
-                        <td>Category</td>
+                        <td>Tên đăng nhập</td>
+                        <td>Email</td>
+                        <td>Vai trò</td>
                         <td>Thao tác</td>
                         </thead>
                         <tbody>
-                        @if($news!=null)
+                        @if($user!=null)
                             <?php
                                 $i=1;
                             ?>
-                            @foreach($news as $item)
+                            @foreach($user as $item)
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td  style="width: 150px;"><img src="{{asset('images/news')}}/{{$item->image}}" style="width:100%; height: 100px" class="img-responsive"></td>
-                                    <td>{{$item->title}}</td>
-                                    <td>{{$item->category}}</td>
-                                    <td  style="width: 250px">
-                                        <a href="{{url('admin/news-gallery-image')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm hình ảnh</a>
-                                        <a href="{{url('admin/news-gallery')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
-                                        <a href="{{url('admin/news-delete')}}/{{$item->id}}" class="btn btn-danger">
+                                    <td  style="width: 150px"><img src="{{asset('images/user')}}/{{$item->avatar}}" style="width:100%;" class="img-responsive"></td>
+                                    <td>{{$item->username}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>
+                                    @if($item->role==0)
+                                            <span class="label label-success">Admin</span>
+                                    @else
+                                            <span class="label label-info">Nhân viên</span>
+                                    @endif
+                                        </td>
+
+                                    <td  style="width: 110px">
+                                        <a href="{{url('admin/user')}}/{{$item->id}}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                        <a href="{{url('admin/user-delete')}}/{{$item->id}}" class="btn btn-danger">
                                             <span class="fa fa-trash" onclick="return confirm('bạn có chắc xóa?')"></span></a>
 
                                     </td>
@@ -74,9 +68,6 @@
                         @endif
                         </tbody>
                     </table>
-                    <div class="col-md-12 text-center">
-                        {{$news->links()}}
-                    </div>
                 </div>
             </div>
         </section>
@@ -98,6 +89,28 @@
 
                 reader.readAsDataURL(input.files[0]);
             }
+        }
+        function ftGetModal() {
+
+            $('#txtid').val('0');
+            $('#file').val('');
+            document.getElementById("txtshow").checked = false;
+            document.getElementById("imgF").src='';
+            $('#txtthutu').val('');
+            $('#myModal').modal('show');
+        }
+        function ftGetValue(id, image, show, sort) {
+            $('#txtid').val(id);
+            if(show==1)
+            {
+                document.getElementById("txtshow").checked = true;
+            }
+            else{
+                document.getElementById("txtshow").checked = false;
+            }
+            document.getElementById("imgF").src='{{asset('images/sliders')}}/'+image;
+            $('#txtthutu').val(sort);
+            $('#myModal').modal('show');
         }
     </script>
 @endsection

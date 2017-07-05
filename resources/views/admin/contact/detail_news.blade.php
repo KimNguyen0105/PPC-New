@@ -3,7 +3,11 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Thông tin liên hệ</h1>
+            @if($contact->type==1)
+                <h1>Thông tin liên hệ - tin tức</h1>
+            @else
+                <h1>Thông tin liên hệ - dự án</h1>
+            @endif
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Liên hệ</li>
@@ -26,13 +30,16 @@
                     </div>
                 @endif
 
-                    <form action="{{url('admin/contact-save')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('admin/contact-form-save')}}/{{$contact->type}}" method="POST" enctype="multipart/form-data">
                         <div class="box-header with-border">
                             <button type="submit" id="saveIntroduce" class="btn btn-success usersubmit" name="save"><i class="fa fa-save"></i> Lưu</button>
                             <a class="btn btn-danger" href="{{url('admin/contact')}}"><i class="fa fa-close"></i> Hủy bỏ</a>
                         </div>
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
                             <div class="box-body">
+                                <div class="col-md-12">
+                                    <h5>Tin tức liên quan: <a href="{{url('admin/news')}}/{{$contact->id}}" target="_blank">{{$contact->title}}</a></h5>
+                                </div>
                                 <div class="col-md-12 row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -43,10 +50,6 @@
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
                                             <input class="form-control" type="text" id="phone" value="{{$contact->phone}}" name="phone" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tiêu đề</label>
-                                            <input class="form-control" type="text" id="title" value="{{$contact->title}}" name="title" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label>Trạng thái</label>
@@ -71,15 +74,6 @@
                                         <div class="form-group">
                                             <label>Ngày gửi</label>
                                             <input class="form-control" type="text" id="created_at" value="{{$contact->created_at}}" disabled name="created_at">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Copy</label>
-                                            @if($contact->is_copy==1)
-                                                <input type="checkbox" id="copy" name="copy" disabled>
-                                            @else
-                                                <input type="checkbox" id="copy" checked name="copy" disabled>
-                                            @endif
-
                                         </div>
 
                                     </div>

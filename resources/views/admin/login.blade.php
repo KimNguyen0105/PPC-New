@@ -35,18 +35,18 @@
             </div>
         @endif
 
-        @if(session('thongbao'))
-            <div class="alert alert-success">
-                {{session('thongbao')}}
-            </div>
-        @endif
             <div style="background-color: #fff; padding: 30px">
         <form action="{{url('admin/log-in')}}" method="post">
+            @if(session('thatbai'))
+                <div class="alert alert-danger">
+                    {{session('thatbai')}}
+                </div>
+            @endif
             <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
             <div class="form-group has-feedback">
                 <?php
-                if (isset($_COOKIE["tendangnhap"]) && isset($_COOKIE["rememberme"]))
-                    echo '<input type="text" name="email" class="form-control" value="' . $_COOKIE["tendangnhap"] . '">';
+                if (isset($_COOKIE["email"]))
+                    echo '<input type="text" name="email" class="form-control" value="' . $_COOKIE["email"] . '">';
                 else
                     echo '<input type="text" name="email" class="form-control" placeholder="Username">';
                 ?>
@@ -54,8 +54,8 @@
             </div>
             <div class="form-group has-feedback">
                 <?php
-                if (isset($_COOKIE["matkhau"]) && isset($_COOKIE["rememberme"]))
-                    echo '<input type="password" name="password" class="form-control" value="' . $_COOKIE["matkhau"] . '">';
+                if (isset($_COOKIE["pass"]))
+                    echo '<input type="password" name="password" class="form-control" value="' . $_COOKIE["pass"] . '">';
                 else
                     echo '<input type="password" name="password" class="form-control" placeholder="Password">';
                 ?>
@@ -66,7 +66,7 @@
                     <div class="checkbox icheck">
                         <label>
                             <?php
-                            if (isset($_COOKIE["remember"]))
+                            if (isset($_COOKIE["pass"]))
                                 echo '<input type="checkbox" name="remember" id="remember" checked> Remember Me';
                             else
                                 echo '<input type="checkbox" name="remember" id="remember"> Remember Me';
@@ -93,6 +93,10 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- iCheck -->
-
+<script>
+    $(function() {
+        $('.alert').delay(5000).show().fadeOut('slow');
+    });
+</script>
 </body>
 </html>

@@ -13,7 +13,7 @@ class IntroduceController extends Controller
     //
     public function Home()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $introduce=DB::table('introduce')
                 ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
                 ->where('introduce.status',1)
@@ -30,7 +30,7 @@ class IntroduceController extends Controller
     }
     public function Banner()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $introduce=DB::table('introduce')
                 ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
                 ->where('introduce.status',1)
@@ -47,7 +47,7 @@ class IntroduceController extends Controller
     }
     public function GetIntroduce($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $introduce=Introduce::find($id);
             $introduce_lang=DB::table('introduce')
                 ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
@@ -63,7 +63,7 @@ class IntroduceController extends Controller
     }
     public function GetBanner($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $introduce=Introduce::find($id);
             $introduce_lang=DB::table('introduce')
                 ->join('introduce_lang','introduce.id','=','introduce_lang.introduce_id')
@@ -79,7 +79,7 @@ class IntroduceController extends Controller
     }
     public function SaveIntroduce(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -123,7 +123,7 @@ class IntroduceController extends Controller
     }
     public function SaveBanner(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -160,6 +160,32 @@ class IntroduceController extends Controller
                 dd($e);
                 return redirect('admin/banner')->with('thatbai','Cập nhật thất bại!');
             }
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
+    public function Profile()
+    {
+        if(session('user_admin')){
+            $name='profile.pdf';
+            $size=filesize("profile/profile.pdf");
+            $mb=round($size/(1024*1024),2);
+            return view('admin.introduce.profile',['name'=>$name,'mb'=>$mb]);
+        }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
+    public function SaveProfile(Request $request)
+    {
+        if(session('user_admin')){
+            if($request->hasFile('file')){
+                $tmp_name = $_FILES["file"]["tmp_name"];
+                $name = "profile/profile.pdf";
+                move_uploaded_file($tmp_name, $name);
+            }
+            return redirect('admin/profile')->with('thongbao','Cập nhật thành công!');
         }
         else{
             return redirect('admin/log-in');

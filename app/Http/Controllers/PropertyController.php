@@ -16,7 +16,7 @@ class PropertyController extends Controller
     //
     public function Project()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $project=Project::where('status',1)->get();
             return view('admin.property.project',['project'=>$project]);
         }
@@ -26,7 +26,7 @@ class PropertyController extends Controller
     }
     public function SaveProject(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $name=$request->name;
@@ -69,7 +69,7 @@ class PropertyController extends Controller
     }
     public function DeleteProject($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $country=Project::find($id);
             $country->status=0;
             if($country->save())
@@ -87,7 +87,7 @@ class PropertyController extends Controller
     }
     public function Property()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $property=DB::table('project')
                 ->join('property','project.id','=','property.project_id')
                 ->join('property_lang','property.id','=','property_lang.property_id')
@@ -106,7 +106,7 @@ class PropertyController extends Controller
     }
     public function GetProperty($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 if($id==0)
                 {
@@ -167,7 +167,7 @@ class PropertyController extends Controller
     }
     public function SaveProperty(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -394,7 +394,7 @@ class PropertyController extends Controller
 
     public function DeleteProperty($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $property=Property::find($id);
             $property->status=-1;
 
@@ -414,7 +414,7 @@ class PropertyController extends Controller
     }
     public function DeletePropertyImage($id,$id_image)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $property=Property_Image::find($id_image);
             $property->status=0;
             if($property->save())

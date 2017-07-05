@@ -14,7 +14,7 @@ class FilterController extends Controller
 {
     public function Country()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $country=Country::where('status',1)->orderBy('id','desc')->get();
             return view('admin.filter.country',['country'=>$country]);
         }
@@ -25,7 +25,7 @@ class FilterController extends Controller
     }
     public function SaveCountry(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $name=$request->name;
@@ -68,7 +68,7 @@ class FilterController extends Controller
     }
     public function DeleteCountry($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $country=Country::find($id);
             $country->status=0;
             if($country->save())
@@ -86,7 +86,7 @@ class FilterController extends Controller
     }
     public function Province()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $country=Country::where('status',1)->get();
             $province=DB::table('country')
                 ->join('province','country.id','=','province.country_id')
@@ -103,7 +103,7 @@ class FilterController extends Controller
     }
     public function SaveProvince(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $name=$request->name;
@@ -152,7 +152,7 @@ class FilterController extends Controller
     }
     public function DeleteProvince($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $province=Province::find($id);
             $province->status=0;
             if($province->save())
@@ -171,7 +171,7 @@ class FilterController extends Controller
 
     public function District()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $country=Country::where('status',1)->get();
             $province=null;
             $district=DB::table('country')
@@ -191,7 +191,7 @@ class FilterController extends Controller
     }
     public function SaveDistrict(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $name=$request->name;
@@ -241,7 +241,7 @@ class FilterController extends Controller
     }
     public function DeleteDistrict($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $district=District::find($id);
             $district->status=0;
             if($district->save())
@@ -271,7 +271,7 @@ class FilterController extends Controller
     }
     public function SearchDistrict(Request $request)
 {
-    if(Auth::check()){
+    if(session('user_admin')){
         $name=$request->txtsearch;
         $id_country=$request->searchCountry;
         $id_province=$request->searchProvince;
@@ -309,7 +309,7 @@ class FilterController extends Controller
 }
     public function SearchProvince(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $name=$request->txtsearch;
             $id_country=$request->searchCountry;
             $country=Country::where('status',1)->get();

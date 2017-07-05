@@ -10,6 +10,7 @@ use App\News;
 use App\News_lang;
 use App\Gallery_Image;
 use App\Gallery_Video;
+use Illuminate\Support\Facades\Input;
 use Image;
 
 class NewsController extends Controller
@@ -17,7 +18,7 @@ class NewsController extends Controller
     //
     public function CategoryHome()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
                 $category=DB::table('category')->where('status',1)->get();
                 return view('admin.news.category',['category'=>$category]);
 
@@ -28,7 +29,7 @@ class NewsController extends Controller
     }
     public function CategorySave(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->txtname;
@@ -64,7 +65,7 @@ class NewsController extends Controller
 
     public function NewsHome()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
 
                 $news=DB::table('news')
                     ->join('category','category.id','=','news.id_category')
@@ -74,8 +75,9 @@ class NewsController extends Controller
                     ->where('news_lang.lang','vi')
                     ->orderBy('updated_at','desc')
                     ->select('category.title as category','news.id','news.image','news_lang.title')
-                    ->get();
-                return view('admin.news.news',['news'=>$news]);
+                    ->paginate(6);
+                $search='';
+                return view('admin.news.news',['news'=>$news,'search'=>$search]);
         }
         else{
             return redirect('admin/log-in');
@@ -83,18 +85,20 @@ class NewsController extends Controller
     }
     public function NewsGalleryHome()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
 
             $news=DB::table('news')
                 ->join('category','category.id','=','news.id_category')
                 ->join('news_lang','news.id','=','news_lang.new_id')
                 ->where('news.status',1)
+                ->where('category.status',1)
                 ->where('news.id_category',2)
                 ->where('news_lang.lang','vi')
                 ->orderBy('updated_at','desc')
                 ->select('category.title as category','news.id','news.image','news_lang.title')
-                ->get();
-            return view('admin.news.news_gallery',['news'=>$news]);
+                ->paginate(6);
+            $search='';
+            return view('admin.news.news_gallery',['news'=>$news,'search'=>$search]);
         }
         else{
             return redirect('admin/log-in');
@@ -102,11 +106,28 @@ class NewsController extends Controller
     }
     public function GetNews($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $news=News::find($id);
                 $news_lang=News_lang::where('new_id',$id)->get();
-                return view('admin.news.insert_news',['news'=>$news,'news_lang'=>$news_lang]);
+                $news_1=DB::table('news')
+                    ->join('news_lang','news.id','=','news_lang.new_id')
+                    ->where('news.status',1)
+                    ->where('news.id_category',1)
+                    ->where('news_lang.lang','vi')
+                    ->orderBy('updated_at','desc')
+                    ->select('news.id','news_lang.title')
+                    ->get();
+                $news_2=DB::table('news')
+                    ->join('news_lang','news.id','=','news_lang.new_id')
+                    ->where('news.status',1)
+                    ->where('news.id_category',2)
+                    ->where('news_lang.lang','vi')
+                    ->orderBy('updated_at','desc')
+                    ->select('news.id','news_lang.title')
+                    ->get();
+                return view('admin.news.insert_news',['news'=>$news,'news_lang'=>$news_lang,
+                    'news_1'=>$news_1,'news_2'=>$news_2]);
             }
             catch (\Exception $e)
             {
@@ -120,11 +141,28 @@ class NewsController extends Controller
     }
     public function GetNewsGallery($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $news=News::find($id);
                 $news_lang=News_lang::where('new_id',$id)->get();
-                return view('admin.news.insert_news_gallery',['news'=>$news,'news_lang'=>$news_lang]);
+                $news_1=DB::table('news')
+                    ->join('news_lang','news.id','=','news_lang.new_id')
+                    ->where('news.status',1)
+                    ->where('news.id_category',1)
+                    ->where('news_lang.lang','vi')
+                    ->orderBy('updated_at','desc')
+                    ->select('news.id','news_lang.title')
+                    ->get();
+                $news_2=DB::table('news')
+                    ->join('news_lang','news.id','=','news_lang.new_id')
+                    ->where('news.status',1)
+                    ->where('news.id_category',2)
+                    ->where('news_lang.lang','vi')
+                    ->orderBy('updated_at','desc')
+                    ->select('news.id','news_lang.title')
+                    ->get();
+                return view('admin.news.insert_news_gallery',['news'=>$news,'news_lang'=>$news_lang,
+                    'news_1'=>$news_1,'news_2'=>$news_2]);
             }
             catch (\Exception $e)
             {
@@ -138,8 +176,9 @@ class NewsController extends Controller
     }
     public function SaveNews(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
+
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
                 $title_en=$request->title_en;
@@ -148,6 +187,7 @@ class NewsController extends Controller
                 $keyword=$request->keyword;
                 $description=$request->description;
                 $author=$request->author;
+                $news_all=$request->news_all;
                 $is_form = $request->has('txtform') ? 1 : 0;
                 if($id==0)
                 {
@@ -159,6 +199,10 @@ class NewsController extends Controller
                     $news->seo_description=$description;
                     $news->seo_author=$author;
                     $news->is_form=$is_form;
+                    if($news_all!=null)
+                    {
+                        $news->news_relation=implode(",",$news_all);
+                    }
                     if($request->hasFile('file')){
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
@@ -195,6 +239,10 @@ class NewsController extends Controller
                     $news->seo_description=$description;
                     $news->seo_author=$author;
                     $news->is_form=$is_form;
+                    if($news_all!=null)
+                    {
+                        $news->news_relation=implode(",",$news_all);
+                    }
                     if($request->hasFile('file')){
                         unlink('images/news/'.$news->image);
                         $image = $request->file('file');
@@ -203,6 +251,7 @@ class NewsController extends Controller
                         Image::make($image->getRealPath())->resize(300, 200)->save($path);
                         $news->image=$filename;
                     }
+
                     if($news->save())
                     {
                         $news_vi=News_lang::where('new_id',$id)->where('lang','vi')->first();
@@ -234,7 +283,7 @@ class NewsController extends Controller
     }
     public function SaveNewsGallery(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -330,7 +379,7 @@ class NewsController extends Controller
     }
     public function DeleteNews($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $news=News::find($id);
                 unlink('images/news/'.$news->image);
@@ -350,8 +399,8 @@ class NewsController extends Controller
     }
     public function NewsGalleryImageHome($id)
     {
-        if(Auth::check()){
-                $images=Gallery_Image::where('id_news',$id)->where('status',1)->orderBy('id','desc')->get();
+        if(session('user_admin')){
+                $images=Gallery_Image::where('id_news',$id)->where('status',1)->orderBy('id','desc')->paginate(6);;
                 return view('admin.news.image_news',['images'=>$images,'id'=>$id]);
         }
         else{
@@ -360,7 +409,7 @@ class NewsController extends Controller
     }
     public function SaveNewsGalleryImage(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id_new=$request->txtid_news;
                 $id=$request->txtid;
@@ -423,7 +472,7 @@ class NewsController extends Controller
     }
     public function DeleteGalleryImage($idnews,$id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $gallery=Gallery_Image::find($id);
             $gallery->status=0;
             unlink('images/gallery_image/'.$gallery->image);
@@ -447,7 +496,7 @@ class NewsController extends Controller
     }
     public function SaveGalleryVideo(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $url=$request->txtlink;
@@ -516,6 +565,60 @@ class NewsController extends Controller
         }
         else{
             return redirect('admin/gallery-video')->with('thatbai','Xóa thất bại!');
+        }
+    }
+    public function SearchNews(Request $request)
+    {
+        if(session('user_admin')){
+                try{
+                    $name=$request->txtsearch;
+
+                    $news=DB::table('news')
+                        ->join('category','category.id','=','news.id_category')
+                        ->join('news_lang','news.id','=','news_lang.new_id')
+                        ->where('news.status',1)
+                        ->where('news.id_category',1)
+                        ->where('news_lang.lang','vi')
+                        ->where('news_lang.title','like','%'.$name.'%')
+                        ->orderBy('updated_at','desc')
+                        ->select('category.title as category','news.id','news.image','news_lang.title')
+                        ->paginate(6);
+                    return view('admin.news.news',['news'=>$news->appends(Input::except('page')),'search'=>$name]);
+                }
+                catch (\Exception $e)
+                {
+                    return redirect('admin/news-home');
+                }
+            }
+        else{
+            return redirect('admin/log-in');
+        }
+    }
+    public function SearchNewsGallery(Request $request)
+    {
+        if(session('user_admin')){
+            try{
+                $name=$request->txtsearch;
+
+                $news=DB::table('news')
+                    ->join('category','category.id','=','news.id_category')
+                    ->join('news_lang','news.id','=','news_lang.new_id')
+                    ->where('news.status',1)
+                    ->where('news.id_category',2)
+                    ->where('news_lang.lang','vi')
+                    ->where('news_lang.title','like','%'.$name.'%')
+                    ->orderBy('updated_at','desc')
+                    ->select('category.title as category','news.id','news.image','news_lang.title')
+                    ->paginate(6);
+                return view('admin.news.news_gallery',['news'=>$news->appends(Input::except('page')),'search'=>$name]);
+            }
+            catch (\Exception $e)
+            {
+                return redirect('admin/news-gallery-home');
+            }
+        }
+        else{
+            return redirect('admin/log-in');
         }
     }
 }

@@ -14,7 +14,7 @@ class RecruitmentController extends Controller
     //
     public function RecruitmentHome()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
 
             $recruitment=DB::table('recruitment')
                 ->join('recruitment_lang','recruitment.id','=','recruitment_lang.recruitment_id')
@@ -31,7 +31,7 @@ class RecruitmentController extends Controller
     }
     public function GetRecruitment($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $recruitment=Recruitment::find($id);
                 $recruitment_lang=Recruitment_lang::where('recruitment_id',$id)->get();
@@ -48,7 +48,7 @@ class RecruitmentController extends Controller
     }
     public function SaveRecruitment(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -129,7 +129,7 @@ class RecruitmentController extends Controller
     }
     public function DeleteRecruitment($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $recruitment=Recruitment::find($id);
             $recruitment->status=0;
             unlink('images/recruitment/'.$recruitment->image);

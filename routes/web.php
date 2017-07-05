@@ -67,10 +67,12 @@ Route::get('/ppc-quan/{id}','PostController@getQuan');
 
 //admin
 Route::get('admin/log-in','UserController@GetLogIn');
-Route::post('admin/log-in','UserController@PostLogIn');
+Route::post('admin/log-in','UserController@LogIn');
 Route::get('admin/log-out','UserController@LogOut');
 Route::group(['prefix'=>'admin'],function (){
-    Route::get('/home', 'UserController@Home');
+
+
+    Route::get('/', 'UserController@Home');
     //slider
     Route::get('/slide', 'SlideController@Home');
     Route::post('/slide-save', 'SlideController@SaveSlide');
@@ -96,10 +98,12 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/news/{id}', 'NewsController@GetNews');
     Route::get('/news-delete/{id}', 'NewsController@DeleteNews');
     Route::post('/news-save', 'NewsController@SaveNews');
+    Route::get('/search-news', 'NewsController@SearchNews');
 //gallery news
     Route::get('/news-gallery-home', 'NewsController@NewsGalleryHome');
     Route::get('/news-gallery/{id}', 'NewsController@GetNewsGallery');
     Route::post('/news-gallery-save', 'NewsController@SaveNewsGallery');
+    Route::get('/search-news-gallery', 'NewsController@SearchNewsGallery');
 //gallery image news
     Route::get('/news-gallery-image/{id}', 'NewsController@NewsGalleryImageHome');
     Route::get('/news-gallery-image-delete/{idnews}-{id}', 'NewsController@DeleteGalleryImage');
@@ -153,6 +157,11 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/contact-delete/{id}', 'ContactController@DeleteContact');
     Route::post('/contact-save', 'ContactController@SaveContact');
 
+    Route::get('/contact-form/{type}', 'ContactController@ContactForm');
+    Route::get('/contact-form/{type}/{id}', 'ContactController@GetContactForm');
+    Route::get('/contact-form-delete/{type}/{id}', 'ContactController@DeleteContactForm');
+    Route::post('/contact-form-save/{type}', 'ContactController@SaveContactForm');
+
     //project
     Route::get('/project', 'PropertyController@Project');
     Route::get('/project-delete/{id}', 'PropertyController@DeleteProject');
@@ -164,4 +173,19 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/property/{id}', 'PropertyController@GetProperty');
     Route::post('/property-save', 'PropertyController@SaveProperty');
     Route::get('/property-image-delete/{id}-{id_image}', 'PropertyController@DeletePropertyImage');
+
+    //profile
+    Route::get('/profile', 'IntroduceController@Profile');
+    Route::post('/profile-save', 'IntroduceController@SaveProfile');
+
+    //user
+    Route::get('/user', 'UserController@User');
+    Route::get('/user/{id}', 'UserController@GetUser');
+    Route::get('/user-delete/{id}', 'UserController@DeleteUser');
+    Route::post('/user-save', 'UserController@SaveUser');
+
+    Route::get('/user-font-end', 'UserController@UserFontend');
+    Route::get('/user-font-end/{id}', 'UserController@GetUserFontend');
+    Route::get('/user-font-end-delete/{id}', 'UserController@DeleteUserFontend');
+    Route::post('/user-font-end-save', 'UserController@SaveUserFontend');
 });

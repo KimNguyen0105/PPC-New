@@ -32,6 +32,8 @@
                                     <ul class="nav nav-tabs" id="tabSoluoc">
                                         <li class="active"><a href="#tab_vi" data-toggle="tab" aria-expanded="true">Tiếng Việt</a></li>
                                         <li class=""><a href="#tab_en" data-toggle="tab" aria-expanded="true">English</a></li>
+                                        <li class=""><a href="#tab_seo" data-toggle="tab" aria-expanded="true">Seo</a></li>
+                                        <li class=""><a href="#tab_news" data-toggle="tab" aria-expanded="true">Các tin tức liên quan</a></li>
                                     </ul>
                                     <div class="tab-content" id="contentSoluoc">
                                         @if($news==null)
@@ -56,6 +58,42 @@
                                                         Introduce
                                                     </label>
                                                     <textarea class="form-control editors" name="content_en" required id="introduce_en" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tab_seo">
+                                                <div class="form-group">
+                                                    <label>Seo Title</label>
+                                                    <input type="text" class="form-control" name="author" id="author" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Keyword Description</label>
+                                                    <textarea type="text" class="form-control" name="keyword" id="keyword" style="resize: none" rows="4" required></textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Seo Description</label>
+                                                    <textarea type="text" class="form-control" name="description" rows="4" style="resize: none" id="description" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tab_news">
+                                                <div class="form-group">
+                                                    <label for="introduce">Các tin tức liên quan</label>
+                                                    <select class="selectpicker form-control" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" multiple id="news_all" name="news_all[]">
+                                                        <optgroup label="Tin tức bất động sản" style="font-weight: bold; font-size: 20px">
+                                                            @if($news_1!=null)
+                                                                @foreach($news_1 as $item)
+                                                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </optgroup>
+                                                        <optgroup label="Thư viện hình ảnh">
+                                                            @if($news_2!=null)
+                                                                @foreach($news_2 as $item)
+                                                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </optgroup>
+                                                    </select>
                                                 </div>
                                             </div>
                                         @else
@@ -88,12 +126,60 @@
                                                     @endif
                                                 @endforeach
                                             @endif
+                                                <div class="tab-pane" id="tab_seo">
+                                                    <div class="form-group">
+                                                        <label>Seo Title</label>
+                                                        <input type="text" class="form-control" name="author" id="author" value="<?=$news ? $news->seo_author: ''?>" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Keyword Description</label>
+                                                        <textarea type="text" class="form-control" name="keyword" id="keyword" style="resize: none" rows="4" required><?=$news ? $news->seo_keyword: ''?></textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Seo Description</label>
+                                                        <textarea type="text" class="form-control" name="description" rows="4" style="resize: none" id="description" required><?=$news ? $news->seo_description: ''?></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab_news">
+                                                    <div class="form-group">
+                                                        <label for="introduce">Các tin tức liên quan</label>
+                                                        <select class="selectpicker form-control" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" multiple id="news_all" name="news_all[]">
+                                                            <?php
+                                                                $arr_news=explode(",",$news->news_relation);
+                                                            ?>
+                                                            <optgroup label="Tin tức bất động sản" style="font-weight: bold; font-size: 20px">
+                                                                @if($news_1!=null)
+                                                                    @foreach($news_1 as $item)
+                                                                        @if(in_array($item->id,$arr_news))
+                                                                            <option value="{{$item->id}}" selected>{{$item->title}}</option>
+                                                                        @else
+                                                                            <option value="{{$item->id}}">{{$item->title}}</option>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            </optgroup>
+                                                            <optgroup label="Thư viện hình ảnh">
+                                                                @if($news_2!=null)
+                                                                    @foreach($news_2 as $item)
+                                                                        @if(in_array($item->id,$arr_news))
+                                                                            <option value="{{$item->id}}" selected>{{$item->title}}</option>
+                                                                        @else
+                                                                            <option value="{{$item->id}}">{{$item->title}}</option>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                             <!-- /.col -->
                             <div class="col-md-3">
+
                                 <div class="form-group">
                                     <label for="introduce">Đính kèm Form</label>
                                     @if($news!=null)
@@ -127,28 +213,6 @@
                             </div>
                             <!-- /.col -->
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Seo Title</label>
-                                    <input type="text" class="form-control" name="author" id="author" value="<?=$news ? $news->seo_author: ''?>" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Keyword Description</label>
-                                    <textarea type="text" class="form-control" name="keyword" id="keyword" style="resize: none" rows="4" required><?=$news ? $news->seo_keyword: ''?></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Seo Description</label>
-                                    <textarea type="text" class="form-control" name="description" rows="4" style="resize: none" id="description" required><?=$news ? $news->seo_description: ''?></textarea>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -160,6 +224,19 @@
     </div>
 
 <script>
+    $(document).ready(function() {
+        $('body').on('click', function(e) {
+            var target = $(event.target),
+                $parent = target.parents('.bootstrap-select');
+
+            if ($parent.length) {
+                e.stopPropagation();
+                $parent.toggleClass('open');
+            } else {
+                $('.bootstrap-select').removeClass('open');
+            }
+        });
+    });
     function readURL(input) {
 
         if (input.files && input.files[0]) {
@@ -216,4 +293,5 @@
     });
 
 </script>
+
 @endsection

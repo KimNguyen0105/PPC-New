@@ -86,7 +86,7 @@
                                     <td>{{$item->sort_order}}</td>
                                     <td  style="width: 110px">
                                         <a onclick="ftGetValue('{{$item->id}}','{{$item->image}}','{{$item->is_show}}','{{$item->sort_order}}');" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
-                                        <a href="{{url('admin/slide-xoa')}}/{{$item->id}}" class="btn btn-danger">
+                                        <a href="{{url('admin/slide-delete')}}/{{$item->id}}" class="btn btn-danger">
                                             <span class="fa fa-trash" onclick="return confirm('bạn có chắc xóa?')"></span></a>
 
                                     </td>

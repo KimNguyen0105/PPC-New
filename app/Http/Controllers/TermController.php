@@ -13,7 +13,7 @@ class TermController extends Controller
     //
     public function Home()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $term=Term_web::where('status',1)
                 ->orderBy('updated_at','desc')->get();
             return view('admin.term.home',['term'=>$term]);
@@ -24,7 +24,7 @@ class TermController extends Controller
     }
     public function GetTerm($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $term=Term_web::find($id);
             return view('admin.term.insert',['term'=>$term]);
         }
@@ -34,7 +34,7 @@ class TermController extends Controller
     }
     public function SaveTerm(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $title_vi=$request->title_vi;
@@ -72,7 +72,7 @@ class TermController extends Controller
     }
     public function PartnersHome()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $partners=Partners::where('status',1)
                 ->orderBy('id','desc')->get();
             return view('admin.term.partners',['partners'=>$partners]);
@@ -83,7 +83,7 @@ class TermController extends Controller
     }
     public function SavePartners(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $name=$request->name;
@@ -146,7 +146,7 @@ class TermController extends Controller
     }
     public function DeletePartners($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $partners=Partners::find($id);
             $partners->status=0;
             unlink('images/partners/'.$partners->image);

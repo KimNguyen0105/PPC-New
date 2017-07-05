@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <button onclick="ftGetModal()" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspSlider</i></button>
+            <button onclick="ftGetModal()" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspVideo</i></button>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Slide</li>
@@ -92,7 +92,7 @@
                                     <td>{{$item->sort_order}}</td>
                                     <td  style="width: 110px">
                                         <a onclick="ftGetValue('{{$item->id}}','{{$item->thumb}}','{{$item->is_show}}','{{$item->sort_order}}','{{$item->url}}');" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
-                                        <a href="{{url('admin/video-home-xoa')}}/{{$item->id}}" class="btn btn-danger">
+                                        <a href="{{url('admin/video-home-delete')}}/{{$item->id}}" class="btn btn-danger">
                                             <span class="fa fa-trash" onclick="return confirm('bạn có chắc xóa?')"></span></a>
 
                                     </td>

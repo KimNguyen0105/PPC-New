@@ -29,6 +29,7 @@
                 <ul class="treeview-menu">
                     <li class="li1"><a href="{{url('admin/introduce-home')}}"><i class="fa fa-cubes"></i>GIỚI THIỆU</a></li>
                     <li class="li2"><a href="{{url('admin/banner')}}"><i class="fa fa-bars"></i>BANNER</a></li>
+                    <li class="li2"><a href="{{url('admin/profile')}}"><i class="fa fa-file"></i>PROFILE</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -90,13 +91,40 @@
                 </ul>
             </li>
             <li class="treeview menuadmin6">
-                <a href="{{url('admin/contact')}}">
+                <a href="">
                     <i class="fa fa-envelope"></i> <span>QUẢN LÝ LIÊN HỆ</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-caret-down"></i>
+                        </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li class=""><a href="{{url('admin/contact')}}"><i class="fa fa-bolt"></i> LIÊN HỆ</a></li>
+                    <li class="li2"><a href="{{url('admin/contact-form/1')}}"><i class="fa fa-futbol-o"></i> LIÊN HỆ - TIN TỨC</a></li>
+                    <li class="li3"><a href="{{url('admin/contact-form/0')}}"><i class="fa fa-cog"></i> LIÊN HỆ - DỰ ÁN</a></li>
+                </ul>
             </li>
             <li class="treeview menuadmin6">
                 <a href="{{url('admin/system-config')}}">
                     <i class="fa fa-envelope"></i> <span>SYSTEM CONFIG</span>
+                </a>
+            </li>
+            <li class="treeview menuadmin8">
+                <a href="">
+                    <i class="fa fa-users"></i> <span>QUẢN TRỊ NGƯỜI DÙNG</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-caret-down"></i>
+                        </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="li1"><a href="{{url('admin/user')}}"><i class="fa fa-user"></i> NHÂN VIÊN</a></li>
+                    <li class="li2"><a href="{{url('admin/user-font-end')}}"><i class="fa fa-shopping-cart"></i> NGƯỜI DÙNG</a></li>
+                </ul>
+            </li>
+            <li class=" treeview">
+                <a href="{{url('admin/log-out')}}">
+                    <i class="fa   fa-sign-out"></i> <span>ĐĂNG XUẤT</span>
+                    <span class="pull-right-container">
+                    </span>
                 </a>
             </li>
         </ul>

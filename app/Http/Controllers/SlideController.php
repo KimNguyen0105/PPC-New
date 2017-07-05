@@ -12,7 +12,7 @@ class SlideController extends Controller
     //
     public function Home()
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $slider=Slide::where('status',1)->orderBy('updated_at','desc')->get();
             return view('admin.slide',['slider'=>$slider]);
         }
@@ -23,7 +23,7 @@ class SlideController extends Controller
     }
     public function SaveSlide(Request $request)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             try{
                 $id=$request->txtid;
                 $sort=$request->txtthutu;
@@ -86,9 +86,9 @@ class SlideController extends Controller
             return redirect('admin/log-in');
         }
     }
-    public function XoaSlide($id)
+    public function DeleteSlide($id)
     {
-        if(Auth::check()){
+        if(session('user_admin')){
             $slide=Slide::find($id);
             $slide->status=0;
             unlink('images/sliders/'.$slide->image);

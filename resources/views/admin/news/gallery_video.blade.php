@@ -31,11 +31,11 @@
                                     <img src="" class="img-responsive" id="imgF">
                                 </div>
                                 <div class="form-group">
-                                    <label for="introduce">Tiêu đề Vi</label>
+                                    <label for="introduce">Tiêu đề (tiếng việt)</label>
                                     <input style="margin-left: 10px;" required type="text" id="title_vi" name="title_vi" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="introduce">Tiêu đề En</label>
+                                    <label for="introduce">Tiêu đề (tiếng anh)</label>
                                     <input style="margin-left: 10px;" required type="text" id="title_en" name="title_en" class="form-control">
                                 </div>
                                 <div class="form-group">
