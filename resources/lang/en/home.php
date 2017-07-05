@@ -28,6 +28,7 @@ return [
     'info'=>'Profile',
     'project_manager'=>'Project Management',
     'logout'=>'Logout',
+    'see_more'=>'See More',
 //CONTACT
     'contact_trans' => 'CONTACT',
     'see_project' => 'See project location on Google Maps',
@@ -51,5 +52,28 @@ return [
 //NEWS
     'news_event' => 'NEWS - EVENTS',
     'news_event_trans' => 'News - Events',
+//POST
+    'post_info' => 'PROJECT INFORMATION',
+    'transaction' => 'Transaction form',
+    'investor' => 'Investor',
+    'project_area' => 'The area of the project',
+    'apartments_area' => 'The area of the apartments',
+    'quatity_apartments' => 'Quatity of apartments',
+    'quatity_floors' => 'Quatity of floors',
+    'bedrooms' => 'Quatity of bedrooms',
+    'bathrooms' => 'Quatity of bathrooms',
+    'services' => 'Conveninent services',
+    'type_projects' => 'Type of projects',
+    'country' => 'Country',
+    'province' => 'Province',
+    'district' => 'District',
+    'price' => 'Price',
+    'property_ownership' => 'Forms of property ownership',
+    'project_info' => 'Project information',
+    'project_picture' => 'Project picture',
+    'plan_picture' => 'General plan picture',
+    'detail_picture' => 'Project detail picture',
+    'submit_post' => 'Project Post',
+
 
 ];
