@@ -37,7 +37,7 @@
                     @endif
                 </div>
                 <div class="text-left">
-                    <h3 style="color:#443427;margin-left:15px;"><b>{matbangtongthe}</b></h3>
+                    <h3 style="color:#443427;margin-left:15px;"><b>{{trans('home.general_layout')}}</b></h3>
                     <hr style="border:2.5px solid #443427;width:90px;margin-left:15px; margin-top: 0px">
                     <div class="col-md-12 col-sm-12">
                         <img src="{{URL::asset('')}}images/property/{{$detail->image_overall}}" class="img-responsive"
@@ -46,33 +46,33 @@
                 </div>
                 <div style="clear: both"></div>
                 <div class="space text-left">
-                    <h3 style="color:#443427; margin-left: 15px"><b>{thongtinduan}</b></h3>
+                    <h3 style="color:#443427; margin-left: 15px"><b>{{trans('home.post_info')}}</b></h3>
                     <hr style="border:2.5px solid #443427;width:90px;margin-left:15px; margin-top: 0px">
                     <div class="col-md-12 col-sm-12">
                         <table style="border:1px solid black;width:100%;" id="tbthongtinduan">
                             <tr style="text-align:left;border-bottom:1px solid;">
-                                <td style="border-right:1px solid;" class="col-md-3 col-xs-4">&nbsp<h5>{DUAN}</h5></td>
+                                <td style="border-right:1px solid;" class="col-md-3 col-xs-4">&nbsp<h5>{{trans('home.project_trans')}}</h5></td>
                                 <td class="col-md-9 col-xs-8">&nbsp<p>
                                         {{$detail->title}}</p></td>
                             </tr>
                             <tr style=";border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{chudautu}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.investor_trans')}}</h5></td>
                                 <td><p>{{$detail->investor}}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{vitri}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.location')}}</h5></td>
                                 <td>&nbsp<p>{{$detail->address}}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{hinhthucsohuu}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.ownership')}}</h5></td>
                                 <td>&nbsp<p>{{$detail->ownership}}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{dientichduan}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.area_project')}}</h5></td>
                                 <td>&nbsp<p>{{$detail->acreage}}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{dientichcanho}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.apart_info')}}</h5></td>
                                 <td>
                                     &nbsp<p>{sotang}: {{$detail->floor}}</p>
                                     &nbsp<p>{sophongngu}:{{$detail->bedroom}}</p>
@@ -80,11 +80,11 @@
                                 </td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{tongsocanho}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.apart_total')}}</h5></td>
                                 <td>&nbsp<p>{{$detail->apartment}} {can}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
-                                <td style="border-right:1px solid;">&nbsp<h5>{cacdichvutienich}</h5></td>
+                                <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.convent_service')}}</h5></td>
                                 <td>
                                     &nbsp<p>{!!$detail->service !!}</p>
 
