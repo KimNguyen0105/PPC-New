@@ -20,21 +20,21 @@ Route::get('/ppc-recruitment.html','Controller@getRecruitment');
 Route::get('/ppc-hrpolicies.html','Controller@getPolicies');
 Route::get('/ppc-recruitment-detail/{id}-{slug}.html','Controller@getRecruitmentDetail');
 Route::get('/hr-policies-detail/{id}-{slug}.html','Controller@getPoliciesDetail');
-
-
 Route::get('/about-ppc.html','Controller@getAbout');
 Route::get('/ppc-news.html','Controller@getNews');
 Route::get('/ppc-contact.html','Controller@getContact');
 Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
-
-
 //|---------------------------------
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------*/
+//admin
+
+
 //admin
 Route::get('admin/log-in','UserController@GetLogIn');
 Route::post('admin/log-in','UserController@PostLogIn');
@@ -44,15 +44,20 @@ Route::group(['prefix'=>'admin'],function (){
     //slider
     Route::get('/slide', 'SlideController@Home');
     Route::post('/slide-save', 'SlideController@SaveSlide');
-    Route::get('/slide-xoa/{id}', 'SlideController@XoaSlide');
+    Route::get('/slide-delete/{id}', 'SlideController@DeleteSlide');
 //Video home
     Route::get('/video-home', 'VideoHomeController@Home');
     Route::post('/video-home-save', 'VideoHomeController@SaveVideo');
-    Route::get('/video-home-xoa/{id}', 'VideoHomeController@XoaVideo');
+    Route::get('/video-home-delete/{id}', 'VideoHomeController@DeleteVideo');
 //introduce
     Route::get('/introduce-home', 'IntroduceController@Home');
     Route::get('/introduce/{id}', 'IntroduceController@GetIntroduce');
     Route::post('/introduce-save', 'IntroduceController@SaveIntroduce');
+
+    //banner
+    Route::get('/banner', 'IntroduceController@Banner');
+    Route::get('/banner/{id}', 'IntroduceController@GetBanner');
+    Route::post('/banner-save', 'IntroduceController@SaveBanner');
 //category news
     Route::get('/category-home', 'NewsController@CategoryHome');
     Route::post('/category-save', 'NewsController@CategorySave');
@@ -91,8 +96,8 @@ Route::group(['prefix'=>'admin'],function (){
     //system config
     Route::get('/system-config', 'ConfigController@Home');
     Route::post('/config-save', 'ConfigController@SaveConfig');
-	
-	//country
+
+    //country
     Route::get('/country', 'FilterController@Country');
     Route::get('/country-delete/{id}', 'FilterController@DeleteCountry');
     Route::post('/country-save', 'FilterController@SaveCountry');
