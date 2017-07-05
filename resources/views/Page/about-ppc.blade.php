@@ -12,10 +12,12 @@
         <div class="col-md-4 col-xs-4">
             <img src="{{URL::asset('')}}images/introduce/{{$data->image}}" class="img-responsive" style="width:100%;">
         </div>
+        @if(isset($data) != null)
         <div class="col-md-8  col-xs-8">
             <h4 style="color:#443427; font-family: verdana;"><b>{{$data->title}}</b></h4>
             <p class="txtlanhdao" >{!! $data->content !!}</p>
         </div>
+        @endif
     </div>
 </div>
     @endsection
