@@ -112,9 +112,9 @@
                             <a class="menua" href="{{asset('/ppc-contact.html')}}">{{trans('home.contact')}}</a>
                         </li>
                         </li>
-                        <form class="navbar-form">
+                        <form class="navbar-form" action="{{URL::asset('')}}search" method="get">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="...">
+                                <input type="text" name="search" class="form-control" placeholder="...">
                             </div>
                             <button type="submit" class="btn btn-default">{{trans('home.search')}}</button>
                         </form>
