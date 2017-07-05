@@ -29,7 +29,7 @@ class SearchController extends Controller
             ->where('news_lang.title','like','%'.$search.'%')
             ->where('news_lang.content','like','%'.$search.'%')
             ->orderBy('news.updated_at', 'desc')
-            ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
+            ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->paginate(15);;
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
         return View('Home.Search',[
