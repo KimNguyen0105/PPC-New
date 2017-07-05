@@ -301,7 +301,8 @@ class Controller extends BaseController
             'email' => $email,
             'title' => $title,
             'content' => $content,
-            'is_copy' => $is_copy
+            'is_copy' => $is_copy,
+            'status' => 0
         ]);
         return redirect('/ppc-contact.html');
 
