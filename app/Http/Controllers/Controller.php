@@ -447,12 +447,26 @@ class Controller extends BaseController
 
     public function PostLoginPage(Request $request)
     {
-        if ($request->get('username')) {
-            if ($request->get('password')) {
-                Session::put('username', $request->get('username'));
-                return redirect(' / ');
-            } else {
-                echo 'Wrong username or password';
+        if($request->get('username'))
+        {
+            if($request->get('password'))
+            {
+                $user=DB::table('users')->where('role',2)->where('username',$request->get('username'))->select('id','password')->first();
+
+                if($user!=null && $user->password ==$request->get('password'))
+                {
+                    Session::put('username',$request->get('username'));
+                    Session::put('user_id',$user->id);
+                    return redirect()->back();
+                }
+                else{
+                    echo 'Wrong username or password';
+                }
+
+            }
+            else
+            {
+                echo '2342343';
             }
         }
     }
