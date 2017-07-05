@@ -52,6 +52,7 @@ return [
 //NEWS
     'news_event' => 'NEWS - EVENTS',
     'news_event_trans' => 'News - Events',
+    'newsrelation'=>'Related news',
 //POST
     'post_info' => 'PROJECT INFORMATION',
     'transaction' => 'Transaction form',
