@@ -84,5 +84,6 @@ return [
     'apart_info' => 'APARTMENT INFORMATION',
     'apart_total' => 'TOTAL APARTMENTS',
     'convent_service' => 'CONVENIENT SERVICES',
+    'room' => 'apartment',
 
 ];

@@ -84,5 +84,6 @@ return [
     'apart_info' => 'THÔNG TIN CĂN HỘ',
     'apart_total' => 'TỔNG SỐ CĂN HỘ',
     'convent_service' => 'CÁC DỊCH VỤ TIỆN ÍCH',
+    'room' => 'căn',
 
 ];
