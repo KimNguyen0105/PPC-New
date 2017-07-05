@@ -116,7 +116,9 @@
                         </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="li1"><a href="{{url('admin/user')}}"><i class="fa fa-user"></i> NHÂN VIÊN</a></li>
+                    @if(session('role_admin')==0)
+                        <li class="li1"><a href="{{url('admin/user')}}"><i class="fa fa-user"></i> NHÂN VIÊN</a></li>
+                    @endif
                     <li class="li2"><a href="{{url('admin/user-font-end')}}"><i class="fa fa-shopping-cart"></i> NGƯỜI DÙNG</a></li>
                 </ul>
             </li>

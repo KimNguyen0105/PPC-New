@@ -177,9 +177,6 @@ class UserController extends Controller
                         Image::make($image->getRealPath())->resize(100, 100)->save($path);
                         $user->avatar=$filename;
                     }
-                    else{
-                        $user->avatar='user.jpg';
-                    }
                     $pass_old=$request->pass_old_;
                     $pass_new=$request->pass_;
                     if($pass_new!='' || $pass_new!=null)
@@ -194,10 +191,10 @@ class UserController extends Controller
                     }
                     if($user->save())
                     {
-                        return redirect('admin/user')->with('thongbao','Thêm User thành công!');
+                        return redirect('admin/user/'.$id)->with('thongbao','Cập nhật thông tin thành công!');
                     }
                     else{
-                        return redirect('admin/user')->with('thatbai','Thêm User thất bại!');
+                        return redirect('admin/user')->with('thatbai','Cập nhật thông tin thất bại!');
                     }
                 }
             }
@@ -211,6 +208,7 @@ class UserController extends Controller
             return redirect('admin/log-in');
         }
     }
+
     public function DeleteUser($id)
     {
         if(session('user_admin')){
@@ -329,9 +327,6 @@ class UserController extends Controller
                         $path = public_path('images/user/' . $filename);
                         Image::make($image->getRealPath())->resize(150, 150)->save($path);
                         $user->avatar=$filename;
-                    }
-                    else{
-                        $user->avatar='user.jpg';
                     }
                     $pass_old=$request->pass_old_;
                     $pass_new=$request->pass_;

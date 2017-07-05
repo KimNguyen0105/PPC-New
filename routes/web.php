@@ -57,7 +57,7 @@ Route::post('/ppc-post.html',[
 Route::get('/ppc-tinh/{id}','PostController@getTinh');
 Route::get('/ppc-quan/{id}','PostController@getQuan');
 
-
+Route::get('/search','SearchController@Search');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
