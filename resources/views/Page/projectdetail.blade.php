@@ -7,7 +7,7 @@
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <br>
                 <div class="col-md-12 text-left">
-                    <h5 style="font-size:12pt;font-family:verdana;">{TrangChu} / {DuAn}/ <b>{{$detail->title}} </b></h5>
+                    {{--<h5 style="font-size:12pt;font-family:verdana;">{TrangChu} / {DuAn}/ <b>{{$detail->title}} </b></h5>--}}
                 </div>
             </div>
             @if($detail !=null)
@@ -97,7 +97,7 @@
 
         </div>
         @else
-            echo '<h1>Chi tiết null</h1>';
+           <h1>Chi tiết null</h1>
         @endif
 
 

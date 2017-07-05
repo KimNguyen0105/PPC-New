@@ -25,19 +25,23 @@ class Controller extends BaseController
             ->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('status', 1)
             ->where('property_lang.lang',Session::get('locale'))
-            ->orderBy('property.id', 'desc')
+            ->orderBy('property.updated_at', 'desc')
             ->paginate(5);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $videos = DB::table('videos')->orderBy('id', 'desc')->take(7)->get();
 
-        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')->where('status', 1)->where('news_lang.lang', Session::get('locale'))->orderBy('news.updated_at', 'desc')
+        $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
+            ->where('status', 1)
+            ->where('news_lang.lang', Session::get('locale'))
+            ->orderBy('news.updated_at', 'desc')
             ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
 
 
         $systems = DB::table('ppc_system_config')->get();
         if (Session::get('locale') == 'vi') {
             $databanner = DB::table('introduce')->join('introduce_lang', 'introduce.id', '=', 'introduce_lang.introduce_id')
-                ->where('introduce.parrent_id', 1)->where('introduce_lang.lang', 'vi')
+                ->where('introduce.parrent_id', 1)
+                ->where('introduce_lang.lang', 'vi')
                 ->where('status', 1)
                 ->select('introduce.id', 'introduce.slug', 'introduce.image', 'introduce_lang.title')
                 ->get();
@@ -97,7 +101,7 @@ class Controller extends BaseController
             ->where('property.id',$id)
             ->where('property_lang.lang', Session::get('locale'))
             ->orderBy('updated_at', 'desc')
-            ->select('property.*', 'property_lang.*')
+            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
             ->first();
         $dataimage = DB::table('property_image')
             ->where('id_property',$id)->get();
