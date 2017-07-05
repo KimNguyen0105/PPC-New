@@ -44,6 +44,15 @@ Route::get('/ppc-project/{id}-{slug}.html','Controller@ProjectDetail');
 Route::get('/404.html','Controller@notfound');
 Route::get('/500.html','Controller@badinternal');
 Route::get('/sitemap.xml','Controller@sitemap');
+//|---------------------------------
+Route::get('/ppc-post.html','PostController@getFormPost');
+Route::post('/ppc-post.html',[
+    'as'=>'post-form-post',
+    'uses'=>'PostController@postFormPost'
+]);
+Route::get('/ppc-tinh/{id}','PostController@getTinh');
+Route::get('/ppc-quan/{id}','PostController@getQuan');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
