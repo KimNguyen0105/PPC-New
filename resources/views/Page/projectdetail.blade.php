@@ -81,7 +81,7 @@
                             </tr>
                             <tr style="border-bottom:1px solid;">
                                 <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.apart_total')}}</h5></td>
-                                <td>&nbsp<p>{{$detail->apartment}} {can}</p></td>
+                                <td>&nbsp<p>{{$detail->apartment}} {{trans('home.room')}}</p></td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
                                 <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.convent_service')}}</h5></td>
