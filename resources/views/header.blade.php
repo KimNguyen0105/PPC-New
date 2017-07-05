@@ -23,20 +23,20 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"
                                style="padding: 0px 5px;color: #5b4f44;font-size: 15px;font-weight: bold">
                                 <span class="fa fa-user"></span>
-                                <span class="fw600"><?=$_SESSION['name']?> <span class="fa fa-caret-down"></span></span>
+                                <span class="fw600">{{Session::get('username')}} <span class="fa fa-caret-down"></span></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="" style="color: black">
-                                        <i class="fa fa-user"></i>&nbsp;&nbsp;{Thongtin}</a>
+                                        <i class="fa fa-user"></i>&nbsp;&nbsp;{{trans('home.info')}}</a>
                                 </li>
                                 <li style="border-top: 1px solid #eeeeee !important;">
                                     <a href="" style="color: black">
-                                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{Quanlyduan}</a>
+                                        <i class="fa fa-info-circle"></i>&nbsp;&nbsp;{{trans('home.project_manager')}}</a>
                                 </li>
                                 <li style="border-top: 1px solid #eeeeee !important;">
-                                    <a href="" style="color: black">
-                                        <i class="fa fa-sign-out"></i>&nbsp;&nbsp;{Dangxuat} </a>
+                                    <a href="{{asset('/')}}logout" style="color: black">
+                                        <i class="fa fa-sign-out"></i>&nbsp;&nbsp;{{trans('home.logout')}} </a>
                                 </li>
 
                             </ul>
@@ -90,35 +90,23 @@
                             <ul>
                                 <li class="limenu">
                                     <a href="{{asset('/ppc-recruitment.html')}}">{{trans('home.recruitment')}}</a>
-                                    <img src="{{URL::asset('images/new.gif')}}" width="50px"/>
                                 </li>
                                 <li class="limenu">
                                     <a href="{{asset('/ppc-hrpolicies.html')}}">{{trans('home.hrpolicies')}}</a>
                                 </li>
                             </ul>
                         </li>
-                        <?php
-                        if(isset($_SESSION['name']))
-                        {
-                        if($_SESSION['name'] != null){
-                        ?>
+                        @if(Session::has('username'))
                         <li class="limenu menu6" style="display: table-cell;float: none">
-                            <a class="menua" href="">{{trans('home.post')}}</a>
+                            <a class="menua" href="{{asset('/ppc-post.html')}}">{{trans('home.post')}}</a>
                         </li>
-                        <?php } else {
 
-                        ?>
+
+                        @else
                         <li class="limenu menu6" style="display: table-cell;float: none">
                             <a class="menua" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
                         </li>
-                        <?php  }
-                        }
-                        else{ ?>
-                        <li class="limenu menu6" style="display: table-cell;float: none">
-                            <a class="menua" data-toggle="modal" href="#myLogin">{{trans('home.post')}}</a>
-                        </li>
-                        <?php }
-                        ?>
+                       @endif
                         <li class="limenu menu7" style="display: table-cell;float: none">
                             <a class="menua" href="{{asset('/ppc-contact.html')}}">{{trans('home.contact')}}</a>
                         </li>
@@ -267,7 +255,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            {{--{!! Form::open() !!}--}}
+            {!! Form::open(array('route'=>'post-login')) !!}
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{trans('home.login')}}</h4>
@@ -298,7 +286,7 @@
                     <button type="submit" class="btn btn-info">{{trans('home.login')}}</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('home.close')}}</button>
                 </div>
-            {{--{!! Form::close() !!}--}}
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
