@@ -114,7 +114,16 @@ class PostController extends Controller
 //            ]);
             DB::table('property_lang')->insert([
                 'property_id' => $property->id,
-                'lang' => Session::get('locale'),
+                'lang' => 'vi',
+                'title' => $request->get('title'),
+                'service' => $request->get('service'),
+                'ownership' => $request->get('ownership'),
+                'info' => $request->get('info'),
+                'address' => $request->get('address')
+            ]);
+             DB::table('property_lang')->insert([
+                'property_id' => $property->id,
+                'lang' => 'en',
                 'title' => $request->get('title'),
                 'service' => $request->get('service'),
                 'ownership' => $request->get('ownership'),

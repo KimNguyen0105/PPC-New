@@ -223,6 +223,7 @@ class Controller extends BaseController
                 ->select('news.*', 'news_lang.title', 'news_lang.content')
                 ->first();
             $systems = DB::table('ppc_system_config')->get();
+            
             //$new_related = DB::table('');
             $relation=DB::table('news')->find($id);
 
@@ -242,7 +243,8 @@ class Controller extends BaseController
                         'news' => $news,
                         'sliders' => $sliders,
                         'systems' => $systems,
-                        'newrelation'=>$newrelation
+                        'newrelation'=>$newrelation,
+                       
                     ]
                 );
             }
@@ -456,11 +458,10 @@ class Controller extends BaseController
 
     public function PostLoginPage(Request $request)
     {
-        $remember=$request->get('remember');
-
+    
         if($request->get('username'))
         {
-            if($request->get('password') && $remember)
+            if($request->get('password'))
             {
                 $user=DB::table('users')->where('role',2)->where('username',$request->get('username'))->select('id','password')->first();
 

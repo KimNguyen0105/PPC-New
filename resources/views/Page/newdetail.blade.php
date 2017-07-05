@@ -3,16 +3,20 @@
     <div style="clear: both"></div>
     <div class="backgroundbody" style="position:relative;">
         <div class="container paddingchitiet" style="min-height: 400px">
-            <div class="text-center space">
-                <h3 style="color:#443427;"><b>{{trans('home.news_event')}}</b></h3>
+            <!-- <div class="text-center space">
+                <h3 style="color:#443427;"><b>
+                    
+                    <h3 class="titlewweb" style="color:#443427;"><b>{{$news->title}}</b></h3>
+                    
+                </b></h3>
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <br>
                 <div class="col-md-6 text-left">
                     <h5 style="font-size:12pt;font-family:verdana;">{{trans('home.home')}}
-                        /{{trans('home.news_event_trans')}}</h5>
+                        /<b>{{$news->title}}</b></h5>
                 </div>
                 <div class="col-md-6"></div>
-            </div>
+            </div> -->
 
 
             <!-- hàng số 1 -->
