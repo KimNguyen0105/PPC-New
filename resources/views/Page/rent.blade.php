@@ -7,10 +7,10 @@
         <!-- PHẦN BANNER CỦA HEADER -->
         <div class="container paddingchitiet">
             <div class="text-center space">
-                <h3 class="titlewweb" style="color:#443427;" id="h2"><b>{{trans('home.duan')}}</b></h3>
+                <h3 class="titlewweb" style="color:#443427;" id="h2"><b>{{trans('home.project')}}</b></h3>
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <div class="col-md-12 text-left">
-                    <h4 style="font-family: Verdana">{{trans('home.home')}}/{{trans('home.duan')}} / <b>{{trans('home.rent')}}</b>
+                    <h4 style="font-family: Verdana">{{trans('home.home')}} / {{trans('home.project')}} / <b>{{trans('home.rent')}}</b>
 
                     </h4>
                 </div>

@@ -25,6 +25,7 @@ class Controller extends BaseController
             ->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('status', 1)
             ->where('property_lang.lang',Session::get('locale'))
+            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
             ->orderBy('property.updated_at', 'desc')
             ->paginate(5);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
@@ -101,7 +102,7 @@ class Controller extends BaseController
             ->where('property.id',$id)
             ->where('property_lang.lang', Session::get('locale'))
             ->orderBy('updated_at', 'desc')
-            ->select('property.id', 'property.image', 'property_lang.address', 'property.acreage', 'property.slug', 'property_lang.title', 'property_lang.info')
+            ->select('property.*','property_lang.*')
             ->first();
         $dataimage = DB::table('property_image')
             ->where('id_property',$id)->get();

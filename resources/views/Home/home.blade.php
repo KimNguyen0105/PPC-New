@@ -38,13 +38,13 @@
                 @foreach($dataduan as $data)
                     <div class="col-md-12 contentduan" style="margin-bottom: 10px;position: relative">
                         <div class="col-md-4" style="padding: 0px">
-                            <a href="{{URL::asset('project')}}/{{$data->id}}-{{$data->slug}}.html">
+                            <a href="{{URL::asset('ppc-project')}}/{{$data->id}}-{{$data->slug}}.html">
                                 <img src="images/property/{{$data->image}}" class="img-responsive img_body" alt="{{$data->title}}" style="width:100%;">
                             </a>
                         </div>
 
                         <div class="col-md-8" style="padding-top: 10px">
-                            <a href="{{URL::asset('project')}}/{{$data->id}}-{{$data->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
+                            <a href="{{URL::asset('ppc-project')}}/{{$data->id}}-{{$data->slug}}.html"><h4 style="text-align:left;font-size: 17px;font-family: verdana;">
                                     <b>{{$data->title}}</b></h4></a>
                             <h5 style="text-align:left; font-size: 16px;font-family: verdana;"> {{$data->address}}</h5>
                             <div style="padding-top: 10px; font-family: Verdana">

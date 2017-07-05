@@ -3,17 +3,17 @@
     <div style="position:relative;" class="backgroundbody">
         <div class="container paddingchitiet" style="min-height: 400px">
             <div class="text-center space">
-                <h3 style="color:#443427;"><b>{DuAn}</b></h3>
+                <h3 style="color:#443427;"><b>{{trans('home.project')}}</b></h3>
                 <hr style="border:2.5px solid #443427;width:90px;">
                 <br>
                 <div class="col-md-12 text-left">
-                    {{--<h5 style="font-size:12pt;font-family:verdana;">{TrangChu} / {DuAn}/ <b>{{$detail->title}} </b></h5>--}}
+                    <h5 style="font-size:12pt;font-family:verdana;">{{trans('home.home')}} / {{trans('home.project')}}/ <b>{{$detail->title}} </b></h5>
                 </div>
             </div>
             @if($detail !=null)
                 <div class="space">
                     <div class="col-md-12 col-sm-12">
-                        <a href=""><img src="" class="img-responsive" style="width: 100%"></a>
+                        <a href=""><img src="{{URL::asset('images/property')}}/{{$detail->image}}" class="img-responsive" style="width: 100%"></a>
                     </div>
                 </div>
 
