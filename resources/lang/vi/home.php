@@ -74,4 +74,15 @@ return [
     'plan_picture' => 'Ảnh tổng thể',
     'detail_picture' => 'Ảnh chi tiết dự án',
     'submit_post' => 'Đăng Bài',
+//PROJECT
+    'project_trans' => 'DỰ ÁN',
+    'general_layout' => 'MẶT BẰNG TỔNG THỂ',
+    'investor_trans' => 'CHỦ ĐẦU TƯ',
+    'location' => 'VỊ TRÍ',
+    'ownership' => 'HÌNH THỨC SỞ HỮU',
+    'area_project' => 'DIỆN TÍCH DỰ ÁN',
+    'apart_info' => 'THÔNG TIN CĂN HỘ',
+    'apart_total' => 'TỔNG SỐ CĂN HỘ',
+    'convent_service' => 'CÁC DỊCH VỤ TIỆN ÍCH',
+
 ];
