@@ -74,9 +74,9 @@
                             <tr style="border-bottom:1px solid;">
                                 <td style="border-right:1px solid;">&nbsp<h5>{{trans('home.apart_info')}}</h5></td>
                                 <td>
-                                    &nbsp<p>{sotang}: {{$detail->floor}}</p>
-                                    &nbsp<p>{sophongngu}:{{$detail->bedroom}}</p>
-                                    &nbsp<p>{sophongtam}: {{$detail->bathroom}}</p>
+                                    &nbsp<p>{{trans('home.quatity_floors')}}: {{$detail->floor}}</p>
+                                    &nbsp<p>{{trans('home.bedrooms')}}:{{$detail->bedroom}}</p>
+                                    &nbsp<p>{{trans('home.bathrooms')}}: {{$detail->bathroom}}</p>
                                 </td>
                             </tr>
                             <tr style="border-bottom:1px solid;">
