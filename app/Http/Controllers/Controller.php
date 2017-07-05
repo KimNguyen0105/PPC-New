@@ -24,11 +24,11 @@ class Controller extends BaseController
         $dataduan = DB::table('property')
             ->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('status', 1)
-            ->where('property_lang.lang',Session::get('locale'))
+            ->where('property_lang.lang', Session::get('locale'))
             ->orderBy('property.updated_at', 'desc')
             ->paginate(5);
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
-        $videos = DB::table('videos')->where('status',1)->orderBy('id', 'desc')->take(7)->get();
+        $videos = DB::table('videos')->where('status', 1)->orderBy('id', 'desc')->take(7)->get();
 
         $news = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
             ->where('status', 1)
@@ -98,18 +98,18 @@ class Controller extends BaseController
         $systems = DB::table('ppc_system_config')->get();
         $detail = DB::table('property')->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('property.status', 1)
-            ->where('property.id',$id)
+            ->where('property.id', $id)
             ->where('property_lang.lang', Session::get('locale'))
             ->orderBy('updated_at', 'desc')
             ->select('property.*', 'property_lang.*')
             ->first();
         $dataimage = DB::table('property_image')
-            ->where('id_property',$id)->get();
+            ->where('id_property', $id)->get();
         return view('Page/projectdetail', [
             'sliders' => $sliders,
             'systems' => $systems,
             'detail' => $detail,
-            'dataimage'=>$dataimage
+            'dataimage' => $dataimage
         ]);
     }
 
@@ -224,14 +224,14 @@ class Controller extends BaseController
                 ->first();
             $systems = DB::table('ppc_system_config')->get();
             //$new_related = DB::table('');
-            $relation=DB::table('news')->find($id);
+            $relation = DB::table('news')->find($id);
 
-            $arr = explode(',',$relation->news_relation);
+            $arr = explode(',', $relation->news_relation);
 
             $newrelation = DB::table('news')->join('news_lang', 'news.id', '=', 'news_lang.new_id')
                 ->where('status', 1)
                 ->where('news_lang.lang', Session::get('locale'))
-                ->whereIn('news.id',$arr)
+                ->whereIn('news.id', $arr)
                 ->orderBy('news.updated_at', 'desc')
                 ->select('news.*', 'news_lang.title', 'news_lang.content', 'news.updated_at')->get();
             if ($news == null) {
@@ -242,7 +242,7 @@ class Controller extends BaseController
                         'news' => $news,
                         'sliders' => $sliders,
                         'systems' => $systems,
-                        'newrelation'=>$newrelation
+                        'newrelation' => $newrelation
                     ]
                 );
             }
@@ -301,7 +301,8 @@ class Controller extends BaseController
             'email' => $email,
             'title' => $title,
             'content' => $content,
-            'is_copy' => $is_copy
+            'is_copy' => $is_copy,
+            'status' => 0
         ]);
         return redirect('/ppc-contact.html');
 
@@ -356,20 +357,11 @@ class Controller extends BaseController
         }
         $sliders = DB::table('sliders')->where('is_show', 1)->where('status', 1)->orderBy('sort_order', 'asc')->get();
         $systems = DB::table('ppc_system_config')->get();
-        if (Session::get('locale') == 'vi') {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
-                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
-                ->where('recruitment_lang.lang', 'vi')
-                ->select('recruitment.*', 'recruitment_lang.title', 'recruitment_lang.content')
-                ->get();
-        } else {
-            $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
-                ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
-                ->where('recruitment_lang.lang', 'en')
-                ->select('recruitment.*', 'recruitment_lang.title', 'recruitment_lang.content')
-                ->get();
-        }
-
+        $data = DB::table('recruitment')->join('recruitment_lang', 'recruitment.id', '=', 'recruitment_lang.recruitment_id')
+            ->where('recruitment.status', 1)->orderBy('recruitment.updated_at', 'desc')
+            ->where('recruitment_lang.lang', Session::get('locale'))
+            ->select('recruitment.*', 'recruitment_lang.title', 'recruitment_lang.content')
+            ->get();
         return view('Page/recruitment', [
             'sliders' => $sliders,
             'systems' => $systems,
@@ -456,28 +448,26 @@ class Controller extends BaseController
 
     public function PostLoginPage(Request $request)
     {
-        if($request->get('username'))
-        {
-            if($request->get('password'))
-            {
-                $user=DB::table('users')->where('role',2)->where('username',$request->get('username'))->select('id','password')->first();
+        $remember = $request->get('remember');
 
-                if($user!=null && $user->password ==$request->get('password'))
-                {
-                    Session::put('username',$request->get('username'));
-                    Session::put('user_id',$user->id);
+        if ($request->get('username')) {
+            if ($request->get('password') && $remember) {
+                $user = DB::table('users')->where('role', 2)->where('username', $request->get('username'))->select('id', 'password')->first();
+
+                if ($user != null && $user->password == $request->get('password')) {
+                    Session::put('username', $request->get('username'));
+                    Session::put('user_id', $user->id);
+                    return redirect()->back();
+                } else {
+                    $request->session()->flash('status', 'Wrong username or password. Try again');
                     return redirect()->back();
                 }
-                else{
-                    echo 'Wrong username or password';
-                }
 
-            }
-            else
-            {
-                echo '2342343';
+            } else {
+                return redirect('/');
             }
         }
+
     }
 
     public function logout()
@@ -486,9 +476,10 @@ class Controller extends BaseController
         return redirect('/');
     }
 
-    function sitemap(){
+    function sitemap()
+    {
         $tintuc = DB::table('news')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         $project = DB::table('property')->where('status', 1)->orderBy('updated_at', 'DESC')->get();
-        return response()->view('home.sitemap', compact('tintuc','project'))->header('Content-Type', 'text/xml');
+        return response()->view('home.sitemap', compact('tintuc', 'project'))->header('Content-Type', 'text/xml');
     }
 }

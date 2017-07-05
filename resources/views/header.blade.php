@@ -275,13 +275,14 @@
                         <label for="firstname" class="field-icon">
                         </label>
                     </div>
-                    @if(isset($errors))
-                        @foreach($errors->all() as $error)
-                            <div class="alert alert-danger">{{$error}}</div>
-                        @endforeach
+                    @if(Session::has('status'))
+                        <div class="alert alert-danger">
+                            <a class="close" data-dismiss="alert">×</a>
+                            <strong>Error!</strong> {!!Session::get('status')!!}
+                        </div>
                     @endif
                     <div class="form-group">
-                        <input type="checkbox" name="rememberme"><label
+                        <input type="checkbox" name="remember" id="remember" value="1"><label
                                 style="font-size: 15px; font-weight: 100">&nbsp;{{trans('home.remember')}}</label><br>
                         <a href="">{{trans('home.account')}}</a><br>
                         <a data-toggle="modal" href="#forgetpass"
