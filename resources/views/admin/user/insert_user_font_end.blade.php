@@ -39,7 +39,7 @@
                             <input hidden type="text" name="txtid" value="<?=$user ? $user->id: 0?>">
                         </div>
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-10 col-md-offset-2">
                                 <div class="nav-tabs-custom">
                                     <ul class="nav nav-tabs" id="tabSoluoc">
                                         <li class="active"><a href="#tab_info" data-toggle="tab" aria-expanded="true">Thông tin</a></li>
@@ -48,7 +48,7 @@
                                     <div class="tab-content" id="contentSoluoc">
                                         @if($user==null)
                                             <div class="tab-pane active" id="tab_info">
-                                                <div class="col-md-12 row">
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="introduce">Tên đăng nhập</label>
@@ -90,7 +90,7 @@
                                         @else
 
                                             <div class="tab-pane active" id="tab_info">
-                                                <div class="col-md-12 row">
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="introduce">Tên đăng nhập</label>
