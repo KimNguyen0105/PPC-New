@@ -275,6 +275,11 @@
                         <label for="firstname" class="field-icon">
                         </label>
                     </div>
+                    @if(isset($errors))
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{$error}}</div>
+                        @endforeach
+                    @endif
                     <div class="form-group">
                         <input type="checkbox" name="rememberme"><label
                                 style="font-size: 15px; font-weight: 100">&nbsp;{{trans('home.remember')}}</label><br>

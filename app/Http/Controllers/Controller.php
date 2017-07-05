@@ -16,7 +16,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function Home()
+    public function HomePage()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -70,7 +70,7 @@ class Controller extends BaseController
         return redirect()->back();
     }
 
-    public function getProject()
+    public function getPageProject()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -114,7 +114,7 @@ class Controller extends BaseController
         ]);
     }
 
-    public function getAbout()
+    public function getPageAbout()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -157,7 +157,7 @@ class Controller extends BaseController
         ]);
     }
 
-    public function getNews()
+    public function getPageNews()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -251,7 +251,7 @@ class Controller extends BaseController
 
     }
 
-    public function getGallery()
+    public function getPageGallery()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -277,7 +277,7 @@ class Controller extends BaseController
         return view('Error.badinternal');
     }
 
-    public function getContact()
+    public function getPageContact()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -350,7 +350,7 @@ class Controller extends BaseController
         ]);
     }
 
-    public function getRecruitment()
+    public function getPageRecruitment()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -398,7 +398,7 @@ class Controller extends BaseController
         ]);
     }
 
-    public function getPolicies()
+    public function getPagePolicies()
     {
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
@@ -483,7 +483,7 @@ class Controller extends BaseController
     public function logout()
     {
         Session::forget('username');
-        return redirect(' / ');
+        return redirect('/');
     }
 
     function sitemap(){

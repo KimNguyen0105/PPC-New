@@ -3,7 +3,7 @@
 
     <script src="{{asset('')}}js/fileinput.min.js"></script>
     <script src="{{asset('')}}js/jquery.validate.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.2/ckeditor.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
 
 
     <style>

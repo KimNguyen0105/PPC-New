@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', 'Controller@Home');
+Route::get('/', 'Controller@HomePage');
 Route::get('language/{locale}', 'Controller@SetLanguage');
-Route::get('/ppc-project.html','Controller@getProject');
+Route::get('/ppc-project.html','Controller@getPageProject');
 Route::get('/project-sale.html','Controller@getSale');
 Route::get('/project-rent.html','Controller@getRent');
-Route::get('/ppc-recruitment.html','Controller@getRecruitment');
-Route::get('/ppc-hrpolicies.html','Controller@getPolicies');
+Route::get('/ppc-recruitment.html','Controller@getPageRecruitment');
+Route::get('/ppc-hrpolicies.html','Controller@getPagePolicies');
 
 
 Route::get('/ppc-recruitment/{id}-{slug}.html','Controller@getRecruitmentDetail');
@@ -38,9 +38,9 @@ Route::post('/ppc-contact.html',[
 ]);
 
 
-Route::get('/about-ppc.html','Controller@getAbout');
-Route::get('/ppc-news.html','Controller@getNews');
-Route::get('/ppc-contact.html','Controller@getContact');
+Route::get('/about-ppc.html','Controller@getPageAbout');
+Route::get('/ppc-news.html','Controller@getPageNews');
+Route::get('/ppc-contact.html','Controller@getPageContact');
 Route::get('/ppc-news/{id}-{slug}.html','Controller@newsdetail');
 
 Route::get('/ppc-project/{id}-{slug}.html','Controller@ProjectDetail');
