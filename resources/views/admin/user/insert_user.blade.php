@@ -39,7 +39,7 @@
                             <input hidden type="text" name="txtid" value="<?=$user ? $user->id: 0?>">
                         </div>
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-10 col-md-offset-1">
                                 <div class="nav-tabs-custom">
                                     <ul class="nav nav-tabs" id="tabSoluoc">
                                         <li class="active"><a href="#tab_info" data-toggle="tab" aria-expanded="true">Thông tin</a></li>
@@ -48,7 +48,7 @@
                                     <div class="tab-content" id="contentSoluoc">
                                         @if($user==null)
                                             <div class="tab-pane active" id="tab_info">
-                                                <div class="col-md-12 row">
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="introduce">Tên đăng nhập</label>
@@ -66,13 +66,16 @@
                                                             <label for="introduce">Địa chỉ</label>
                                                             <input type="text" class="form-control" name="address" id="address">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="introduce">Vai trò</label>
-                                                            <select class="form-control" name="role" id="role">
-                                                                <option value="0">Admin</option>
-                                                                <option value="1">Nhân viên</option>
-                                                            </select>
-                                                        </div>
+
+                                                            <div class="form-group">
+                                                                <label for="introduce">Vai trò</label>
+                                                                <select class="form-control" name="role" id="role">
+                                                                    <option value="0">Admin</option>
+                                                                    <option value="1">Nhân viên</option>
+                                                                </select>
+                                                            </div>
+
+
                                                     </div>
                                                     <div class="clo-md-6">
                                                         <div class="form-group">
@@ -97,7 +100,7 @@
                                         @else
 
                                             <div class="tab-pane active" id="tab_info">
-                                                <div class="col-md-12 row">
+                                                <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="introduce">Tên đăng nhập</label>
@@ -119,10 +122,15 @@
                                                             <label for="introduce">Vai trò</label>
                                                             <select class="form-control" name="role" id="role">
                                                                 @if($user->role==1)
-                                                                    <option value="0">Admin</option>
+                                                                    @if(session('role_admin')==0)
+                                                                        <option value="0">Admin</option>
+                                                                    @endif
                                                                     <option value="1" selected>Nhân viên</option>
                                                                 @else
-                                                                    <option value="0" selected>Admin</option>
+                                                                    @if(session('role_admin')==0)
+                                                                        <option value="0" selected>Admin</option>
+                                                                    @endif
+
                                                                     <option value="1">Nhân viên</option>
                                                                 @endif
                                                             </select>
@@ -133,7 +141,6 @@
                                                             <input id="file" accept="image/*" name="file" type="file" style="padding-bottom: 20px" onchange="readURL(this);" class="file-loading">
                                                             <img id="imgF" src="{{asset('images/user')}}/{{$user->avatar}}" class="img-responsive" style="height: 200px;"/>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>

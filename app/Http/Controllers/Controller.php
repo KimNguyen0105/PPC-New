@@ -293,10 +293,14 @@ class Controller extends BaseController
     {
         $name = $request->get('name');
         $email = $request->get('email');
+        $title = $request->get('title');
+        $content = $request->get('content');
         $is_copy = $request->get('is_copy') ? true : false;
         DB::table('contacts')->insert([
             'name' => $name,
             'email' => $email,
+            'title' => $title,
+            'content' => $content,
             'is_copy' => $is_copy
         ]);
         return redirect('/ppc-contact.html');

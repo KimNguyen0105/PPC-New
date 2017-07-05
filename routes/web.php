@@ -171,6 +171,7 @@ Route::group(['prefix'=>'admin'],function (){
     Route::get('/property', 'PropertyController@Property');
     Route::get('/property-delete/{id}', 'PropertyController@DeleteProperty');
     Route::get('/property/{id}', 'PropertyController@GetProperty');
+	Route::get('/search-property', 'PropertyController@SearchProperty');
     Route::post('/property-save', 'PropertyController@SaveProperty');
     Route::get('/property-image-delete/{id}-{id_image}', 'PropertyController@DeletePropertyImage');
 

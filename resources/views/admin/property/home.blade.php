@@ -4,6 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <a href="{{url('admin/property/0')}}" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-plus">&nbspDự án</i></a>
+            <a href="{{url('admin/property')}}" class="btn btn-danger" style="border-radius:0px;"><i class="fa fa-refresh">&nbspRefresh</i></a>
             <ol class="breadcrumb">
                 <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Dự án</li>
@@ -25,6 +26,52 @@
                         <i style="color: green" class="fa fa-close"></i>  {{session('thatbai')}}
                     </div>
                 @endif
+                <div class="col-md-12 divSearch" style="margin-bottom: 30px">
+                    <form action="{{url('admin/search-property')}}" method="GET" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}"/>
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" name="txtsearch" id="txtsearch" value="{{$search}}" placeholder="Nhập tên...">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <select name="project" id="project" class="form-control" onchange="ftGetProvinceSearch()">
+                                <option value="0">-- Chọn loại dự án --</option>
+                                @if($project !=null)
+                                    @foreach ($project as $row)
+                                        @if($row->id==$id_project)
+                                            <option value="{{$row->id}}" selected>{{$row->name}}</option>
+                                        @else
+                                            <option value="{{$row->id}}">{{$row->name}}</option>
+                                        @endif
+
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <select name="status" id="status" class="form-control">
+                                        @if($id_status==1)
+                                            <option value="2">-- Chọn trạng thái --</option>
+                                            <option value="0">Chưa duyệt</option>
+                                            <option value="1" selected>Đã duyệt</option>
+
+                                        @elseif($id_status==0)
+                                            <option value="2">-- Chọn trạng thái --</option>
+                                            <option value="0" selected>Chưa duyệt</option>
+                                            <option value="1" >Đã duyệt</option>
+
+                                        @else
+                                            <option value="2" selected>-- Chọn trạng thái --</option>
+                                            <option value="0" >Chưa duyệt</option>
+                                            <option value="1" >Đã duyệt</option>
+
+                                        @endif
+                            </select>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            <button class="btn btn-info" type="submit">Tìm</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="row" >
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -67,6 +114,9 @@
                         @endif
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        {{$property->links()}}
+                    </div>
                 </div>
             </div>
         </section>

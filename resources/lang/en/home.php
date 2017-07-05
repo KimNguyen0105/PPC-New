@@ -74,6 +74,16 @@ return [
     'plan_picture' => 'General plan picture',
     'detail_picture' => 'Project detail picture',
     'submit_post' => 'Project Post',
-
+//PROJECT
+    'project_trans' => 'PROJECT',
+    'general_layout' => 'GENERAL LAYOUT',
+    'investor_trans' => 'INVESTORS',
+    'location' => 'LOCATIONS',
+    'ownership' => 'FORMS OF PROPERTY OWNERSHIP',
+    'area_project' => 'THE AREA OF THE PROJECT',
+    'apart_info' => 'APARTMENT INFORMATION',
+    'apart_total' => 'TOTAL APARTMENTS',
+    'convent_service' => 'CONVENIENT SERVICES',
+    'room' => 'apartment',
 
 ];

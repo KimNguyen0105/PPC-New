@@ -40,8 +40,8 @@
             <li style="display:inline;"><a href="#"><img src="{{URL::asset('')}}images/icon/social2.png"></a></li>
         </ul>
     </div>
-    <div class="text-center" style="padding: 0 15px;">
-        <p class="copyright"><b>Copyright &copy; - Perfect Property Company</b></p>
+    <div class="text-center" style="padding: 0 15px">
+        <p style ="color:black" class="copyright"><b>Copyright © 2012 Perfect Property Company, Inc. All rights reserved.<br> Designed by<a href ="https://hbbsolution.com"> HBB Solutions.</a></b></p>
     </div>
     <br>
 </div>
