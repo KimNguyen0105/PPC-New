@@ -49,7 +49,23 @@
                         <input type="email" id="txtemail" name="email" class="form-control" required>
                     </div>
                 </div>
-
+            <div class="row text-left" style="padding: 5px 0px;">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <h5>{{trans('home.title')}}*</h5>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-9">
+                    <input  id="txttitle" name="title" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="row text-left" style="padding: 5px 0px;">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <h5>{{trans('home.content')}}*</h5>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-9">
+                    <!-- <input type="text" name="1" style="width:100%;"  placeholder="NHẬP NỘI DUNG"> -->
+                    <textarea  id="txtcontent" name="content" class="form-control" rows="5" required></textarea>
+                </div>
+            </div>
 
 
                 <div class="row text-left" style="padding: 5px 0px;">
