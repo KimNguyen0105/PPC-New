@@ -38,7 +38,10 @@ class NewsController extends Controller
                 $category->title=$title_vi;
                 $category->title_en=$title_en;
                 if($request->hasFile('file'.$id)){
-                    unlink("images/category/".$category->image);
+                    if(file_exists("images/category/".$category->image))
+                    {
+                        unlink("images/category/".$category->image);
+                    }
                     $image = $request->file('file'.$id);
                     $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                     $path = public_path('images/category/' . $filename);
@@ -244,7 +247,10 @@ class NewsController extends Controller
                         $news->news_relation=implode(",",$news_all);
                     }
                     if($request->hasFile('file')){
-                        unlink('images/news/'.$news->image);
+                        if(file_exists('images/news/'.$news->image))
+                        {
+                            unlink('images/news/'.$news->image);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/news/' . $filename);
@@ -273,7 +279,7 @@ class NewsController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
+                return redirect('admin/news-home')->with('thatbai','Thêm tin tức thất bại!');
             }
         }
         else{
@@ -341,7 +347,10 @@ class NewsController extends Controller
                     $news->seo_author=$author;
                     $news->is_form=$is_form;
                     if($request->hasFile('file')){
-                        unlink('images/news/'.$news->image);
+                        if(file_exists('images/news/'.$news->image))
+                        {
+                            unlink('images/news/'.$news->image);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/news/' . $filename);
@@ -369,7 +378,7 @@ class NewsController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
+                return redirect('admin/news-gallery-home')->with('thatbai','Thêm tin tức thất bại!');
             }
         }
         else{
@@ -444,7 +453,10 @@ class NewsController extends Controller
                     $gallery->name_en=$name_en;
                     if($request->hasFile('file'))
                     {
-                        unlink('images/gallery_image/'.$gallery->image);
+                        if(file_exists('images/gallery_image/'.$gallery->image))
+                        {
+                            unlink('images/gallery_image/'.$gallery->image);
+                        }
                         $file=$request->file('file');
                         $filename  = time() . '.' . $file->getClientOriginalExtension();
                         $path = public_path('images/gallery_image/' . $filename);
@@ -462,7 +474,6 @@ class NewsController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
                 return redirect('admin/news-gallery-image/'.$id_new)->with('thatbai','Thêm thất bại!');
             }
         }
@@ -475,7 +486,10 @@ class NewsController extends Controller
         if(session('user_admin')){
             $gallery=Gallery_Image::find($id);
             $gallery->status=0;
-            unlink('images/gallery_image/'.$gallery->image);
+            if(file_exists('images/gallery_image/'.$gallery->image))
+            {
+                unlink('images/gallery_image/'.$gallery->image);
+            }
             if($gallery->save())
             {
                 return redirect('admin/news-gallery-image/'.$idnews)->with('thongbao','Xóa thành công!');

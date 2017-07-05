@@ -19,22 +19,27 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        <span class="hidden-xs">Admin</span>
+                        <span class="hidden-xs">{{session('username_admin')}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <p>
-                                {{session('user_admin')}}<small>admin@gmail.com</small>
+                                @if(session('role_admin')==1)
+                                    Nhân viên
+                                @else
+                                    Admin
+                                @endif
+                                <small>{{session('username_admin')}}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Thông tin</a>
+                                <a href="{{url('admin/user')}}/{{session('user_admin')}}" class="btn btn-default btn-flat">Thông tin</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" data-method="post" class="btn btn-default btn-flat">Đăng xuất</a>
+                                <a href="{{url('admin/log-out')}}" data-method="post" class="btn btn-default btn-flat">Đăng xuất</a>
                             </div>
                         </li>
                     </ul>

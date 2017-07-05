@@ -119,7 +119,10 @@ class TermController extends Controller
                     $partners->link=$link;
                     if($request->hasFile('file'))
                     {
-                        //unlink('images/sliders/'.$partners->image);
+                        if(file_exists('images/partners/'.$partners->image))
+                        {
+                            unlink('images/partners/'.$partners->image);
+                        }
                         $file=$request->file('file');
                         $filename  = time() . '.' . $file->getClientOriginalExtension();
                         $path = public_path('images/partners/' . $filename);
@@ -149,9 +152,12 @@ class TermController extends Controller
         if(session('user_admin')){
             $partners=Partners::find($id);
             $partners->status=0;
-            unlink('images/partners/'.$partners->image);
             if($partners->save())
             {
+                if(file_exists('images/partners/'.$partners->image))
+                {
+                    unlink('images/partners/'.$partners->image);
+                }
                 return redirect('admin/partners')->with('thongbao','Xóa thành công!');
             }
             else{

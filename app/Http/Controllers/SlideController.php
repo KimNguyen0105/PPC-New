@@ -61,7 +61,10 @@ class SlideController extends Controller
                     $slide->sort_order=$sort;
                     if($request->hasFile('file'))
                     {
-                        unlink('images/sliders/'.$slide->image);
+                        if(file_exists('images/sliders/'.$slide->image))
+                        {
+                            unlink('images/sliders/'.$slide->image);
+                        }
                         $file=$request->file('file');
                         $filename  = time() . '.' . $file->getClientOriginalExtension();
                         $path = public_path('images/sliders/' . $filename);
@@ -91,9 +94,13 @@ class SlideController extends Controller
         if(session('user_admin')){
             $slide=Slide::find($id);
             $slide->status=0;
-            unlink('images/sliders/'.$slide->image);
+
             if($slide->save())
             {
+                if(file_exists('images/sliders/'.$slide->image))
+                {
+                    unlink('images/sliders/'.$slide->image);
+                }
                 return redirect('admin/slide')->with('thongbao','Xóa thành công!');
             }
             else{

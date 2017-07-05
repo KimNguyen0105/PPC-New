@@ -58,7 +58,10 @@ class ConfigController extends Controller
                 $config->ppc_seokeyword=$keyword;
                 $config->google_analytic=$google;
                 if($request->hasFile('file')){
-                    unlink("images/system_config/".$config->ppc_logo);
+                    if(file_exists('images/system_config/'.$config->ppc_logo))
+                    {
+                        unlink("images/system_config/".$config->ppc_logo);
+                    }
                     $image = $request->file('file');
                     $filename  = time() . '.logo.' . $image->getClientOriginalExtension();
                     $path = public_path('images/system_config/' . $filename);

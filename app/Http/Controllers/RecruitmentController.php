@@ -93,7 +93,10 @@ class RecruitmentController extends Controller
                     $recruitment->slug=str_slug($title_vi);
                     $recruitment->deadline=$deadline;
                     if($request->hasFile('file')){
-                        unlink("images/recruitment/".$recruitment->image);
+                        if(file_exists('images/recruitment/'.$recruitment->image))
+                        {
+                            unlink('images/recruitment/'.$recruitment->image);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/recruitment/' . $filename);
@@ -119,7 +122,6 @@ class RecruitmentController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
                 return redirect('admin/introduce-home')->with('thatbai','Cập nhật thất bại!');
             }
         }
@@ -132,9 +134,12 @@ class RecruitmentController extends Controller
         if(session('user_admin')){
             $recruitment=Recruitment::find($id);
             $recruitment->status=0;
-            unlink('images/recruitment/'.$recruitment->image);
             if($recruitment->save())
             {
+                if(file_exists('images/recruitment/'.$recruitment->image))
+                {
+                    unlink('images/recruitment/'.$recruitment->image);
+                }
                 return redirect('admin/recruitment')->with('thongbao','Xóa thành công!');
             }
             else{

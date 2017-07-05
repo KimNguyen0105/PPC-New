@@ -89,7 +89,10 @@ class IntroduceController extends Controller
                     $introduce=Introduce::find($id);
                     $introduce->slug=str_slug($title_vi);
                     if($request->hasFile('file')){
-                        unlink("images/introduce/".$introduce->image);
+                        if(file_exists("images/introduce/".$introduce->image))
+                        {
+                            unlink("images/introduce/".$introduce->image);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/introduce/' . $filename);
@@ -113,7 +116,6 @@ class IntroduceController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
                 return redirect('admin/introduce-home')->with('thatbai','Cập nhật thất bại!');
             }
         }
@@ -133,7 +135,10 @@ class IntroduceController extends Controller
                 $introduce=Introduce::find($id);
                 $introduce->slug=str_slug($title_vi);
                 if($request->hasFile('file')){
-                    unlink("images/introduce/".$introduce->image);
+                    if(file_exists("images/introduce/".$introduce->image))
+                    {
+                        unlink("images/introduce/".$introduce->image);
+                    }
                     $image = $request->file('file');
                     $filename  = time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                     $path = public_path('images/introduce/' . $filename);
@@ -157,7 +162,6 @@ class IntroduceController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
                 return redirect('admin/banner')->with('thatbai','Cập nhật thất bại!');
             }
         }

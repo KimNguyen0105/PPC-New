@@ -60,7 +60,7 @@ class PropertyController extends Controller
             }
             catch (\Exception $e)
             {
-
+                return redirect('admin/project')->with('thatbai','Cập nhật thất bại!');
             }
         }
         else{
@@ -321,7 +321,10 @@ class PropertyController extends Controller
                     $property->id_user=0;
 
                     if($request->hasFile('file')){
-                        unlink('images/property/'.$property->image);
+                        if(file_exists('images/property/'.$property->image))
+                        {
+                            unlink('images/property/'.$property->image);
+                        }
                         $image = $request->file('file');
                         $filename  ='image-'. time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/property/' . $filename);
@@ -329,7 +332,10 @@ class PropertyController extends Controller
                         $property->image=$filename;
                     }
                     if($request->hasFile('file-overall')){
-                        unlink('images/property/'.$property->image_overall);
+                        if(file_exists('images/property/'.$property->image_overall))
+                        {
+                            unlink('images/property/'.$property->image_overall);
+                        }
                         $image = $request->file('file-overall');
                         $filename  = 'image-overall'.time() . '.'.str_slug($title_vi).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/property/' . $filename);
@@ -384,7 +390,7 @@ class PropertyController extends Controller
             }
             catch (\Exception $e)
             {
-                dd($e);
+                return redirect('admin/property')->with('thatbai','Thêm tin tức thất bại!');
             }
         }
         else{
@@ -400,7 +406,11 @@ class PropertyController extends Controller
 
             if($property->save())
             {
-                unlink('images/property/'.$property->image_overall);
+                if(file_exists('images/property/'.$property->image_overall))
+                {
+                    unlink('images/property/'.$property->image_overall);
+                }
+
                 return redirect('admin/property')->with('thongbao','Xóa thành công!');
             }
             else{
@@ -419,7 +429,10 @@ class PropertyController extends Controller
             $property->status=0;
             if($property->save())
             {
-                unlink('images/property_image/'.$property->image_overall);
+                if(file_exists('images/property_image/'.$property->image))
+                {
+                    unlink('images/property_image/'.$property->image);
+                }
                 return redirect('admin/property/'.$id)->with('thongbao','Xóa thành công!');
             }
             else{

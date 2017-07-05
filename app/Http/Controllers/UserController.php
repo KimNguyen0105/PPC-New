@@ -29,6 +29,8 @@ class UserController extends Controller
                 if($userfind->password==$pass)
                 {
                     session(['user_admin' => $userfind->id]);
+                    session(['role_admin' => $userfind->role]);
+                    session(['username_admin' => $userfind->username]);
                     //session(['username' => $userfind->email]);
                     if($remember)
                     {
@@ -49,7 +51,6 @@ class UserController extends Controller
         }
         catch (\Exception $e)
         {
-            dd($e);
             return redirect('admin/log-in')->with('thatbai','Email hoặc mật khẩu không đúng!');
         }
     }
@@ -79,7 +80,9 @@ class UserController extends Controller
     }
     function LogOut()
     {
-        session()->flush();
+        session()->forget('user_admin');
+        session()->forget('username_admin');
+        session()->forget('role_admin');
         return redirect('admin/log-in');
     }
 
@@ -164,6 +167,10 @@ class UserController extends Controller
                     $user->address=$address;
                     $user->role=$role;
                     if($request->hasFile('file')){
+                        if(file_exists('images/user/'.$user->avatar) && $user->avatar!='user.jpg')
+                        {
+                            unlink('images/user/'.$user->avatar);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($username).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/user/' . $filename);
@@ -210,8 +217,18 @@ class UserController extends Controller
             try{
                 $user=User::find($id);
                 $user->status=0;
-                $user->save();
-                return redirect('admin/user')->with('thongbao','Xóa Thành công!');
+                if($user->save())
+                {
+                    if(file_exists('images/user/'.$user->avatar) && $user->avatar!='user.jpg')
+                    {
+                        unlink('images/user/'.$user->avatar);
+                    }
+                    return redirect('admin/user')->with('thongbao','Xóa Thành công!');
+                }
+                else{
+                    return redirect('admin/user')->with('thatbai','Xóa thất bại!');
+                }
+
             }
             catch (\Exception $e)
             {
@@ -303,6 +320,10 @@ class UserController extends Controller
                     $user->address=$address;
                     $user->role=2;
                     if($request->hasFile('file')){
+                        if(file_exists('images/user/'.$user->avatar) && $user->avatar!='user.jpg')
+                        {
+                            unlink('images/user/'.$user->avatar);
+                        }
                         $image = $request->file('file');
                         $filename  = time() . '.'.str_slug($username).'.' . $image->getClientOriginalExtension();
                         $path = public_path('images/user/' . $filename);
@@ -337,7 +358,6 @@ class UserController extends Controller
             {
                 return redirect('admin/user-font-end')->with('thatbai','Thêm User thất bại!');
             }
-
         }
         else{
             return redirect('admin/log-in');
@@ -349,8 +369,18 @@ class UserController extends Controller
             try{
                 $user=User::find($id);
                 $user->status=0;
-                $user->save();
-                return redirect('admin/user-font-end')->with('thongbao','Xóa Thành công!');
+                if($user->save())
+                {
+                    if(file_exists('images/user/'.$user->avatar) && $user->avatar!='user.jpg')
+                    {
+                        unlink('images/user/'.$user->avatar);
+                    }
+                    return redirect('admin/user-font-end')->with('thongbao','Xóa Thành công!');
+                }
+                else{
+                    return redirect('admin/user-font-end')->with('thatbai','Xóa thất bại!');
+                }
+
             }
             catch (\Exception $e)
             {
