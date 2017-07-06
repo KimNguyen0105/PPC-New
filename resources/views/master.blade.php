@@ -5,10 +5,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta name="description" content="ppc comanny real estate,perfect propeties, Perfect property company, PPC, Công ty bất động sản PPC, @yield('description')">
     <meta name="seokeyword" content="@yield('seokeyword')"/>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
+
+
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+   
+    <link rel="stylesheet" href="{{asset('fileinput/css/fileinput.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/slick.css')}}">
@@ -19,6 +26,7 @@
 
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="icon" href="{{asset('favicon.ico')}}">
+
 <script>
     
     function ftResgiter() {
@@ -86,5 +94,6 @@
 @include('header')
 @yield('main')
 @include('footer')
+<script src="{{asset('')}}fileinput/js/fileinput.min.js"></script>
 </body>
 </html>

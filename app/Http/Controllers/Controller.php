@@ -226,6 +226,7 @@ class Controller extends BaseController
                 ->select('news.*', 'news_lang.title', 'news_lang.content')
                 ->first();
             $systems = DB::table('ppc_system_config')->get();
+            
             //$new_related = DB::table('');
             $relation = DB::table('news')->find($id);
 
@@ -451,15 +452,18 @@ class Controller extends BaseController
 
     public function PostLoginPage(Request $request)
     {
-        $remember = $request->get('remember');
 
-        if ($request->get('username')) {
-            if ($request->get('password') && $remember) {
-                $user = DB::table('users')->where('role', 2)->where('username', $request->get('username'))->select('id', 'password')->first();
+    
+        if($request->get('username'))
+        {
+            if($request->get('password'))
+            {
+                $user=DB::table('users')->where('role',2)->where('username',$request->get('username'))->select('id','password')->first();
 
-                if ($user != null && $user->password == $request->get('password')) {
-                    Session::put('username', $request->get('username'));
-                    Session::put('user_id', $user->id);
+                if($user!=null && $user->password ==$request->get('password'))
+                {
+                    Session::put('username',$request->get('username'));
+                    Session::put('user_id',$user->id);
                     return redirect()->back();
                 } else {
                     $request->session()->flash('status', 'Wrong username or password. Try again');

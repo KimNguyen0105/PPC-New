@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('main')
 
     {{--BANNER TIN TUC--}}
@@ -7,7 +6,7 @@
 
         <div class="text-center ">
             <div class="container">
-                <div class="col-md-12">
+                <div class="col-md-8 col-md-offset-2">
 
                     @foreach ($banner_tin as $row)
 
@@ -23,7 +22,7 @@
                             </div>
                             <div style="width:100%;">
                                 <a href="{{URL::asset('')}}ppc-news-{{$row->id}}.html">
-                                    <img src="{{URL::asset('')}}images/category/{{$row->image}}"></a>
+                                    <img src="{{URL::asset('')}}images/category/{{$row->image}}" style="width: 100%; margin: -10px 1px"></a>
                             </div>
                         </div>
                     @endforeach

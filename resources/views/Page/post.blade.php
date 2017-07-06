@@ -1,8 +1,10 @@
 @extends('master')
 @section('main')
 
-    <script src="{{asset('')}}js/fileinput.min.js"></script>
+
     <script src="{{asset('')}}js/jquery.validate.js"></script>
+
+    
     <script src="ckeditor/ckeditor.js"></script>
 
 
@@ -192,7 +194,7 @@
             <div class="col-md-12 text-left">
                 <div class="form-group">
                     <p>{{trans('home.detail_picture')}}</p>
-                    <input type="file" multiple name="imgDetail">
+                     <input id="input-id" type="file" name="imgDetail[]" class="file" multiple data-preview-file-type="text">
 
                 </div>
 

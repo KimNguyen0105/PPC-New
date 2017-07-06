@@ -97,7 +97,7 @@ class PostController extends Controller
                     $filename=$i.time() . '.'.str_slug($request->get('title')).'.' . $file->getClientOriginalExtension();
                     $path = public_path('images/property_image/' . $filename);
                     Image::make($file->getRealPath())->resize(300, 200)->save($path);
-                    $property_image=new Property_Image;
+                    $property_image=new App\Property_Image;
                     $property_image->id_property=$property->id;
                     $property_image->image=$filename;
                     $property_image->status=1;
@@ -114,7 +114,16 @@ class PostController extends Controller
 //            ]);
             DB::table('property_lang')->insert([
                 'property_id' => $property->id,
-                'lang' => Session::get('locale'),
+                'lang' => 'vi',
+                'title' => $request->get('title'),
+                'service' => $request->get('service'),
+                'ownership' => $request->get('ownership'),
+                'info' => $request->get('info'),
+                'address' => $request->get('address')
+            ]);
+             DB::table('property_lang')->insert([
+                'property_id' => $property->id,
+                'lang' => 'en',
                 'title' => $request->get('title'),
                 'service' => $request->get('service'),
                 'ownership' => $request->get('ownership'),
