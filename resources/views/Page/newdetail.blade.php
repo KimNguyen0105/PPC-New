@@ -69,7 +69,7 @@
                                         $date = date_format($date, "d/m/Y")
                                         ?>
                                         <i style="font-size:10px;">{{$date}} {{$newDateTime}}</i><br>
-                                        <span>{!! str_limit(strip_tags($item->content),200) !!}</span>
+                                        <span>{{ str_limit(strip_tags($item->content),120) }}</span>
                                     </div>
                                 </div>
                             @endforeach

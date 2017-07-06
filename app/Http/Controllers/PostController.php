@@ -97,7 +97,7 @@ class PostController extends Controller
                     $filename=$i.time() . '.'.str_slug($request->get('title')).'.' . $file->getClientOriginalExtension();
                     $path = public_path('images/property_image/' . $filename);
                     Image::make($file->getRealPath())->resize(300, 200)->save($path);
-                    $property_image=new Property_Image;
+                    $property_image=new App\Property_Image;
                     $property_image->id_property=$property->id;
                     $property_image->image=$filename;
                     $property_image->status=1;

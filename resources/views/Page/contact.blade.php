@@ -7,26 +7,12 @@
         <div class="text-center space">
             <h3 class="titlewweb" style="color:#443427;"><b>{{trans('home.contact_trans')}}</b></h3>
             <hr style="border:2.5px solid #443427;width:130px;">
-            <div class="col-md-12 text-left">
-                <h4 style="font-family: Verdana">{{trans('home.home')}} / <b>{{trans('home.contact')}} </b></h4>
-            </div>
+
         </div>
     <div class="space text-left" style="font-family: Verdana">
         <div class="col-md-4 col-sm-12">
-            <img src="images/logo.png" id="logo_lh">
-            <div class="space">
-                <h5><img src="images/icon/32.png" style="width: 5%"> <b>{{trans('home.see_project')}}</b></h5>
-            </div>
-            <hr style="border:0.5px solid #443427;">
-            <div class="">
-                <h5>{{trans('home.address')}}:</h5>
-                <h5>49 Đinh Công Tráng, P Tân Định, Quận 1,TP.HCM</h5>
-                <h5>{{trans('home.phone')}}: +84 8 38201107</h5>
-                <h5>Mobile: 0988 084 009</h5>
-                <h5><img src="images/icon/31.png" style="width: 5%"> Hotline: <b>+84 8 38201107</b></h5>
-                <h5><img src="images/icon/33.png"  style="width: 5%"> {{trans('home.work_time')}}: <b>8h30 - 18h</b></h5>
-                <h5>({{trans('home.work_hour')}})</h5>
-            </div>
+
+
         </div>
         <div class="col-md-8 col-sm-12 text-left">
             <h4>{{trans('home.contact_title')}} </h4>

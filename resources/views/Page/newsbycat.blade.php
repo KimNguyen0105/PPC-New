@@ -1,7 +1,5 @@
 @extends('master')
 @section('main')
-    @extends('master')
-@section('main')
 
     {{--BANNER TIN TUC--}}
     <div class="text-center banner_header">
@@ -88,5 +86,4 @@
         </div>
 
     </div>
-@endsection
 @endsection

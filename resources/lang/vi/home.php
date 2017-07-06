@@ -52,6 +52,7 @@ return [
 //NEWS
     'news_event' => 'TIN TỨC - SỰ KIỆN',
     'news_event_trans' => 'Tin tức - Sự kiện',
+    'newsrelation'=>'Tin liên quan',
 //POST
     'post_info' => 'THÔNG TIN DỰ ÁN',
     'transaction' => 'Hình thức giao dịch',
