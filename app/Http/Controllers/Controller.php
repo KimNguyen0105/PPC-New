@@ -21,6 +21,9 @@ class Controller extends BaseController
         if (Session::has('locale')) {
             App::setLocale(Session::get('locale'));
         }
+        else{
+            Session::put('locale','en');
+        }
         $dataduan = DB::table('property')
             ->join('property_lang', 'property.id', '=', 'property_lang.property_id')
             ->where('status', 1)
